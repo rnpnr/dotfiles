@@ -1,8 +1,10 @@
 * Aethetics
 ** Theme
 #+BEGIN_SRC emacs-lisp
-(require 'nofrils-acme-theme)
-(load-theme 'nofrils-acme t)
+  (use-package nofrils-acme-theme
+    :ensure t)
+  (require 'nofrils-acme-theme)
+  (load-theme 'nofrils-acme t)
 #+END_SRC
 
 ** Remove graphics bars
@@ -13,6 +15,27 @@
 #+END_SRC
 
 * Keybinds
+** Buffers
+*** Kill Current Buffer
+#+BEGIN_SRC emacs-lisp
+  (defun kill-current-buffer ()
+    "kills focused buffer"
+    (interactive)
+    (kill-buffer (current-buffer)))
+  (global-set-key (kbd "C-x k") 'kill-current-buffer)
+#+END_SRC
+
+*** ibuffer
+#+BEGIN_SRC emacs-lisp
+  (global-set-key (kbd "C-x b") 'ibuffer)
+#+END_SRC
+
+** which-key
+#+BEGIN_SRC emacs-lisp
+  (use-package which-key
+    :ensure t
+    :config (which-key-mode))
+#+END_SRC
 ** Live Config Reload
 #+BEGIN_SRC emacs-lisp
   (defun config-reload ()

@@ -1,4 +1,4 @@
-auto-save-list
+auto-save-list/
 config.el
 elpa/
-
+transient/
