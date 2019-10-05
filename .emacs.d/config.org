@@ -1,4 +1,4 @@
-* Aethetics
+* Aesthetics
 ** Theme
 #+BEGIN_SRC emacs-lisp
   (use-package nofrils-acme-theme
@@ -80,6 +80,8 @@
 #+BEGIN_SRC emacs-lisp
   (setq org-src-tab-acts-natively t)
   (setq org-confirm-babel-evaluate nil)
+  (setq org-log-done t)
+  (setq org-agenda-files (quote ("~/org/school.org")))
 #+END_SRC
 
 *** Org-Bullets

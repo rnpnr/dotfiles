@@ -1,4 +1,6 @@
 auto-save-list/
 config.el
 elpa/
+kkcrc
+server/
 transient/
