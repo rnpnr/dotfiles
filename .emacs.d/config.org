@@ -48,9 +48,11 @@
 * Programming
 ** C
 #+BEGIN_SRC emacs-lisp
-  (require 'cc-mode)
-  (add-to-list 'c-mode-common-hook
-	       (lambda () (setq c-syntactic-indentation nil)))
+  (setq c-default-style "bsd"
+	c-basic-offset 8)
+
+  (setq-default tab-width 8
+		indent-tabs-mode t)
 #+END_SRC
 
 ** Git
