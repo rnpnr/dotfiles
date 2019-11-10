@@ -1,0 +1,12 @@
+scrollbar {
+	background-color: #090909;
+	border: none;
+}
+
+slider {
+	background-color: #222;
+	border-radius: 3px;
+	border: none;
+	margin: 0;
+	min-width: 8px;
+}
