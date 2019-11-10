@@ -3,11 +3,25 @@ set -o vi
 
 UNAME="$(uname -s)"
 
-# Environment Variables
+#########################
+# Environment Variables #
+#########################
+[ -f ~/.secrets ] && . ~/.secrets
+
+PS1='$(tput bold)\W \$$(tput sgr0) '
+if [ -n "$SSH_CONNECTION" ]; then
+	PS1="$(hostname) $PS1"
+fi
+MPD_HOST="$HOME/.config/mpd/socket"
+HISTFILE=$HOME/.history
+HISTSIZE=10000
+HISTCONTROL=ignoredups:ignorespace
+EDITOR="vi"
+VISUAL="vi"
+export MPD_HOST HISTCONTROL HISTFILE HISTSIZE EDITOR VISUAL
+
 if [ $UNAME == "OpenBSD" ]; then
 	ulimit -c 0
-	MPD_HOST="$HOME/.config/mpd/socket"
-	export MPD_HOST
 fi
 
 if [ $UNAME == "Linux" ]; then
@@ -15,19 +29,6 @@ if [ $UNAME == "Linux" ]; then
 		startx
 	fi
 fi
-
-[ -f ~/.secrets ] && . ~/.secrets
-
-PS1='$(tput bold)\W \$$(tput sgr0) '
-if [ -n "$SSH_CONNECTION" ]; then
-	PS1="$(hostname) $PS1"
-fi
-HISTFILE=$HOME/.history
-HISTSIZE=10000
-HISTCONTROL=ignoredups:ignorespace
-EDITOR="vi"
-VISUAL="vi"
-export HISTCONTROL HISTFILE HISTSIZE EDITOR VISUAL
 
 ###########
 # Aliases #
@@ -84,8 +85,8 @@ if [ -f /etc/gentoo-release ]; then
 	alias c++='c++ -O3 -pipe -Wall -Werror'
 	alias emerge='doas /usr/bin/emerge'
 	alias ifconfig='doas /bin/ifconfig'
-	alias -d tag=~/apv/mus/tag
-	alias -d cu=/mnt/reah/cute-stuff
+	alias -d tag=~/media/mus/tag
+	alias -d cu=~/media/pic/cute-stuff
 	alias -d dn=~/downloads/normal
 fi
 

@@ -1,0 +1,48 @@
+ncmpcpp_directory = "~/.config/ncmpcpp"
+user_interface = alternative
+
+clock_display_seconds = no
+
+# Search
+empty_tag_color = 6
+default_find_mode = wrapped
+
+# Library
+media_library_primary_tag = album_artist
+current_item_prefix = "$(6)$r"
+current_item_suffix = "$/r$(end)"
+main_window_color = 13
+current_item_inactive_column_prefix = "$3"
+current_item_inactive_column_suffix = "$9"
+cyclic_scrolling = yes
+
+# Playlist
+song_columns_list_format = "(10)[5]{l} (20)[3]{a} (30)[6]{b} (40)[13]{t}"
+now_playing_prefix = "$b$(16)>>$9"
+now_playing_suffix = "$/b"
+playlist_display_mode = "columns"
+autocenter_mode = "yes"
+centered_cursor = "yes"
+playlist_disable_highlight_delay = "1"
+
+# Top Bar
+display_bitrate = "yes"
+titles_visibility = "no"
+header_visibility = "no"
+alternative_header_first_line_format = $b$1$aqqu$/a$9 $(13){%t}|{%f}$9 $1$atqq$/a$9$/b
+alternative_header_second_line_format = {$3$b%a$/b$9}|{$3$b%A$/b$9}|{%D}
+
+# Progress bar
+progressbar_look = "▄▄ "
+progressbar_elapsed_color = "5"
+
+# Lyrics
+lyrics_directory = "~/.config/ncmpcpp/lyrics"
+follow_now_playing_lyrics = no
+fetch_lyrics_for_current_song_in_background = no
+
+#mpd_host = "localhost"
+mpd_host = "~/.config/mpd/socket"
+#mpd_port = "6600"
+mpd_connection_timeout = "5"
+mpd_music_dir = "~/media/mus"
