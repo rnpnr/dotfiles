@@ -1,0 +1,26 @@
+# HG changeset patch
+# Parent  88c736be60c502525eafd4feeb6395484e2f7989
+Disable the rustc check on musl as our triplet fails mozilla upstream
+
+diff --git a/build/moz.configure/rust.configure b/build/moz.configure/rust.configure
+--- a/build/moz.configure/rust.configure
++++ b/build/moz.configure/rust.configure
+@@ -188,16 +188,18 @@ def rust_compiler(rustc_info, cargo_info
+ def rust_supported_targets(rustc):
+     out = check_cmd_output(rustc, '--print', 'target-list').splitlines()
+     # The os in the triplets used by rust may match the same OSes, in which
+     # case we need to check the raw_os instead.
+     per_os = {}
+     ambiguous = set()
+     per_raw_os = {}
+     for t in out:
++        if 'gentoo' not in t:
++            continue
+         t = split_triplet(t, allow_unknown=True)
+         endianness = t.endianness
+         if t.cpu.startswith('thumb') and endianness not in ('big', 'little'):
+             endianness = 'little'
+         key = (t.cpu, endianness, t.os)
+         if key in per_os:
+             previous = per_os[key]
+             per_raw_os[(previous.cpu, previous.endianness,

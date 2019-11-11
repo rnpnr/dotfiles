@@ -1,0 +1,70 @@
+diff --git a/core/libcutils/include/cutils/trace.h b/core/libcutils/include/cutils/trace.h
+index fcbdc9b..4c70a2d 100644
+--- a/core/libcutils/include/cutils/trace.h
++++ b/core/libcutils/include/cutils/trace.h
+@@ -22,13 +22,14 @@
+ #include <stdbool.h>
+ #include <stdint.h>
+ #include <stdio.h>
+-#include <sys/cdefs.h>
+ #include <sys/types.h>
+ #include <unistd.h>
+ 
+ #include <cutils/compiler.h>
+ 
+-__BEGIN_DECLS
++#ifdef __cplusplus
++extern "C" {
++#endif
+ 
+ /**
+  * The ATRACE_TAG macro can be defined before including this header to trace
+@@ -252,6 +253,8 @@ static inline void atrace_int64(uint64_t tag, const char* name, int64_t value)
+     }
+ }
+ 
+-__END_DECLS
++#ifdef __cplusplus
++}
++#endif
+ 
+ #endif // _LIBS_CUTILS_TRACE_H
+diff --git a/core/liblog/include/log/log_main.h b/core/liblog/include/log/log_main.h
+index 68c2e9a..da16158 100644
+--- a/core/liblog/include/log/log_main.h
++++ b/core/liblog/include/log/log_main.h
+@@ -18,9 +18,10 @@
+ #define _LIBS_LOG_LOG_MAIN_H
+ 
+ #include <android/log.h>
+-#include <sys/cdefs.h>
+ 
+-__BEGIN_DECLS
++#ifdef __cplusplus
++extern "C" {
++#endif
+ 
+ /*
+  * Normally we strip the effects of ALOGV (VERBOSE messages),
+@@ -384,6 +385,8 @@ int __android_log_is_loggable_len(int prio, const char* tag, size_t len,
+ #pragma clang diagnostic pop
+ #endif
+ 
+-__END_DECLS
++#ifdef __cplusplus
++}
++#endif
+ 
+ #endif /* _LIBS_LOG_LOG_MAIN_H */
+diff --git a/core/liblog/log_portability.h b/core/liblog/log_portability.h
+index 88805c7..05ba532 100644
+--- a/core/liblog/log_portability.h
++++ b/core/liblog/log_portability.h
+@@ -17,7 +17,6 @@
+ #ifndef _LIBLOG_PORTABILITY_H__
+ #define _LIBLOG_PORTABILITY_H__
+ 
+-#include <sys/cdefs.h>
+ #include <unistd.h>
+ 
+ /* Helpful private sys/cdefs.h like definitions */

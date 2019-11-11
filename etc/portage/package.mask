@@ -1,0 +1,25 @@
+dev-lang/rust::gentoo
+>virtual/rust-1.34.2
+>virtual/cargo-1.34.2
+# gtk3
+>x11-themes/adwaita-icon-theme-3.22.0-r2
+>media-gfx/gimp-2.8.22-r5
+
+>sys-boot/syslinux-4.07
+
+<dev-util/android-tools-10.0.0
+
+# Willh shitware
+>sys-apps/openrc-0.17
+
+# Don't need net-tools and iproute
+sys-apps/iproute2
+
+# pooteringware
+media-sound/pulseaudio
+sys-apps/systemd
+#sys-fs/eudev
+#sys-fs/udev
+#sys-fs/udev-init-scripts
+sys-fs/udisks
+sys-power/upower

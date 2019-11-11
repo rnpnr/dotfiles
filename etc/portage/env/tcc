@@ -1,0 +1,2 @@
+CC=/usr/l/bin/tcc
+LDFLAGS=""

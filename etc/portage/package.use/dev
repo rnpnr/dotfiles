@@ -1,0 +1,10 @@
+dev-db/sqlite secure-delete
+dev-lang/python ncurses readline
+dev-lang/python:2.7 sqlite
+dev-lang/python sqlite
+dev-lang/rust system-llvm
+dev-libs/boost nls
+dev-libs/elfutils -utils
+dev-libs/libressl static-libs -asm
+dev-libs/nss -nss-pem
+dev-vcs/git -python -perl -pcre -webdav

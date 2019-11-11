@@ -1,0 +1,17 @@
+media-fonts/source-han-sans L10N: ja ko zh-TW
+media-fonts/source-pro cjk
+media-libs/audiofile -flac
+media-libs/gegl -ffmpeg
+media-libs/jbig2dec -png
+media-libs/libbluray aacs
+media-libs/libpng apng
+media-libs/libvpx postproc
+media-libs/mesa -llvm osmesa gles1 gles2 -vaapi
+media-libs/tiff -jpeg
+media-sound/alsa-utils ncurses
+media-sound/lame -frontend
+media-sound/mpd -fifo -mad -curl -icu -network
+media-sound/ncmpcpp taglib outputs
+media-sound/vorbis-tools -ogg123
+media-video/ffmpeg openssl libdrm libass mp3 x264 x265 -hardcoded-tables
+media-video/mpv cli drm gbm lua -jpeg -xv -uchardet -vaapi

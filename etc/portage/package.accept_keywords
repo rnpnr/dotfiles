@@ -1,0 +1,30 @@
+*/*::0x766F6964 **
+media-gfx/ahoviewer **
+media-gfx/sxiv **
+x11-misc/dmenu **
+x11-misc/compton **
+www-client/qutebrowser **
+www-client/surf **
+media-sound/split2flac **
+
+# what the h**k is the point of stable/unstable fonts
+media-fonts/* ~amd64
+
+~sys-kernel/linux-headers-4.19::musl ~amd64
+~sys-devel/gcc-9.2.0::musl ~amd64
+
+~dev-lang/rust-1.34.2::musl ~amd64
+
+=x11-misc/xidle-26052015 ~amd64
+
+# Personally Unmasked
+app-misc/abduco ~amd64
+games-emulation/higan ~amd64
+media-gfx/farbfeld ~amd64
+media-sound/ncmpcpp ~amd64
+media-video/mpv ~amd64
+net-misc/youtube-dl ~amd64
+
+www-client/dillo ~amd64
+
+www-client/palemoon ~amd64

@@ -1,0 +1,3 @@
+net-libs/nodejs -npm -ssl
+net-misc/curl CURL_SSL: libressl -openssl
+net-p2p/transmission gtk
