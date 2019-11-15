@@ -85,9 +85,11 @@ if [ -f /etc/gentoo-release ]; then
 	alias c++='c++ -O3 -pipe -Wall -Werror'
 	alias emerge='doas /usr/bin/emerge'
 	alias ifconfig='doas /bin/ifconfig'
+	alias -d mus=~/media/mus
 	alias -d tag=~/media/mus/tag
 	alias -d cu=~/media/pic/cute-stuff
 	alias -d dn=~/downloads/normal
+	alias -d dt=~/downloads/torrents
 fi
 
 ###############
