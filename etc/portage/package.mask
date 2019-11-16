@@ -1,4 +1,5 @@
 dev-lang/rust::gentoo
+media-libs/mesa::gentoo
 >virtual/rust-1.34.2
 >virtual/cargo-1.34.2
 # gtk3

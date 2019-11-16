@@ -4,6 +4,7 @@ media-libs/audiofile -flac
 media-libs/gegl -ffmpeg
 media-libs/jbig2dec -png
 media-libs/libbluray aacs
+media-libs/libjpeg-turbo static-libs
 media-libs/libpng apng
 media-libs/libvpx postproc
 media-libs/mesa -llvm osmesa gles1 gles2 -vaapi
