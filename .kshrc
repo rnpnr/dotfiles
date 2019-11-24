@@ -12,7 +12,8 @@ PS1='$(tput bold)\W \$$(tput sgr0) '
 if [ -n "$SSH_CONNECTION" ]; then
 	PS1="$(hostname) $PS1"
 fi
-MPD_HOST="$HOME/.config/mpd/socket"
+#MPD_HOST="$HOME/.config/mpd/socket"
+MPD_HOST="localhost"
 HISTFILE=$HOME/.history
 HISTSIZE=10000
 HISTCONTROL=ignoredups:ignorespace

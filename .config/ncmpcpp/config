@@ -41,8 +41,8 @@ lyrics_directory = "~/.config/ncmpcpp/lyrics"
 follow_now_playing_lyrics = no
 fetch_lyrics_for_current_song_in_background = no
 
-#mpd_host = "localhost"
-mpd_host = "~/.config/mpd/socket"
-#mpd_port = "6600"
+mpd_host = "localhost"
+#mpd_host = "~/.config/mpd/socket"
+mpd_port = "6600"
 mpd_connection_timeout = "5"
 mpd_music_dir = "~/media/mus"
