@@ -1,7 +1,5 @@
 dev-lang/rust::gentoo
 media-libs/mesa::gentoo
->virtual/rust-1.34.2
->virtual/cargo-1.34.2
 # gtk3
 >x11-themes/adwaita-icon-theme-3.22.0-r2
 >media-gfx/gimp-2.8.22-r5
