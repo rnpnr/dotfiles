@@ -35,7 +35,7 @@ net-misc/youtube-dl ~amd64
 www-client/dillo ~amd64
 
 www-client/palemoon ~amd64
-~www-client/firefox-72.0.1 ~amd64
+~www-client/firefox-72.0.2 ~amd64
 ~dev-libs/nss-3.48 ~amd64
 ~dev-libs/nspr-4.24 ~amd64
 ~dev-util/cbindgen-0.10.1 ~amd64
