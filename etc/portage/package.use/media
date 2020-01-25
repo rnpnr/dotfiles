@@ -2,6 +2,7 @@ media-fonts/source-han-sans L10N: ja ko zh-TW
 media-fonts/source-pro cjk
 media-libs/audiofile -flac
 media-libs/gegl -ffmpeg
+media-libs/imlib2 -tiff
 media-libs/jbig2dec -png
 media-libs/libbluray aacs
 media-libs/libjpeg-turbo static-libs

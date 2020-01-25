@@ -1,3 +1,4 @@
+dev-libs/elfutils::gentoo
 dev-lang/rust::gentoo
 media-libs/mesa::gentoo
 # gtk3
