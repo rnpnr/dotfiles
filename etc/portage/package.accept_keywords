@@ -39,3 +39,6 @@ www-client/palemoon ~amd64
 ~dev-libs/nss-3.48 ~amd64
 ~dev-libs/nspr-4.24 ~amd64
 ~dev-util/cbindgen-0.10.1 ~amd64
+
+dev-lang/lua:5.2 ~amd64
+~app-eselect/eselect-lua-1 ~amd64
