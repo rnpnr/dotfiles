@@ -4,3 +4,5 @@
 
 dev-lang/lua:5.2
 =app-eselect/eselect-lua-1
+
+app-editors/nvi

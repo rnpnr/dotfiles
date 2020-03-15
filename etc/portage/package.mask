@@ -1,5 +1,4 @@
 dev-libs/elfutils::gentoo
-dev-lang/rust::gentoo
 media-libs/mesa::gentoo
 # gtk3
 >x11-themes/adwaita-icon-theme-3.22.0-r2
@@ -23,3 +22,7 @@ sys-apps/systemd
 #sys-fs/udev-init-scripts
 sys-fs/udisks
 sys-power/upower
+
+
+=net-fs/samba-4.11.6-r2
+=sys-libs/ldb-2.0.8::gentoo

@@ -8,7 +8,7 @@ media-libs/libbluray aacs
 media-libs/libjpeg-turbo static-libs
 media-libs/libpng apng
 media-libs/libvpx postproc
-media-libs/mesa -llvm osmesa gles1 gles2 -vaapi
+media-libs/mesa -llvm libglvnd gles1 gles2 osmesa -vaapi
 media-libs/tiff -jpeg
 media-sound/alsa-utils ncurses
 media-sound/lame -frontend
