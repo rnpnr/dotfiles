@@ -1,4 +1,4 @@
-~www-client/firefox-72.0.2
+~www-client/firefox-74.0
 
 =dev-util/android-tools-5.1.1_p13
 
@@ -6,3 +6,6 @@ dev-lang/lua:5.2
 =app-eselect/eselect-lua-1
 
 app-editors/nvi
+
+dev-lang/rust::smaeul
+sys-libs/libssp_nonshared::smaeul

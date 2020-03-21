@@ -12,16 +12,6 @@ media-fonts/* ~amd64
 
 ~sys-kernel/linux-headers-4.19::musl ~amd64
 
-~virtual/rust-1.39.0 ~amd64
-~sys-devel/clang-9.0.1 ~amd64
-~sys-devel/clang-runtime-9.0.1 ~amd64
-~sys-libs/compiler-rt-9.0.1 ~amd64
-~sys-libs/compiler-rt-sanitizers-9.0.1 ~amd64
-~sys-libs/libomp-9.0.1 ~amd64
-~sys-devel/lld-9.0.1 ~amd64
-~sys-devel/llvm-9.0.1 ~amd64
-~sys-devel/llvmgold-9 ~amd64
-
 ~x11-misc/xidle-26052015 ~amd64
 
 # Personally Unmasked
@@ -32,13 +22,9 @@ media-sound/ncmpcpp ~amd64
 media-video/mpv ~amd64
 net-misc/youtube-dl ~amd64
 
-www-client/dillo ~amd64
-
-www-client/palemoon ~amd64
-~www-client/firefox-72.0.2 ~amd64
-~dev-libs/nss-3.48 ~amd64
-~dev-libs/nspr-4.24 ~amd64
-~dev-util/cbindgen-0.10.1 ~amd64
+~www-client/firefox-74.0 ~amd64
+~media-libs/libvpx-1.8.2 ~amd64
+~media-libs/libwebp-1.1.0 ~amd64
 
 dev-lang/lua:5.2 ~amd64
 ~app-eselect/eselect-lua-1 ~amd64

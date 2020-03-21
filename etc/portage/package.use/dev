@@ -3,7 +3,7 @@ dev-lang/lua static
 dev-lang/python ncurses readline
 dev-lang/python:2.7 sqlite
 dev-lang/python sqlite
-dev-lang/rust system-llvm
+dev-lang/rust system-bootstrap system-llvm
 dev-libs/boost nls
 dev-libs/elfutils -utils
 dev-libs/libressl static-libs -asm
