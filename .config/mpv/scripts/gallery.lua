@@ -7,7 +7,7 @@ local on_windows = (package.config:sub(1,1) ~= "/")
 local opts = {
     thumbs_dir = "/tmp/thumb",
     auto_generate_thumbnails = true,
-    generate_thumbnails_with_mpv = true,
+    generate_thumbnails_with_mpv = false,
 
     thumbnail_width = 192,
     thumbnail_height = 108,
@@ -60,7 +60,7 @@ local opts = {
     ACCEPT    = "ENTER",
     CANCEL    = "ESC",
     REMOVE    = "DEL",
-    FLAG      = "m",
+    FLAG      = ",",
 }
 (require 'mp.options').read_options(opts)
 
