@@ -1,4 +1,4 @@
-sys-apps/busybox mdev -savedconfig
+sys-apps/busybox -savedconfig
 sys-apps/groff -X
 sys-apps/hwids udev
 sys-apps/man-db berkdb -manpager

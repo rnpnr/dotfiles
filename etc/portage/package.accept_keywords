@@ -22,7 +22,7 @@ media-sound/ncmpcpp ~amd64
 media-video/mpv ~amd64
 net-misc/youtube-dl ~amd64
 
-~www-client/firefox-74.0 ~amd64
+~www-client/firefox-75.0 ~amd64
 ~media-libs/libvpx-1.8.2 ~amd64
 ~media-libs/libwebp-1.1.0 ~amd64
 

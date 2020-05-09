@@ -4,6 +4,7 @@ app-crypt/gnupg -ssl
 app-crypt/mit-krb5 -keyutils -pkinit
 app-editors/emacs gtk gtk2 dynamic-loading
 app-emulation/qemu gtk usb -pin-upstream-blobs -curl -vnc QEMU_USER_TARGETS: x86_64
+app-i18n/mozc ibus renderer -gui -handwriting-tegaki
 app-shells/bash -net
 app-shells/dash static
 app-text/mupdf -opengl -curl -javascript -ssl

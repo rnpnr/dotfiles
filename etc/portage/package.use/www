@@ -1,2 +1,2 @@
-www-client/firefox bindist clang eme-free gtk2 -system-jpeg system-libevent system-libvpx system-sqlite system-harfbuzz system-icu custom-optimization custom-cflags
+www-client/firefox bindist clang -system-jpeg system-libevent system-libvpx system-sqlite system-harfbuzz system-icu custom-optimization custom-cflags
 www-client/lynx cjk
