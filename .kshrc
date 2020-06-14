@@ -39,7 +39,7 @@ alias ll='ls -lh'
 alias mkdir='mkdir -p'
 alias ncmpcpp='tput smkx && ncmpcpp'
 alias page='mupdf -C E6D0B3'
-alias mvi='mpv --profile=image --input-conf=~~/image-input.conf'
+alias mvi='mpv --profile=image'
 
 # git
 alias ga='git apply'
