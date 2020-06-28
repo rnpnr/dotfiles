@@ -22,9 +22,8 @@ media-sound/ncmpcpp ~amd64
 media-video/mpv ~amd64
 net-misc/youtube-dl ~amd64
 
-~www-client/firefox-75.0 ~amd64
-~media-libs/libvpx-1.8.2 ~amd64
-~media-libs/libwebp-1.1.0 ~amd64
+~www-client/firefox-76.0.1 ~amd64
+~dev-libs/nss-3.52.1 ~amd64
 
 dev-lang/lua:5.2 ~amd64
 ~app-eselect/eselect-lua-1 ~amd64

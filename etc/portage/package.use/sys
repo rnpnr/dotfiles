@@ -5,7 +5,7 @@ sys-apps/man-db berkdb -manpager
 sys-apps/portage -rsync-verify
 sys-apps/shadow -cracklib
 sys-apps/sysvinit static
-sys-apps/util-linux -suid -cramfs static-libs
+sys-apps/util-linux cryptsetup static-libs -suid -cramfs
 sys-devel/binutils cxx static-libs
 sys-devel/gcc cxx lto
 sys-devel/gdb -server -python

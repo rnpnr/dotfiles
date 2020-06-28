@@ -7,6 +7,7 @@ media-libs/jbig2dec -png
 media-libs/libbluray aacs
 media-libs/libjpeg-turbo static-libs
 media-libs/libpng apng
+media-libs/libsdl2 gles2
 media-libs/libvpx postproc
 media-libs/mesa -llvm libglvnd gles1 gles2 osmesa -vaapi
 media-libs/tiff -jpeg
