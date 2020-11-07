@@ -1,2 +1,3 @@
 dev-libs/libbsd-0.8.6 # provided by musl
 #sys-libs/zlib-1.2.11-r1 # sortix libz
+virtual/tmpfiles-0 # old openrc doesn't need this

@@ -1,6 +1,5 @@
 sys-apps/attr static-libs
 sys-apps/busybox -savedconfig
-sys-apps/coreutils static
 sys-apps/groff -X
 sys-apps/hwids udev
 sys-apps/man-db berkdb -manpager
