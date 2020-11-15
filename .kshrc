@@ -41,6 +41,9 @@ alias ncmpcpp='tput smkx && ncmpcpp'
 alias page='mupdf -C E6D0B3'
 alias mvi='mpv --profile=image'
 
+# managing dotfiles
+alias rice='git --git-dir=~/.dotfiles --work-tree=~'
+
 # git
 alias ga='git apply'
 alias gc='git checkout'

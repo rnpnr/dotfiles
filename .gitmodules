@@ -1,0 +1,12 @@
+[submodule "src/c/links"]
+	path = src/c/links
+	url = git@github.com:0x766F6964/links.git
+[submodule "src/c/dir2list"]
+	path = src/c/dir2list
+	url = git@github.com:0x766F6964/dir2list.git
+[submodule "src/c/status"]
+	path = src/c/status
+	url = git@github.com:0x766F6964/status.git
+[submodule "src/c/doas"]
+	path = src/c/doas
+	url = git@github.com:0x766F6964/doas.git
