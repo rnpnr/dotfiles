@@ -9,8 +9,8 @@ static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const char *fonts[]          = { { "Go Mono:style=bold:size=14" },
-					{ "Source Han Sans CN:style=Medium:size=14" },
 					{ "Source Han Sans JP:style=Medium:size=14" },
+					{ "Source Han Sans CN:style=Medium:size=14" },
 					{ "Source Han Sans KR:style=Medium:size=14" } };
 static const char dmenufont[]       = "Go Mono:style=bold:size=14";
 static const char col_gray1[]       = "#090909";
@@ -99,8 +99,8 @@ static Key keys[] = {
 	{ WINKEY|ShiftMask,		XK_z,				spawn,		{.v = sleepcmd } },
 	{ WINKEY|ShiftMask,		XK_9,				spawn,		{.v = rotleft } },
 	{ WINKEY|ShiftMask,		XK_0,				spawn,		{.v = rotnorm } },
-	{ WINKEY|ShiftMask,		XK_2,				spawn,		SHCMD("xscreenshot | ff2png > ~/apv/pic/screengrabs/$(date -u +%Y年%m月%d日-%T).png") },
-	{ WINKEY|ShiftMask,		XK_3,				spawn,		SHCMD("xscreenshot $(pfw) | ff2png > ~/apv/pic/screengrabs/$(date -u +%Y年%m月%d日-%T).png") },
+	{ WINKEY|ShiftMask,		XK_2,				spawn,		SHCMD("xscreenshot | ff2png > ~/media/pic/screengrabs/$(date -u +%Y年%m月%d日%T).png") },
+	{ WINKEY|ShiftMask,		XK_3,				spawn,		SHCMD("xscreenshot $(pfw) | ff2png > ~/media/pic/screengrabs/$(date -u +%Y年%m月%d日%T).png") },
 	{ ControlMask,			XK_space,			spawn,		SHCMD("kill $(pgrep -n notify)") },
 	{ MODKEY,                       XK_p,      			spawn,          {.v = dmenucmd } },
 	{ MODKEY|ShiftMask,             XK_Return, 			spawn,          {.v = termcmd } },
