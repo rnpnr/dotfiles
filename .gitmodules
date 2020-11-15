@@ -10,3 +10,9 @@
 [submodule "src/c/doas"]
 	path = src/c/doas
 	url = git@github.com:0x766F6964/doas.git
+[submodule ".config/mpv/scripts/mpv-reload"]
+	path = .config/mpv/scripts/mpv-reload
+	url = https://github.com/4e6/mpv-reload.git
+[submodule ".config/mpv/scripts/mpv-image-viewer"]
+	path = .config/mpv/scripts/mpv-image-viewer
+	url = https://github.com/occivink/mpv-image-viewer.git
