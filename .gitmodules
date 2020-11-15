@@ -16,3 +16,6 @@
 [submodule ".config/mpv/scripts/mpv-image-viewer"]
 	path = .config/mpv/scripts/mpv-image-viewer
 	url = https://github.com/occivink/mpv-image-viewer.git
+[submodule ".config/mpv/scripts/mpvacious"]
+	path = .config/mpv/scripts/mpvacious
+	url = https://github.com/Ajatt-Tools/mpvacious.git
