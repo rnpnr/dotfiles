@@ -37,9 +37,10 @@ fi
 alias c=clear
 alias ll='ls -lh'
 alias mkdir='mkdir -p'
+alias mvi='mpv --profile=image'
 alias ncmpcpp='tput smkx && ncmpcpp'
 alias page='mupdf -C E6D0B3'
-alias mvi='mpv --profile=image'
+alias tmux='tmux -2u'
 
 # managing dotfiles
 alias rice='git --git-dir=~/.dotfiles --work-tree=~'
