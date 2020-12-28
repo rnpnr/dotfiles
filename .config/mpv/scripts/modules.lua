@@ -5,5 +5,3 @@ load("mpv-reload/reload.lua")
 
 load("mpv-image-viewer/scripts/image-positioning.lua")
 load("mpv-image-viewer/scripts/detect-image.lua")
-
-load("mpvacious/subs2srs.lua")
