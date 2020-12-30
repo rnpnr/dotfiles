@@ -76,6 +76,14 @@ rmimg() {
 	done
 }
 
+fix_line_endings() {
+	tmpfile=$(mktemp)
+	for file; do
+		sed s::: "$file" >| "$tmpfile"
+		mv "$tmpfile" "$file"
+	done
+}
+
 if [ $UNAME == "OpenBSD" ]; then
 	alias dhclient='doas /sbin/dhclient'
 	alias ifconfig='doas /sbin/ifconfig'
