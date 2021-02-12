@@ -56,7 +56,7 @@ sys-fs/cryptsetup
 sys-fs/ntfs3g
 sys-fs/simple-mtpfs
 sys-kernel/gentoo-sources
-www-client/firefox
+www-client/librewolf
 www-client/surfraw
 x11-apps/xrandr
 x11-apps/xset

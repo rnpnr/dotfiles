@@ -1,9 +1,6 @@
-~www-client/firefox-80.0
-
 =dev-util/android-tools-5.1.1_p13
 
 dev-lang/lua:5.2
-=app-eselect/eselect-lua-1
 
 app-editors/nvi
 

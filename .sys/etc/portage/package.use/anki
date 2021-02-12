@@ -1,0 +1,5 @@
+dev-python/PyQt5 svg widgets gui printsupport network webchannel
+dev-qt/qtwebengine widgets
+dev-qt/qtwebchannel qml
+dev-libs/libxml2 icu
+media-libs/libvpx svc

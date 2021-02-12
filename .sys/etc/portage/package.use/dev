@@ -1,10 +1,11 @@
 dev-db/sqlite secure-delete
 dev-lang/lua static
+dev-lang/luajit lua52compat
 dev-lang/python ncurses readline
 dev-lang/python:2.7 sqlite
 dev-lang/python sqlite
 dev-lang/rust system-bootstrap system-llvm
-dev-libs/boost nls
+dev-libs/boost nls icu
 dev-libs/elfutils -utils
 dev-libs/libressl static-libs -asm
 dev-libs/nss -nss-pem

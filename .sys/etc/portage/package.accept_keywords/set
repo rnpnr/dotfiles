@@ -14,7 +14,7 @@ media-fonts/* ~amd64
 
 ~x11-misc/xidle-26052015 ~amd64
 
-=virtual/rust-1.46.0 ~amd64
+dev-lang/rust::smaeul ~amd64
 
 # Personally Unmasked
 app-misc/abduco ~amd64
@@ -24,10 +24,8 @@ media-sound/ncmpcpp ~amd64
 media-video/mpv ~amd64
 net-misc/youtube-dl ~amd64
 
-~www-client/firefox-80.0 ~amd64
-~dev-libs/nss-3.55 ~amd64
-~dev-libs/nspr-4.26 ~amd64
-~media-libs/harfbuzz-2.6.8 ~amd64
+~www-client/librewolf-84.0.2 ~amd64
+~dev-libs/nss-3.61 ~amd64
 
-dev-lang/lua:5.2 ~amd64
-~app-eselect/eselect-lua-1 ~amd64
+~dev-lang/lua-5.2.4 ~amd64
+~app-eselect/eselect-lua-4 ~amd64

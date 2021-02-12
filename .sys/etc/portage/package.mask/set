@@ -1,6 +1,4 @@
 media-libs/mesa::gentoo
-# gtk3
->media-gfx/gimp-2.8.22-r5
 
 >sys-boot/syslinux-4.07
 
