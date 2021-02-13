@@ -19,3 +19,6 @@
 [submodule ".config/mpv/scripts/mpvacious"]
 	path = .config/mpv/scripts/mpvacious
 	url = https://github.com/Ajatt-Tools/mpvacious.git
+[submodule "src/c/dwm"]
+	path = src/c/dwm
+	url = git@github.com:0x766F6964/dwm.git
