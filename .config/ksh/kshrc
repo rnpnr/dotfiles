@@ -6,7 +6,7 @@ UNAME="$(uname -s)"
 #########################
 # Environment Variables #
 #########################
-[ -f ~/.secrets ] && . ~/.secrets
+[ -f ~/.config/ksh/secrets ] && . ~/.config/ksh/secrets
 
 PS1='$(tput bold)\W \$$(tput sgr0) '
 if [ -n "$SSH_CONNECTION" ]; then
@@ -14,12 +14,13 @@ if [ -n "$SSH_CONNECTION" ]; then
 fi
 #MPD_HOST="$HOME/.config/mpd/socket"
 MPD_HOST="localhost"
-HISTFILE=$HOME/.history
+LESSHISTFILE="-"
+HISTFILE=$HOME/.config/ksh/history
 HISTSIZE=10000
 HISTCONTROL=ignoredups:ignorespace
 EDITOR="vi"
 VISUAL="vi"
-export MPD_HOST HISTCONTROL HISTFILE HISTSIZE EDITOR VISUAL
+export MPD_HOST LESSHISTFILE HISTCONTROL HISTFILE HISTSIZE EDITOR VISUAL
 
 if [ $UNAME == "OpenBSD" ]; then
 	ulimit -c 0
