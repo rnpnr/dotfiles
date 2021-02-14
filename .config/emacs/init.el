@@ -13,8 +13,8 @@
 	(package-install 'use-package))
 
 ;;; Load actual config file
-(when (file-readable-p "~/.emacs.d/config.org")
-	(org-babel-load-file (expand-file-name "~/.emacs.d/config.org")))
+(when (file-readable-p "~/.config/emacs/config.org")
+	(org-babel-load-file (expand-file-name "~/.config/emacs/config.org")))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.

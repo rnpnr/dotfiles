@@ -39,9 +39,9 @@
 ** Live Config Reload
 #+BEGIN_SRC emacs-lisp
   (defun config-reload ()
-    "Reloads ~/.emacs.d/config.org at runtime"
+    "Reloads ~/.config/emacs/config.org at runtime"
     (interactive)
-    (org-babel-load-file (expand-file-name "~/.emacs.d/config.org")))
+    (org-babel-load-file (expand-file-name "~/.config/emacs/config.org")))
   (global-set-key (kbd "C-c r") 'config-reload)
 #+END_SRC
 
