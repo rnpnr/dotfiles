@@ -1,0 +1,11 @@
+#!/bin/sh
+
+# presents a list of bookmarks in dmenu and launches
+# the selection in a browser
+
+BOOKMARKS="$HOME/doc/urls"
+
+url=$(grep -v -e "#" -e "^$" "$BOOKMARKS" | dmenu -i -p "open:" -l 10 |\
+	awk '{print $1}') && exit 0
+
+furfox $url

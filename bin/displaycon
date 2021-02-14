@@ -1,0 +1,43 @@
+#!/bin/sh
+
+# dmenu selection script for controlling monitors
+
+case $(printf "rotate\nmanage" | dmenu -i -p "Action:") in 
+"rotate")
+	monitor=$(xrandr --listactivemonitors | awk '{print $4}' |\
+		grep -v "^$" | dmenu -i -p "Monitor:") || exit 0
+
+	cmd=$(printf "normal\nright\nleft\ninverted" |\
+		dmenu -i -p "Direction:") || exit 0
+
+	xrandr --output $monitor --rotate $cmd
+	case $cmd in
+	"left"|"right")
+		bgs $HOME/.config/v_wallpaper.jpg
+		;;
+	"normal"|"inverted")
+		bgs -z $HOME/.config/h_wallpaper.jpg
+		;;
+	esac
+	;;
+
+"manage")
+	monitor=$(xrandr --listmonitors | awk '{print $4}' |\
+		grep -v "^$" | dmenu -i -p "Monitor:") || exit 0
+
+	case $(printf "enable\ndisable\nmove" | dmenu -i -p "Action:") in
+	"enable"|"move")
+		loc=$(printf "left-of\nright-of\nabove\nbelow" |\
+			dmenu -i -p "Location:") || exit 0
+
+		relative=$(xrandr --listactivemonitors | awk '{print $4}' |\
+			grep -v "^$" | dmenu -i -p "Relative:") || exit 0
+
+		xrandr --output $monitor --$loc $relative
+		;;
+	"disable")
+		xrandr --output $monitor --off
+		;;
+	esac
+	;;
+esac
