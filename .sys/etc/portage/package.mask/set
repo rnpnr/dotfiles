@@ -1,4 +1,5 @@
 media-libs/mesa::gentoo
+sys-devel/binutils::gentoo
 
 >sys-boot/syslinux-4.07
 
@@ -20,3 +21,5 @@ sys-fs/udisks
 sys-power/upower
 
 */*::smaeul
+dev-lang/rust::libressl
+dev-lang/rust::gentoo
