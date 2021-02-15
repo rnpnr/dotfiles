@@ -7,10 +7,10 @@ case $(printf "rotate\nmanage" | dmenu -i -p "Action:") in
 	monitor=$(xrandr --listactivemonitors | awk '{print $4}' |\
 		grep -v "^$" | dmenu -i -p "Monitor:") || exit 0
 
-	cmd=$(printf "normal\nright\nleft\ninverted" |\
+	direction=$(printf "normal\nright\nleft\ninverted" |\
 		dmenu -i -p "Direction:") || exit 0
 
-	xrandr --output $monitor --rotate $cmd
+	xrandr --output $monitor --rotate $direction
 	case $cmd in
 	"left"|"right")
 		bgs $HOME/.config/v_wallpaper.jpg
@@ -22,8 +22,8 @@ case $(printf "rotate\nmanage" | dmenu -i -p "Action:") in
 	;;
 
 "manage")
-	monitor=$(xrandr --listmonitors | awk '{print $4}' |\
-		grep -v "^$" | dmenu -i -p "Monitor:") || exit 0
+	monitor=$(xrandr | grep ' connected' | cut -f 1 -d ' ' |\
+		dmenu -i -p "Monitor:") || exit 0
 
 	case $(printf "enable\ndisable\nmove" | dmenu -i -p "Action:") in
 	"enable"|"move")
@@ -33,7 +33,11 @@ case $(printf "rotate\nmanage" | dmenu -i -p "Action:") in
 		relative=$(xrandr --listactivemonitors | awk '{print $4}' |\
 			grep -v "^$" | dmenu -i -p "Relative:") || exit 0
 
-		xrandr --output $monitor --$loc $relative
+		direction=$(printf "normal\nright\nleft\ninverted" |\
+			dmenu -i -p "Direction:") || exit 0
+
+		xrandr --output $monitor --$loc $relative\
+			--rotate $direction --auto
 		;;
 	"disable")
 		xrandr --output $monitor --off
