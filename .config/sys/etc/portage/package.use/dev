@@ -9,4 +9,6 @@ dev-libs/boost nls icu
 dev-libs/elfutils -utils
 dev-libs/libressl static-libs -asm
 dev-libs/nss -nss-pem
+dev-python/PyQt5 dbus
+dev-qt/qtgui dbus ibus
 dev-vcs/git -python -perl -pcre -webdav

@@ -6,11 +6,10 @@ x11-misc/compton **
 www-client/qutebrowser **
 www-client/surf **
 media-sound/split2flac **
+app-editors/vis **
 
 # what the h**k is the point of stable/unstable fonts
 media-fonts/* ~amd64
-
-~sys-kernel/linux-headers-4.19::musl ~amd64
 
 ~x11-misc/xidle-26052015 ~amd64
 
@@ -29,3 +28,6 @@ net-misc/youtube-dl ~amd64
 
 ~dev-lang/lua-5.2.4 ~amd64
 ~app-eselect/eselect-lua-4 ~amd64
+
+# remove after v0.8 or higher
+sys-libs/liburing **

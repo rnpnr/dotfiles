@@ -5,4 +5,3 @@ dev-lang/lua:5.2
 app-editors/nvi
 
 dev-lang/rust::smaeul
-sys-libs/libssp_nonshared::smaeul

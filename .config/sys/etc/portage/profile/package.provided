@@ -1,1 +1,2 @@
 virtual/tmpfiles-0-r1 # old openrc doesn't need this
+sys-libs/libssp_nonshared-0 # musl package now includes this

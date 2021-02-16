@@ -16,5 +16,6 @@ media-sound/lame -frontend
 media-sound/mpd -fifo -mad -curl -icu -network
 media-sound/ncmpcpp taglib outputs
 media-sound/vorbis-tools -ogg123
+media-video/aegisub lua_single_target_luajit
 media-video/ffmpeg openssl libdrm libass mp3 x264 x265 -hardcoded-tables
-media-video/mpv cli drm gbm lua -jpeg -xv -uchardet -vaapi lua_single_target_lua5-2 -lua_single_target_lua5-1
+media-video/mpv cli drm gbm lua -jpeg -xv -uchardet -vaapi
