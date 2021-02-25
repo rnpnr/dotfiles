@@ -46,3 +46,12 @@ mpd_host = "localhost"
 mpd_port = "6600"
 mpd_connection_timeout = "5"
 mpd_music_dir = "~/media/mus"
+
+# Visualizer
+visualizer_data_source = "/tmp/mpd.fifo"
+visualizer_output_name = "FIFO"
+visualizer_in_stereo = "yes"
+visualizer_look = "▪○"
+visualizer_type = "ellipse"
+visualizer_autoscale = "yes"
+visualizer_color = "5,3,13,3,5"

@@ -7,14 +7,14 @@ media-libs/jbig2dec -png
 media-libs/libbluray aacs
 media-libs/libjpeg-turbo static-libs
 media-libs/libpng apng
-media-libs/libsdl2 gles2
+media-libs/libsdl2 gles2 ibus dbus
 media-libs/libvpx postproc
 media-libs/mesa -llvm libglvnd gles1 gles2 osmesa -vaapi
 media-libs/tiff -jpeg
 media-sound/alsa-utils ncurses
 media-sound/lame -frontend
-media-sound/mpd -fifo -mad -curl -icu -network
-media-sound/ncmpcpp taglib outputs
+media-sound/mpd fifo -mad -curl -icu -network
+media-sound/ncmpcpp visualizer taglib outputs
 media-sound/vorbis-tools -ogg123
 media-video/aegisub lua_single_target_luajit
 media-video/ffmpeg openssl libdrm libass mp3 x264 x265 -hardcoded-tables
