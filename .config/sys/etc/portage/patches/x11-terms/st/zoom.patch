@@ -1,0 +1,45 @@
+diff --git a/st.1 b/st.1
+index 39120b4..02cbd48 100644
+--- a/st.1
++++ b/st.1
+@@ -22,6 +22,8 @@ st \- simple terminal
+ .IR line ]
+ .RB [ \-w
+ .IR windowid ]
++.RB [ \-z
++.IR fontsize ]
+ .RB [[ \-e ]
+ .IR command
+ .RI [ arguments ...]]
+@@ -44,6 +46,8 @@ st \- simple terminal
+ .IR title ]
+ .RB [ \-w
+ .IR windowid ]
++.RB [ \-z
++.IR fontsize ]
+ .RB \-l
+ .IR line
+ .RI [ stty_args ...]
+diff --git a/x.c b/x.c
+index 120e495..1e859f4 100644
+--- a/x.c
++++ b/x.c
+@@ -1114,7 +1114,7 @@ xinit(int cols, int rows)
+ 		die("could not init fontconfig.\n");
+ 
+ 	usedfont = (opt_font == NULL)? font : opt_font;
+-	xloadfonts(usedfont, 0);
++	xloadfonts(usedfont, defaultfontsize);
+ 
+ 	/* colors */
+ 	xw.cmap = XDefaultColormap(xw.dpy, xw.scr);
+@@ -2038,6 +2038,9 @@ main(int argc, char *argv[])
+ 	case 'v':
+ 		die("%s " VERSION "\n", argv0);
+ 		break;
++	case 'z':
++		defaultfontsize = strtoul(EARGF(usage()), NULL, 10);
++		break;
+ 	default:
+ 		usage();
+ 	} ARGEND;
