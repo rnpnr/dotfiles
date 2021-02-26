@@ -28,7 +28,7 @@ fi
 
 if [ $UNAME == "Linux" ]; then
 	if [ -z "$DISPLAY" ] && [ "$(tty)" = "/dev/tty1" ]; then
-		startx
+		startx ~/.config/x11/xinitrc
 	fi
 fi
 

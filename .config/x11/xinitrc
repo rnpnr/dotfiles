@@ -1,0 +1,20 @@
+bgs -z ~/.config/h_wallpaper.jpg
+
+[ -z $SSH_AGENT_PID ] && eval $(ssh-agent)
+
+[ $(pgrep mpd) ] || mpd
+[ $(pgrep cron) ] || cron -f ~/.config/crontab
+[ $(pgrep xbanish) ] || xbanish &
+
+[ $(prgrep status) ] || status &
+
+[ -d /tmp/downloads ] || mkdir /tmp/downloads
+
+xset s off -dpms
+
+export XMODIFIERS=@im=ibus
+export GTK_IM_MODULE=ibus
+export QT_IM_MODULE=ibus
+ibus-daemon -drx
+
+exec ~/bin/dwm
