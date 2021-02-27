@@ -23,6 +23,4 @@ app-text/mupdf nobloat
 app-shells/bash nobloat
 media-libs/mesa nobloat
 sys-apps/coreutils nobloat
-www-client/firefox nobloat
-#www-client/firefox nobloat noerror
-www-client/palemoon nobloat
+www-client/librewolf nobloat
