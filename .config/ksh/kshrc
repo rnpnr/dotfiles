@@ -3,10 +3,12 @@ set -o vi
 
 UNAME="$(uname -s)"
 
+KSHDIR=~/.config/ksh
+
 #########################
 # Environment Variables #
 #########################
-[ -f ~/.config/ksh/secrets ] && . ~/.config/ksh/secrets
+[ -f $KSHDIR/secrets ] && . $KSHDIR/secrets
 
 PS1='$(tput bold)\W \$$(tput sgr0) '
 if [ -n "$SSH_CONNECTION" ]; then
@@ -15,7 +17,7 @@ fi
 #MPD_HOST="$HOME/.config/mpd/socket"
 MPD_HOST="localhost"
 LESSHISTFILE="-"
-HISTFILE=$HOME/.config/ksh/history
+HISTFILE=$KSHDIR/history
 HISTSIZE=10000
 HISTCONTROL=ignoredups:ignorespace
 EDITOR="vis"
@@ -35,6 +37,8 @@ fi
 ###########
 # Aliases #
 ###########
+[ -f $KSHDIR/dirs ] && . $KSHDIR/dirs
+
 alias c=clear
 alias ll='ls -lh'
 alias mkdir='mkdir -p'
@@ -56,6 +60,7 @@ alias yt="youtube-dl"
 alias yt720="yt -f 'bestvideo[height = 720]+bestaudio/best'"
 alias ytbest="yt -f '(bestvideo+bestaudio)/best'"
 alias yt-mus='mpv --shuffle "$YT_MUS"'
+alias yt-ab='yt --config-location ~/.config/youtube-dl/audiobooks'
 
 alias pwgen='pwgen -Cnsy'
 pwclip() {
@@ -99,11 +104,6 @@ if [ -f /etc/gentoo-release ]; then
 	alias c++='c++ -O3 -pipe -Wall -Werror'
 	alias emerge='doas /usr/bin/emerge'
 	alias ifconfig='doas /bin/ifconfig'
-	alias -d mus=~/media/mus
-	alias -d tag=~/media/mus/tag
-	alias -d cu=~/media/pic/cute-stuff
-	alias -d dn=~/downloads/normal
-	alias -d dt=~/downloads/torrents
 fi
 
 ###############
@@ -128,5 +128,3 @@ if [ $UNAME == "OpenBSD" ]; then
 	set -A complete_sysctl -- $(sysctl | sed 's:=.*$::')
 	set -A complete_rcctl_2 -- $(rcctl ls all)
 fi
-
-unset UNAME SPM_LIST PKG_LIST
