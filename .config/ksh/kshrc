@@ -37,14 +37,16 @@ fi
 ###########
 # Aliases #
 ###########
-[ -f $KSHDIR/dirs ] && . $KSHDIR/dirs
+[ -f "$KSHDIR/shortcuts" ] && . "$KSHDIR/shortcuts"
 
 alias c=clear
+alias e="$EDITOR"
+alias v="$EDITOR"
 alias ll='ls -lh'
 alias mkdir='mkdir -p'
 alias mvi='mpv --profile=image'
 alias ncmpcpp='tput smkx && ncmpcpp'
-alias page='mupdf -C E6D0B3'
+alias page='zathura --fork'
 alias tmux='tmux -2u'
 
 # managing dotfiles
@@ -102,7 +104,7 @@ if [ -f /etc/gentoo-release ]; then
 	alias tcc='tcc -Wall -Werror'
 	alias cc='cc -O3 -pipe -Wall -Werror -pedantic-errors -std=c99'
 	alias c++='c++ -O3 -pipe -Wall -Werror'
-	alias emerge='doas /usr/bin/emerge'
+	alias em='doas /usr/bin/emerge'
 	alias ifconfig='doas /bin/ifconfig'
 fi
 

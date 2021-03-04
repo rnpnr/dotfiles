@@ -1,0 +1,37 @@
+map u scroll half-up
+map d scroll half-down
+map D toggle_page_mode
+map r reload
+map R rotate
+map K zoom in
+map J zoom out
+map i recolor
+map I set recolor-keephue
+
+set font "monospace normal 12"
+
+set statusbar-h-padding 8
+set statusbar-v-padding 4
+
+set recolor
+set recolor-darkcolor "#dcdccc"
+set recolor-lightcolor "#202020"
+
+set completion-bg "#090909"
+set completion-fg "#dcdccc"
+set completion-highlight-bg "#090909"
+set completion-highlight-fg "#a274f2"
+set default-bg "#090909"
+set default-fg "#dcdccc"
+set highlight-active-color "#a274f2"
+set highlight-color "#090909"
+set index-active-bg "#090909"
+set index-active-fg "#a274f2"
+set index-bg "#090909"
+set index-fg "#dcdccc"
+set inputbar-bg "#090909"
+set inputbar-fg "#dcdccc"
+set notification-bg "#090909"
+set notification-fg "#dcdccc"
+set statusbar-bg "#090909"
+set statusbar-fg "#dcdccc"
