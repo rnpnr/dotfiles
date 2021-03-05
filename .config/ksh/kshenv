@@ -1,0 +1,14 @@
+#export MPD_HOST=~/.config/mpd/socket
+export MPD_HOST="localhost"
+export LESSHISTFILE="-"
+export HISTFILE=~/.config/ksh/history
+export HISTSIZE=10000
+export HISTCONTROL=ignoredups:ignorespace
+export EDITOR=vis
+export VISUAL=vis
+
+# these programs like to make a mess of ~
+export GNUPGHOME=$XDG_DATA_HOME/gnupg
+export TEXMFHOME=$XDG_DATA_HOME/texmf
+export TEXMFVAR=$XDG_CACHE_HOME/texlive/texmf-var
+export TEXMFCONFIG=$XDG_CONFIG_HOME/texlive/texmf-config

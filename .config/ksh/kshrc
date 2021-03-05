@@ -9,20 +9,12 @@ KSHDIR=~/.config/ksh
 # Environment Variables #
 #########################
 [ -f $KSHDIR/secrets ] && . $KSHDIR/secrets
+[ -f $KSHDIR/kshenv ] && . $KSHDIR/kshenv
 
 PS1='$(tput bold)\W \$$(tput sgr0) '
 if [ -n "$SSH_CONNECTION" ]; then
 	PS1="$(hostname) $PS1"
 fi
-#MPD_HOST="$HOME/.config/mpd/socket"
-MPD_HOST="localhost"
-LESSHISTFILE="-"
-HISTFILE=$KSHDIR/history
-HISTSIZE=10000
-HISTCONTROL=ignoredups:ignorespace
-EDITOR="vis"
-VISUAL="vis"
-export MPD_HOST LESSHISTFILE HISTCONTROL HISTFILE HISTSIZE EDITOR VISUAL
 
 if [ $UNAME == "OpenBSD" ]; then
 	ulimit -c 0
@@ -50,7 +42,7 @@ alias page='zathura --fork'
 alias tmux='tmux -2u'
 
 # managing dotfiles
-alias rice='git --git-dir=~/.dotfiles --work-tree=~'
+alias rice='git --git-dir=~/.local/repos/dotfiles --work-tree=~'
 
 # git
 alias ga='git apply'

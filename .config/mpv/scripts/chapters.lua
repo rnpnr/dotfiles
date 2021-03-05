@@ -15,5 +15,5 @@ function chapter_seek(direction)
 		mp.commandv("script-message", "osc-chapterlist")
 	end
 end
-mp.add_key_binding("h", "chapter_prev", function() chapter_seek(-1) end)
-mp.add_key_binding("l", "chapter_next", function() chapter_seek(1) end)
+mp.add_key_binding(nil, "chapter_next", function() chapter_seek(1) end)
+mp.add_key_binding(nil, "chapter_prev", function() chapter_seek(-1) end)
