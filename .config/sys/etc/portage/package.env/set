@@ -9,7 +9,7 @@ media-libs/flac static
 media-libs/libogg static pic
 #media-libs/libvorbis static
 media-libs/opus static pic
-media-libs/tiff static
+media-libs/tiff static pic
 media-sound/lame static pic
 
 sys-base/sbase tcc

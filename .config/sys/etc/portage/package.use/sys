@@ -16,7 +16,7 @@ sys-fs/cryptsetup openssl urandom -argon2 -luks1_default
 sys-fs/lvm2 device-mapper-only -thin
 sys-kernel/gentoo-sources symlink experimental
 sys-libs/binutils-libs static-libs
-sys-libs/compiler-rt-sanitizers -libfuzzer -sanitize -xray
+sys-devel/clang-runtime -sanitize # doesn't work in musl
 sys-libs/ldb -python
 sys-libs/zlib minizip static-libs
 sys-process/procps ncurses

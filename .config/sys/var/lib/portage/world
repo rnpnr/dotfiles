@@ -14,6 +14,7 @@ app-portage/gentoolkit
 app-portage/smart-live-rebuild
 app-shells/dash
 app-shells/oksh
+app-text/texlive
 app-text/zathura-pdf-mupdf
 cross-avr/avr-libc
 cross-avr/binutils

@@ -1,4 +1,5 @@
 require('vis')
+require('build')
 
 vis.events.subscribe(vis.events.INIT, function()
 	vis:command("set theme dark")
