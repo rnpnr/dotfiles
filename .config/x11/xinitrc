@@ -1,12 +1,14 @@
 bgs -z ~/.config/h_wallpaper.jpg
 
+gpg_flags="--daemon  --default-cache-ttl 7200 --max-cache-ttl 36000 --no-allow-external-cache"
 [ -z $SSH_AGENT_PID ] && eval $(ssh-agent)
+[ $(pgrep gpg-agent) ] || gpg-agent $gpg_flags
 
 [ $(pgrep mpd) ] || mpd
 [ $(pgrep cron) ] || cron -f ~/.config/crontab
 [ $(pgrep xbanish) ] || xbanish &
 
-[ $(prgrep status) ] || status &
+[ $(pgrep status) ] || status &
 
 [ -d /tmp/downloads ] || mkdir /tmp/downloads
 

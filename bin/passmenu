@@ -1,0 +1,13 @@
+#!/bin/sh
+
+# uses dmenu to select a password to copy to the clipboard
+# it is removed from the clipboard once pasted
+# make sure gpg-agent is running and unlocked
+
+PASS_DIR=~/.spm
+
+password=$(cd $PASS_DIR; find . -type f -name \*.gpg | \
+	sed 's:^\./::; s:\.gpg$::' | dmenu -i -p "Password:") || exit 0
+
+spm show "$password" | head -1 | tr -d \\n | \
+	xclip -i -selection clipboard -loops 1 -quiet |2> /dev/null

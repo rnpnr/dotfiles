@@ -65,10 +65,6 @@ alias yt-mus='mpv --shuffle "$YT_MUS"'
 alias yt-ab='yt --config-location ~/.config/youtube-dl/audiobooks'
 
 alias pwgen='pwgen -Cnsy'
-pwclip() {
-	spm show "${1}" | sed 1q | tr -d \\n |
-	xclip -i -selection clipboard -loops 1 -quiet |2> /dev/null
-}
 
 rmimg() {
 	for file; do
@@ -111,14 +107,6 @@ fi
 ###############
 # Completions #
 ###############
-#if [ -d ~/.spm ]; then
-#        SPM_LIST=$(
-#                cd ~/.spm
-#                find . -type f -name \*.gpg | sed 's:^\./::; s:\.gpg$::g'
-#        )
-#        set -A complete_spm -- $SPM_LIST
-#fi
-
 set -A complete_ifconfig_1 -- $(ifconfig | sed -n '/^[a-z]/s,:.*,,p')
 
 if [ $UNAME == "OpenBSD" ]; then
