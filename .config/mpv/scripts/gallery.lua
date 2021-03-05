@@ -48,10 +48,10 @@ local opts = {
     max_generators = 8,
 
     mouse_support = true,
-    UP        = "UP",
-    DOWN      = "DOWN",
-    LEFT      = "LEFT",
-    RIGHT     = "RIGHT",
+    UP        = "k",
+    DOWN      = "j",
+    LEFT      = "h",
+    RIGHT     = "l",
     PAGE_UP   = "PGUP",
     PAGE_DOWN = "PGDWN",
     FIRST     = "HOME",
@@ -60,7 +60,7 @@ local opts = {
     ACCEPT    = "ENTER",
     CANCEL    = "ESC",
     REMOVE    = "DEL",
-    FLAG      = ",",
+    FLAG      = "SPACE",
 }
 (require 'mp.options').read_options(opts)
 
