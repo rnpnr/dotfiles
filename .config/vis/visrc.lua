@@ -1,6 +1,8 @@
 require('vis')
 require('build')
 
+require('plugins/vis-spellcheck')
+
 vis.events.subscribe(vis.events.INIT, function()
 	vis:command("set theme dark")
 	vis:command("set ai")

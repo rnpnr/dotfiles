@@ -22,3 +22,6 @@
 [submodule "src/c/dwm"]
 	path = src/c/dwm
 	url = git@github.com:0x766F6964/dwm.git
+[submodule ".config/vis/plugins/vis-spellcheck"]
+	path = .config/vis/plugins/vis-spellcheck
+	url = https://github.com/fischerling/vis-spellcheck.git
