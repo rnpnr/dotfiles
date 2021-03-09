@@ -80,6 +80,15 @@ fix_line_endings() {
 	done
 }
 
+toutf8() {
+	tmpfile=$(mktemp)
+	for file; do
+		iconv -f $(uchardet "$file") -t UTF-8 $file |\
+			sed s::: >| "$tmpfile"
+		mv "$tmpfile" "$file"
+	done
+}
+
 if [ $UNAME == "OpenBSD" ]; then
 	alias dhclient='doas /sbin/dhclient'
 	alias ifconfig='doas /sbin/ifconfig'
