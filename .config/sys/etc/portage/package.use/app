@@ -6,6 +6,7 @@ app-editors/emacs gtk gtk2 dynamic-loading
 app-emulation/qemu gtk usb -pin-upstream-blobs -curl -vnc QEMU_USER_TARGETS: x86_64
 app-shells/bash -net
 app-shells/dash static
+app-text/hunspell l10n_en
 app-text/mupdf -opengl -curl -javascript -ssl
 app-text/texlive graphics science xetex l10n_ja -X
 app-text/texlive-core xetex

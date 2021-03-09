@@ -14,6 +14,7 @@ app-portage/gentoolkit
 app-portage/smart-live-rebuild
 app-shells/dash
 app-shells/oksh
+app-text/enchant
 app-text/texlive
 app-text/zathura-pdf-mupdf
 cross-avr/avr-libc
@@ -22,11 +23,11 @@ cross-avr/gcc
 dev-embedded/avrdude
 dev-libs/libcdio-paranoia
 dev-python/eyeD3
-dev-util/android-tools
 media-fonts/dejavu
 media-fonts/shinonome
 media-fonts/source-pro
 media-gfx/farbfeld
+media-gfx/imagemagick
 media-gfx/jpeginfo
 media-gfx/jpegoptim
 media-libs/mesa
@@ -44,6 +45,7 @@ net-misc/openntpd
 net-misc/youtube-dl
 net-news/sfeed
 net-p2p/rtorrent
+net-vpn/openvpn
 net-wireless/wpa_supplicant
 sys-apps/man-pages
 sys-apps/man-pages-posix
@@ -66,6 +68,7 @@ x11-misc/bgs
 x11-misc/dmenu
 x11-misc/gcolor2
 x11-misc/slock
+x11-misc/slop
 x11-misc/xbanish
 x11-misc/xidle
 x11-misc/xscreenshot

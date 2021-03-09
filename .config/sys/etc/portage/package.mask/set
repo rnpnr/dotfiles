@@ -21,5 +21,4 @@ sys-fs/udisks
 sys-power/upower
 
 */*::smaeul
-dev-lang/rust::libressl
 dev-lang/rust::gentoo

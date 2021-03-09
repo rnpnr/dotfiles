@@ -23,7 +23,7 @@ media-sound/ncmpcpp ~amd64
 media-video/mpv ~amd64
 net-misc/youtube-dl ~amd64
 
-~www-client/librewolf-84.0.2 ~amd64
+~www-client/librewolf-86.0 ~amd64
 ~dev-libs/nss-3.61 ~amd64
 
 ~dev-lang/lua-5.2.4 ~amd64

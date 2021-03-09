@@ -1,3 +1,2 @@
-net-libs/nodejs -icu -npm -ssl -system-ssl
-net-misc/curl CURL_SSL: libressl -openssl
+net-libs/nodejs -icu -npm
 net-misc/openntpd constraints
