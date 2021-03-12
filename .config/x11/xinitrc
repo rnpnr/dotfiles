@@ -5,7 +5,7 @@ gpg_flags="--daemon  --default-cache-ttl 7200 --max-cache-ttl 36000 --no-allow-e
 [ $(pgrep gpg-agent) ] || gpg-agent $gpg_flags
 
 [ $(pgrep mpd) ] || mpd
-[ $(pgrep cron) ] || cron -f ~/.config/crontab
+[ $(pgrep cron) ] || cron -f ~/.config/cron/crontab
 [ $(pgrep xbanish) ] || xbanish &
 
 [ $(pgrep status) ] || status &
