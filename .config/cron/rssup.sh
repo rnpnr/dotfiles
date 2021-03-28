@@ -27,7 +27,7 @@ html() {
 compare() {
 	cmp -s $tmp $configdir/html/${1}.html || (
 		mv $tmp $configdir/html/${1}.html &&
-		notify-send "New RSS Entries: ${1}"
+		notify -c "browser $configdir/html/${1}.html" 'New RSS Entries: '"${1}"
 	)
 }
 

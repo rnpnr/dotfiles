@@ -1,0 +1,17 @@
+#!/bin/sh
+
+usage() {
+	echo "${0##*/}" '[-c "command"] "Line 1" "Line 2" ...'
+	exit 1
+}
+
+[ ${#} -lt 1 ] && usage
+
+command="true"
+
+if [ "$1" = '-c' ]; then
+	command="$2"
+	shift 2;
+fi
+
+herbe "$@" && $command &
