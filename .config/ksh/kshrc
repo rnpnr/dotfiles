@@ -51,10 +51,9 @@ alias gd='git diff'
 
 # youtube-dl
 alias yt="youtube-dl"
-alias yt720="yt -f 'bestvideo[height = 720]+bestaudio/best'"
 alias ytbest="yt -f '(bestvideo+bestaudio)/best'"
-alias yt-mus='mpv --shuffle "$YT_MUS"'
-alias yt-ab='yt --config-location ~/.config/youtube-dl/audiobooks'
+alias ytmus='mpv --profile=ytmus --shuffle "$YT_MUS"'
+alias ytab='yt --config-location ~/.config/youtube-dl/audiobooks'
 
 alias pwgen='pwgen -Cnsy'
 
@@ -69,6 +68,16 @@ rmimg() {
 				eyeD3 --remove-all-images "$file"
 				;;
 		esac
+	done
+}
+
+rmlist() {
+IFS='
+'
+	for list; do
+		for file in $(cat "$list"); do
+			rm "$file"
+		done
 	done
 }
 
