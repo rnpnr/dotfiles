@@ -4,7 +4,7 @@ dev-lang/yasm static
 dev-libs/libcdio static
 dev-libs/libcdio-paranoia static
 dev-libs/expat static pic
-media-libs/mesa pic
+media-libs/mesa nobloat pic
 media-libs/flac static
 media-libs/libogg static pic
 #media-libs/libvorbis static
@@ -13,7 +13,6 @@ media-libs/tiff static pic
 media-sound/lame static pic
 
 sys-base/sbase tcc
-sys-devel/tcc tcc
 x11-misc/dmenu tcc
 x11-misc/xbanish tcc
 x11-terms/st tcc
@@ -21,6 +20,5 @@ x11-wm/dwm tcc
 
 app-text/mupdf nobloat
 app-shells/bash nobloat
-media-libs/mesa nobloat
 sys-apps/coreutils nobloat
 www-client/librewolf nobloat

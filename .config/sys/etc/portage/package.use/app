@@ -1,5 +1,4 @@
 app-arch/libarchive -e2fsprogs
-app-crypt/gcr -gtk
 app-crypt/gnupg -ssl
 app-crypt/mit-krb5 -keyutils -pkinit
 app-editors/emacs gtk gtk2 dynamic-loading

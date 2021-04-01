@@ -9,4 +9,4 @@ url=$(grep -v -e "#" -e "^$" "$BOOKMARKS" | dmenu -i -p "open:" -l 10 |\
 	cut -f 1 -d ' ')
 [ -z "$url" ] && exit 0
 
-furfox $url
+browser $url
