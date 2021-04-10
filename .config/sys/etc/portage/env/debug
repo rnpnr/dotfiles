@@ -1,2 +1,3 @@
-FEATURES="splitdebug"
+FEATURES="splitdebug compressdebug -nostrip"
 CFLAGS="${CFLAGS} -ggdb"
+CXXFLAGS="${CXXFLAGS} -ggdb"

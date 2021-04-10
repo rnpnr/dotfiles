@@ -1,10 +1,5 @@
 */*::0x766F6964 **
-media-gfx/ahoviewer **
-media-gfx/sxiv **
 x11-misc/dmenu **
-x11-misc/compton **
-www-client/qutebrowser **
-www-client/surf **
 media-sound/split2flac **
 app-editors/vis **
 
@@ -23,11 +18,7 @@ media-sound/ncmpcpp ~amd64
 media-video/mpv ~amd64
 net-misc/youtube-dl ~amd64
 
-~www-client/librewolf-86.0 ~amd64
-~dev-libs/nss-3.61 ~amd64
-
-~dev-lang/lua-5.2.4 ~amd64
-~app-eselect/eselect-lua-4 ~amd64
+~www-client/librewolf-87.0 ~amd64
 
 # remove after v0.8 or higher
-sys-libs/liburing **
+~sys-libs/liburing-2.0 ~amd64

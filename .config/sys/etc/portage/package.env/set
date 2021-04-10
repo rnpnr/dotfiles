@@ -22,3 +22,5 @@ app-text/mupdf nobloat
 app-shells/bash nobloat
 sys-apps/coreutils nobloat
 www-client/librewolf nobloat
+
+sys-libs/musl debug
