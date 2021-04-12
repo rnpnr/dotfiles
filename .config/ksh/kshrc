@@ -8,7 +8,7 @@ KSHDIR=~/.config/ksh
 #########################
 # Environment Variables #
 #########################
-[ -f $KSHDIR/secrets ] && . $KSHDIR/secrets
+[ -f $KSHDIR/local ] && . $KSHDIR/local
 [ -f $KSHDIR/kshenv ] && . $KSHDIR/kshenv
 
 PS1='$(tput bold)\W \$$(tput sgr0) '

@@ -1,0 +1,9 @@
+#!/bin/sh
+
+# adjust audio and update statusbar
+
+OUT=${AUDIOSINK:-"Speaker"}
+
+amixer -q set $OUT $@
+
+pkill -RTMIN+2 status
