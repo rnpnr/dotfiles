@@ -2,4 +2,7 @@
 
 # confirms an action with dmenu before executing
 
-[ "$(printf "no\\nyes" | dmenu -i -p "$1")" = "yes" ] && $2
+prompt=$1
+shift
+
+[ "$(printf "no\nyes" | dmenu -i -p "$prompt")" = "yes" ] && $@

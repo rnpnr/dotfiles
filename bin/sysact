@@ -1,0 +1,18 @@
+#!/bin/sh
+
+# use dmenu to select and perform a system action
+
+SUCMD=doas
+
+options="\
+lock
+suspend
+reboot
+shutdown"
+
+case $(echo "$options" | dmenu -i -p "Action:") in
+lock)		slock ;;
+suspend)	$SUCMD /sbin/zzz ;;
+reboot)		$SUCMD /sbin/shutdown -r now ;;
+shutdown)	$SUCMD /sbin/shutdown -h now ;;
+esac
