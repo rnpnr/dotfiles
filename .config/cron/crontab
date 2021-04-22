@@ -1,2 +1,2 @@
 # Update RSS
-0 */6 * * * ~/.config/cron/rssup.sh blogs soft yt 2>&1 >/dev/null
+0 */5 * * * ~/.config/cron/rssup.sh blogs soft yt 2>&1 >/dev/null

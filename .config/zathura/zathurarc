@@ -7,6 +7,7 @@ map K zoom in
 map J zoom out
 map i recolor
 map I set recolor-keephue
+map g goto top
 
 set font "monospace normal 12"
 
@@ -15,7 +16,7 @@ set statusbar-v-padding 4
 
 set recolor
 set recolor-darkcolor "#dcdccc"
-set recolor-lightcolor "#202020"
+set recolor-lightcolor "#090909"
 
 set completion-bg "#090909"
 set completion-fg "#dcdccc"

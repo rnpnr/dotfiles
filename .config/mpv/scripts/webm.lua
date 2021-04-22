@@ -13,7 +13,7 @@ local options = {
 	-- backslashes as a path separator. Examples of valid inputs for this field
 	-- would be: [[]] (the default, empty value), [[C:\Users\John]] (on Windows),
 	-- and [[/home/john]] (on Unix-like systems eg. Linux).
-	output_directory = [[]],
+	output_directory = [[~/media/pic/screengrabs/animu]],
 	run_detached = false,
 	-- Template string for the output file
 	-- %f - Filename, with extension
@@ -25,7 +25,7 @@ local options = {
 	-- %R - "-(height)p", where height is the video's height, or scale_height, if it's enabled.
 	-- More specifiers are supported, see https://mpv.io/manual/master/#options-screenshot-template
 	-- Property expansion is supported (with %{} at top level, ${} when nested), see https://mpv.io/manual/master/#property-expansion
-	output_template = "%F-[%s-%e]%M",
+	output_template = "[%tY.%tm.%td_%tH:%tM:%tS]_%F_%P%M",
 	-- Scale video to a certain height, keeping the aspect ratio. -1 disables it.
 	scale_height = -1,
 	-- Change the FPS of the output video, dropping or duplicating frames as needed.

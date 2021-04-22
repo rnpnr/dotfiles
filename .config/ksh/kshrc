@@ -5,17 +5,6 @@ UNAME="$(uname -s)"
 
 KSHDIR=~/.config/ksh
 
-#########################
-# Environment Variables #
-#########################
-[ -f $KSHDIR/local ] && . $KSHDIR/local
-[ -f $KSHDIR/kshenv ] && . $KSHDIR/kshenv
-
-PS1='$(tput bold)\W \$$(tput sgr0) '
-if [ -n "$SSH_CONNECTION" ]; then
-	PS1="$(hostname) $PS1"
-fi
-
 if [ $UNAME == "OpenBSD" ]; then
 	ulimit -c 0
 fi
@@ -24,6 +13,17 @@ if [ $UNAME == "Linux" ]; then
 	if [ -z "$DISPLAY" ] && [ "$(tty)" = "/dev/tty1" ]; then
 		startx ~/.config/x11/xinitrc
 	fi
+fi
+
+#########################
+# Environment Variables #
+#########################
+[ -f $KSHDIR/local ] && . $KSHDIR/local
+[ -f $KSHDIR/kshenv ] && . $KSHDIR/kshenv
+
+PS1='$(tput bold)\W \$$(tput sgr0) '
+if [ -n "$SSH_CONNECTION" ]; then
+	PS1="(\h) $PS1"
 fi
 
 ###########
@@ -61,12 +61,12 @@ rmimg() {
 	for file; do
 		echo "removing image metadata from: $file"
 		case $file in
-			*.flac)
-				metaflac --remove --block-type=PICTURE "$file"
-				;;
-			*.mp3)
-				eyeD3 --remove-all-images "$file"
-				;;
+		*.flac)
+			metaflac --remove --block-type=PICTURE "$file"
+			;;
+		*.mp3)
+			eyeD3 --remove-all-images "$file"
+			;;
 		esac
 	done
 }
