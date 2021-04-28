@@ -5,16 +5,6 @@ UNAME="$(uname -s)"
 
 KSHDIR=~/.config/ksh
 
-if [ $UNAME == "OpenBSD" ]; then
-	ulimit -c 0
-fi
-
-if [ $UNAME == "Linux" ]; then
-	if [ -z "$DISPLAY" ] && [ "$(tty)" = "/dev/tty1" ]; then
-		startx ~/.config/x11/xinitrc
-	fi
-fi
-
 #########################
 # Environment Variables #
 #########################
@@ -24,6 +14,16 @@ fi
 PS1='$(tput bold)\W \$$(tput sgr0) '
 if [ -n "$SSH_CONNECTION" ]; then
 	PS1="(\h) $PS1"
+fi
+
+if [ $UNAME == "OpenBSD" ]; then
+	ulimit -c 0
+fi
+
+if [ $UNAME == "Linux" ]; then
+	if [ -z "$DISPLAY" ] && [ "$(tty)" = "/dev/tty1" ]; then
+		startx ~/.config/x11/xinitrc
+	fi
 fi
 
 ###########

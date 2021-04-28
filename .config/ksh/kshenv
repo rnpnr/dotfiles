@@ -1,3 +1,4 @@
+export BROWSER=browser
 #export MPD_HOST=~/.config/mpd/socket
 export MPD_HOST="localhost"
 export LESSHISTFILE="-"
