@@ -1,1 +1,0 @@
-mpv-image-viewer/scripts/image-positioning.lua
