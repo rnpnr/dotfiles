@@ -1,13 +1,13 @@
 dev-db/sqlite secure-delete
+dev-lang/ghc ghcbootstrap
 dev-lang/lua static
 dev-lang/luajit lua52compat
-dev-lang/python ncurses readline
-dev-lang/python:2.7 sqlite
-dev-lang/python sqlite
+dev-lang/python ncurses readline sqlite
 dev-lang/rust system-bootstrap system-llvm
 dev-libs/boost nls icu
 dev-libs/elfutils -utils
-dev-libs/libressl static-libs -asm
+dev-libs/gmp pic static-libs
+dev-libs/libpcre2 jit
 dev-libs/nss -nss-pem
 dev-python/PyQt5 dbus
 dev-qt/qtgui dbus ibus

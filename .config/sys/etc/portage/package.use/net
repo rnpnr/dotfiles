@@ -1,2 +1,3 @@
 net-libs/nodejs -icu -npm
+net-misc/curl ssh
 net-misc/openntpd constraints

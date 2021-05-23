@@ -8,7 +8,8 @@ sys-apps/shadow -cracklib
 sys-apps/sysvinit static
 sys-apps/util-linux cryptsetup static-libs -suid -cramfs
 sys-devel/binutils cxx static-libs
-sys-devel/gcc cxx lto
+sys-devel/clang-runtime -sanitize # doesn't work in musl
+sys-devel/gcc cxx fortran lto
 sys-devel/gdb -server -python
 sys-devel/llvm gold
 sys-firmware/ipxe -savedconfig
@@ -16,7 +17,6 @@ sys-fs/cryptsetup openssl urandom -argon2 -luks1_default
 sys-fs/lvm2 device-mapper-only -thin
 sys-kernel/gentoo-sources symlink experimental
 sys-libs/binutils-libs static-libs
-sys-devel/clang-runtime -sanitize # doesn't work in musl
 sys-libs/ldb -python
 sys-libs/zlib minizip static-libs
 sys-process/procps ncurses

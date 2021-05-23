@@ -1,8 +1,7 @@
 app-arch/libarchive -e2fsprogs
 app-crypt/gnupg -ssl
 app-crypt/mit-krb5 -keyutils -pkinit
-app-editors/emacs gtk gtk2 dynamic-loading
-app-emulation/qemu gtk usb -pin-upstream-blobs -curl -vnc QEMU_USER_TARGETS: x86_64
+app-emulation/qemu -curl -doc -gtk -pin-upstream-blobs -usb -vnc
 app-shells/bash -net
 app-shells/dash static
 app-text/hunspell l10n_en

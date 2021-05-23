@@ -6,6 +6,7 @@ app-editors/hyx
 app-editors/vis
 app-emulation/qemu
 app-i18n/ibus-anthy
+app-i18n/uchardet
 app-misc/abduco
 app-misc/anki
 app-misc/cmatrix
@@ -16,12 +17,14 @@ app-portage/smart-live-rebuild
 app-shells/dash
 app-shells/oksh
 app-text/enchant
+app-text/tesseract
 app-text/texlive
 app-text/zathura-pdf-mupdf
 cross-avr/avr-libc
 cross-avr/binutils
 cross-avr/gcc
 dev-embedded/avrdude
+dev-lang/ghc
 dev-libs/libcdio-paranoia
 dev-lua/lpeg
 dev-python/eyeD3
@@ -33,12 +36,13 @@ media-gfx/imagemagick
 media-gfx/jpeginfo
 media-gfx/jpegoptim
 media-libs/mesa
+media-sound/mpc
 media-sound/mpd
 media-sound/ncmpcpp
 media-sound/split2flac
 media-sound/ttaenc
-media-video/aegisub
 media-video/ffmpeg
+media-video/mkvtoolnix
 media-video/mpv
 net-fs/samba
 net-irc/irssi
