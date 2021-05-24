@@ -10,7 +10,7 @@ app-i18n/uchardet
 app-misc/abduco
 app-misc/anki
 app-misc/cmatrix
-app-misc/tmux
+app-misc/scroll
 app-office/calcurse
 app-portage/gentoolkit
 app-portage/smart-live-rebuild
