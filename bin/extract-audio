@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# extract audio from video files
+# useful for passive immersion
+
 usage() {
 	echo "usage: $0 [-d outdir] [-l lang] file ..."
 	exit 1
@@ -24,12 +27,20 @@ lang=${lang:-jpn}
 
 IFS=
 for f in $*; do
-	t=$(echo $f | cut -d . -f 1)
+	# construct track title and new filename
+	t=$(echo $f | cut -d . -f 1 | \
+	    sed -e 's:\[.*\]::g; s:(.*)::g' \
+	        -e 's:^ *::; s: *$::')
 	newf=$out/$t.opus
+
+	# find a stream index for desired audio track
 	idx=$(ffprobe -of compact=nk=1:s=. -v error \
 	      -show_entries stream=index,codec_type:stream_tags=language \
 	      $f | \
 	      awk -F . '/audio.'$lang'/ { print $2; exit }')
+
+	# if no audio tracks have specified lang fall back to a:0
+	idx=${idx:-a:0}
 
 	case $f in
 	*.mkv|*.mp4)
