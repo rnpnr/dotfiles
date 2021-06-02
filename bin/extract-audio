@@ -1,0 +1,39 @@
+#!/bin/rc
+
+fn usage {
+	echo 'usage: '$0' [dir] [outdir]' >[1=2]
+	exit 1
+}
+
+if (! ~ $#* 1 2) usage
+
+flag e +
+
+dir=`{realpath $1}
+out=`{realpath $2}
+
+if (! test -d $out) mkdir -p $out
+
+cd $"dir
+
+ifs='.'
+for(f in *) {
+	t=`{echo $f}
+	newf=$out/^$t(1)^.opus
+	idx=`{ffprobe -of 'compact=nk=1:s=.' -v error \
+	      -show_entries 'stream=index,codec_type:stream_tags=language' \
+	      $f | \
+	      grep audio.jpn}
+
+	switch($f) {
+	case *.mkv *.mp4
+		ffmpeg -loglevel error -stats \
+		       -i $f -map 0:$idx(2) \
+		       -map_metadata -1 \
+		       -c libopus -mapping_family 255 \
+		       -metadata 'title='^$t(1) \
+		       $newf
+	}
+}
+ifs='
+'
