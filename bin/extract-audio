@@ -4,14 +4,15 @@
 # useful for passive immersion
 
 usage() {
-	echo "usage: $0 [-d outdir] [-l lang] file ..."
+	echo "usage: $0 [-n] [-d outdir] [-l lang] file ..."
 	exit 1
 }
 
-while getopts "d:l" arg; do
+while getopts "d:l:n" arg; do
 	case "${arg}" in
 	d) outdir="${OPTARG}" ;;
 	l) lang="${OPTARG}" ;;
+	n) COUNT=0 ;;
 	*) usage ;;
 	esac
 done
@@ -30,8 +31,14 @@ for f in $*; do
 	# construct track title and new filename
 	t=$(echo $f | cut -d . -f 1 | \
 	    sed -e 's:\[.*\]::g; s:(.*)::g' \
-	        -e 's:^ *::; s: *$::')
+	        -e 's:^ *::; s: *$::' \
+	        -e 's:^_*::; s:_*$::')
 	newf=$out/$t.opus
+
+	if [ $COUNT ]; then
+		COUNT=$((COUNT + 1))
+		newf=$(printf "%s/%02d %s.opus" $out $COUNT $t)
+	fi
 
 	# find a stream index for desired audio track
 	idx=$(ffprobe -of compact=nk=1:s=. -v error \
