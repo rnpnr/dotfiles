@@ -39,7 +39,6 @@ alias mkdir='mkdir -p'
 alias mvi='mpv --profile=image'
 alias ncmpcpp='tput smkx && ncmpcpp'
 alias page='zathura --fork'
-alias tmux='tmux -2u'
 
 # managing dotfiles
 alias rice='git --git-dir=~/.local/repos/dotfiles --work-tree=~'
@@ -84,7 +83,7 @@ IFS='
 fix_line_endings() {
 	tmpfile=$(mktemp)
 	for file; do
-		sed s::: "$file" >| "$tmpfile"
+		sed s:::;s:^﻿:: "$file" >| "$tmpfile"
 		mv "$tmpfile" "$file"
 	done
 }
@@ -92,8 +91,7 @@ fix_line_endings() {
 toutf8() {
 	tmpfile=$(mktemp)
 	for file; do
-		iconv -f $(uchardet "$file") -t UTF-8 $file |\
-			sed s::: >| "$tmpfile"
+		iconv -f $(uchardet "$file") -t UTF-8 "$file" >| "$tmpfile"
 		mv "$tmpfile" "$file"
 	done
 }
