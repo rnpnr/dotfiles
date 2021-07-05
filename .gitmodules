@@ -25,3 +25,6 @@
 [submodule ".config/vis/plugins/vis-spellcheck"]
 	path = .config/vis/plugins/vis-spellcheck
 	url = https://github.com/fischerling/vis-spellcheck.git
+[submodule ".config/mpv/scripts/videoclip"]
+	path = .config/mpv/scripts/videoclip
+	url = https://github.com/Ajatt-Tools/videoclip.git
