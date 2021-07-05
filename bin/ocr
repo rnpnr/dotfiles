@@ -1,0 +1,30 @@
+#!/bin/sh
+
+# copy text from an image to the clipboard
+# deps: imagemagick tesseract slop xclip
+# you probably want the capture2text jpn file from here:
+# https://sourceforge.net/projects/capture2text/files/Dictionaries/Japanese.zip/download
+
+TESS_DATA="$HOME/.local/share/tesseract"
+
+usage() {
+	echo "usage: ocr [-l lang][-d dpi]"
+	exit 1
+}
+
+while getopts "ld:" arg; do
+	case "${arg}" in
+	d) dpi="${OPTARG}" ;;
+	l) lang="${OPTARG}" ;;
+	*) usage ;;
+	esac
+done
+
+lang=${lang:-jpn}
+dpi=${dpi:-96}
+
+import -window root -crop $(slop -f '%g') png:- |
+tesseract stdin stdout \
+	--dpi $dpi -l $lang \
+	--tessdata-dir "$TESS_DATA" |
+xclip -sel clip
