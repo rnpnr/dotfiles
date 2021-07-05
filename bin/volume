@@ -4,6 +4,6 @@
 
 OUT=${AUDIOSINK:-"Speaker"}
 
-amixer -q set $OUT $@
+amixer -q set "$OUT" $@
 
 pkill -RTMIN+2 status
