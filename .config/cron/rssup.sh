@@ -14,7 +14,7 @@ tmp=$(mktemp)
 trap '[ -f "$tmp" ] && rm $tmp' EXIT HUP INT
 
 update() {
-	sfeed_update $configdir/${1}.rss
+	sfeed_update $configdir/${1}.sh
 	wait
 	html ${1}
 }
@@ -32,7 +32,7 @@ compare() {
 }
 
 for arg; do
-	. $configdir/${arg}.rss
+	. $configdir/${arg}.sh
 	[ -d "$sfeedpath" ] || mkdir -p "$sfeedpath"
 	update $arg
 done
