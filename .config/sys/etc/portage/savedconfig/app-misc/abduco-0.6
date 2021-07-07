@@ -12,8 +12,8 @@ static struct Dir {
 	char *env;     /* environment variable to use if (set) */
 	bool personal; /* if false a user owned sub directory will be created */
 } socket_dirs[] = {
+	{ .path = "/tmp",              false },
 	{ .env  = "ABDUCO_SOCKET_DIR", false },
 	{ .env  = "HOME",              true  },
 	{ .env  = "TMPDIR",            false },
-	{ .path = "/tmp",              false },
 };
