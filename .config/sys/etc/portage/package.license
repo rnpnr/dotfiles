@@ -4,5 +4,3 @@ sys-firmware/iwlwifi-6000-ucode ipw3945
 sys-firmware/iwlwifi-cc ipw3945
 
 >=sys-firmware/intel-microcode-20190618_p20190908 intel-ucode
-
-app-arch/unrar unRAR

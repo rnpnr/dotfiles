@@ -25,9 +25,11 @@ cross-avr/binutils
 cross-avr/gcc
 dev-embedded/avrdude
 dev-lang/ghc
+dev-lang/go
 dev-libs/libcdio-paranoia
 dev-lua/lpeg
 dev-python/eyeD3
+dev-qt/qtstyleplugins
 media-fonts/dejavu
 media-fonts/shinonome
 media-fonts/source-pro
@@ -79,4 +81,5 @@ x11-misc/xbanish
 x11-misc/xidle
 x11-misc/xscreenshot
 x11-terms/st
+x11-themes/gtk-engines-murrine
 x11-wm/dwm

@@ -4,7 +4,7 @@ dev-lang/lua static
 dev-lang/luajit lua52compat
 dev-lang/python ncurses readline sqlite
 dev-lang/rust system-bootstrap system-llvm
-dev-libs/boost nls icu
+dev-libs/boost nls
 dev-libs/elfutils -utils
 dev-libs/gmp pic static-libs
 dev-libs/libpcre2 jit

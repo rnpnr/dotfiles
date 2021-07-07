@@ -1,16 +1,12 @@
 */*::0x766F6964 **
-x11-misc/dmenu **
-media-sound/split2flac **
 app-editors/vis **
+media-sound/split2flac **
+x11-misc/dmenu **
 
 # what the h**k is the point of stable/unstable fonts
 media-fonts/* ~amd64
 
-~x11-misc/xidle-26052015 ~amd64
-
 dev-lang/rust::smaeul ~amd64
-
-~sys-devel/gcc-10.2.0::musl ~amd64
 
 # Haskell
 ~dev-lang/ghc-8.10.4 ~amd64
@@ -21,9 +17,15 @@ games-emulation/higan ~amd64
 media-gfx/farbfeld ~amd64
 media-sound/ncmpcpp ~amd64
 media-video/mpv ~amd64
+net-analyzer/openbsd-netcat::musl ~amd64
 net-misc/youtube-dl ~amd64
 
-~www-client/librewolf-87.0 ~amd64
+# No stable version
+~dev-qt/qtstyleplugins-5.0.0_p20170311 ~amd64
+~x11-misc/xidle-26052015 ~amd64
+
+~www-client/librewolf-89.0 ~amd64
+~dev-libs/nss-3.67 ~amd64
 
 # remove after v0.8 or higher
 ~sys-libs/liburing-2.0 ~amd64
