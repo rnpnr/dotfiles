@@ -11,14 +11,14 @@ default_find_mode = wrapped
 media_library_primary_tag = album_artist
 current_item_prefix = "$(6)$r"
 current_item_suffix = "$/r$(end)"
-main_window_color = 13
-current_item_inactive_column_prefix = "$3"
+main_window_color = 11
+current_item_inactive_column_prefix = "$6"
 current_item_inactive_column_suffix = "$9"
 cyclic_scrolling = yes
 
 # Playlist
 browser_playlist_prefix = "$2$b ○ $/b$9"
-song_columns_list_format = "(10)[5]{l} (20)[3]{a} (30)[6]{b} (40)[13]{t}"
+song_columns_list_format = "(10)[3]{l} (20)[6]{a} (30)[4]{b} (40)[11]{t}"
 now_playing_prefix = "$b$(16)>>$9"
 now_playing_suffix = "$/b"
 playlist_display_mode = "columns"
@@ -30,12 +30,12 @@ playlist_disable_highlight_delay = "1"
 display_bitrate = "yes"
 titles_visibility = "no"
 header_visibility = "no"
-alternative_header_first_line_format = $b$1$aqqu$/a$9 $(13){%t}|{%f}$9 $1$atqq$/a$9$/b
-alternative_header_second_line_format = {$3$b%a$/b$9}|{$3$b%A$/b$9}|{%D}
+alternative_header_first_line_format = $b$1$aqqu$/a$9 $(11){%t}|{%f}$9 $1$atqq$/a$9$/b
+alternative_header_second_line_format = {$6$b%a$/b$9}|{$6$b%A$/b$9}|{%D}
 
 # Progress bar
 progressbar_look = "▄▄ "
-progressbar_elapsed_color = "5"
+progressbar_elapsed_color = "3"
 
 # Lyrics
 lyrics_directory = "~/.config/ncmpcpp/lyrics"
@@ -55,6 +55,6 @@ visualizer_in_stereo = "yes"
 visualizer_look = "○▪"
 visualizer_type = "ellipse"
 visualizer_autoscale = "yes"
-visualizer_color = "5,3,12,13,3,5"
+visualizer_color = "3,6,12,11,6,3"
 visualizer_spectrum_smooth_look = "no"
 visualizer_spectrum_dft_size = 3
