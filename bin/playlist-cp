@@ -1,0 +1,70 @@
+#!/bin/sh
+
+# takes input filenames from stdin or file (-f), converts to a
+# reasonable format, or not (-o), and copies them to the same directory
+# structure located prefixed with directory specified on command line
+# for ex: echo "a/b/foo.flac" | playlist-cp mus
+# produces mus/a/b/foo.ogg, it also checks a/b/ for any covers and cps them
+
+OGGENC="-q 8"
+prefix=
+
+usage() {
+	echo \
+"usage: playlist-cp [-f playlist] [-o] [-p prefix] [-s name] outdir
+	-f: read from playlist instead of stdin
+	-o: don't transcode
+	-p: prefix input lines
+	-s: write playist to outdir/playlists/name.mus"
+
+	exit 1
+}
+
+while getopts "f:p:s:o" arg; do
+	case "${arg}" in
+	f) input="${OPTARG}" ;;
+	o) no_transcode=1 ;;
+	p) prefix="${OPTARG}" ;;
+	s) save_playlist="${OPTARG}" ;;
+	*) usage ;;
+	esac
+done
+shift $((OPTIND - 1))
+
+input="${input:-/dev/stdin}"
+outdir="$(realpath $1)"
+[ "$outdir" ] || usage
+[ "$prefix" ] && prefix="$(realpath $prefix)/"
+[ "$save_playlist" ] && tmplist=$(mktemp)
+
+while read -r line; do
+	filedir=$(dirname "$line")
+	filename=$(basename "$line")
+	dir="$outdir"/"$filedir"
+	outname="$filename"
+	[ -d "$dir" ] || mkdir -p "$dir"
+
+	# copy covers
+	[ -f "$dir"/[Cc]over.* ] || cp "${prefix}$filedir"/[Cc]over.* "$dir"
+
+	case "${line}" in
+	*.flac)
+		if [ $no_transcode ]; then
+			[ -f "$dir"/"$outname" ] || cp "${prefix}$line" "$dir"/"$outname"
+		else
+			outname="$(echo $filename | sed 's:flac:ogg:')"
+			[ -f "$dir"/"$outname" ] ||
+			oggenc $OGGENC -o "$dir"/"$outname" "${prefix}$line"
+		fi
+		;;
+	*) [ -f "$dir"/"$outname" ] || cp "${prefix}$line" "$dir"/"$outname" ;;
+	esac
+
+	[ $save_playlist ] && echo ".."/"$filedir"/"$outname" >> "$tmplist"
+done < $input
+
+if [ $save_playlist ]; then
+	[ -d "${outdir}/playlists" ] || mkdir "${outdir}/playlists"
+	sort "$tmplist" >| "${outdir}/playlists/${save_playlist}.m3u"
+	rm "$tmplist"
+fi
