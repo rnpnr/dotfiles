@@ -12,7 +12,7 @@ usage() {
 	exit 1
 }
 
-while getopts "ld:" arg; do
+while getopts "l:d:" arg; do
 	case "${arg}" in
 	d) dpi="${OPTARG}" ;;
 	l) lang="${OPTARG}" ;;
