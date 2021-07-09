@@ -5,11 +5,15 @@ export LESSHISTFILE="-"
 export HISTFILE=~/.config/ksh/history
 export HISTSIZE=10000
 export HISTCONTROL=ignoredups:ignorespace
+export QT_STYLE_OVERRIDE=gtk2
 export EDITOR=vis
 export VISUAL=vis
 
 # these programs like to make a mess of ~
+export GOPATH=$XDG_DATA_HOME/go
+export GOMODCACHE=$XDG_CACHE_HOME/go/pkg/mod
 export GNUPGHOME=$XDG_DATA_HOME/gnupg
 export TEXMFHOME=$XDG_DATA_HOME/texmf
 export TEXMFVAR=$XDG_CACHE_HOME/texlive/texmf-var
 export TEXMFCONFIG=$XDG_CONFIG_HOME/texlive/texmf-config
+export WGETRC=$XDG_CONFIG_HOME/wgetrc
