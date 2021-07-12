@@ -1,0 +1,83 @@
+#!/bin/sh
+
+usage() {
+	echo \
+"usage: tag [args] file
+args:
+	-A album
+	-C composer
+	-D disc number
+	-a artist
+	-c comment
+	-d date
+	-g genre
+	-i interactive mode
+	-p performer
+	-q album artist
+	-s title
+	-t track number
+Only title is required."
+
+	exit 1
+}
+
+while getopts "A:C:D:a:b:c:d:g:p:s:t:i" arg; do
+	case "${arg}" in
+	A) album="${OPTARG}" ;;
+	C) composer="${OPTARG}" ;;
+	D) disc_num="${OPTARG}" ;;
+	a) artist="${OPTARG}" ;;
+	b) album_artist="${OPTARG}" ;;
+	c) comment="${OPTARG}" ;;
+	d) date="${OPTARG}" ;;
+	g) genre="${OPTARG}" ;;
+	i) int=1 ;;
+	p) performer="${OPTARG}" ;;
+	s) title="${OPTARG}" ;;
+	t) track_num="${OPTARG}" ;;
+	*) usage ;;
+	esac
+done; shift $((OPTIND - 1))
+
+file="$1"
+[ ! -f "$file" ] && echo "invalid file" && usage
+
+[ $int ] && for i in \
+album album_artist artist comment composer date disc_num genre \
+performer title track_num; do
+	# hacky, hacky, hacky :^)
+	[ -z $(eval echo "\$$i") ] && printf "$i: " && read -r $i
+done
+[ -z "$title" ] && usage
+
+case "$file" in
+*.mp3) eyeD3 -Q --non-std-genres \
+	--composer "$composer" \
+	-A "$album" \
+	-G "$genre" \
+	-Y "$date" \
+	-a "$artist" \
+	-b "$album_artist" \
+	-c "$comment" \
+	-d "$disc_num" \
+	-n "$track_num" \
+	-t "$title" \
+	"$file" ;;
+
+*.flac) tool="metaflac --remove-all-tags --import-tags-from=-" ;;
+*.ogg) tool="vorbiscomment -w" ;;
+*.opus) tool="opustags -Si" ;;
+*) echo "filetype not implemented" ;;
+esac
+
+[ "$tool" ] && echo "ALBUM=$album
+ALBUMARTIST=$album_artist
+ARTIST=$artist
+COMPOSER=$composer
+DATE=$date
+DESCRITION=$comment
+DISCNUMBER=$disc_num
+GENRE=$genre
+PERFORMER=$performer
+TITLE=$title
+TRACKNUMBER=$track_num" | $tool "$file"
