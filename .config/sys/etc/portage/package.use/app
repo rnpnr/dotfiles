@@ -1,6 +1,8 @@
 app-arch/libarchive -e2fsprogs
+app-crypt/gcr gtk
 app-crypt/gnupg -ssl
 app-crypt/mit-krb5 -keyutils -pkinit
+app-crypt/pinentry gtk
 app-emulation/qemu -curl -doc -gtk -pin-upstream-blobs -usb -vnc
 app-shells/bash -net
 app-shells/dash static

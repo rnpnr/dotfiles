@@ -1,8 +1,7 @@
 bgs -z ~/.config/h_wallpaper.jpg
 
-gpg_flags="--daemon --default-cache-ttl 14400 --max-cache-ttl 36000 --no-allow-external-cache"
 [ -z $SSH_AGENT_PID ] && eval $(ssh-agent)
-[ $(pgrep gpg-agent) ] || gpg-agent $gpg_flags
+[ $(pgrep gpg-agent) ] || gpg-agent --daemon
 
 [ $(pgrep mpd) ] || mpd
 [ $(pgrep cron) ] || cron -f ~/.config/cron/crontab
@@ -19,5 +18,7 @@ export XMODIFIERS=@im=ibus
 export GTK_IM_MODULE=ibus
 export QT_IM_MODULE=ibus
 ibus-daemon -drx
+
+export $(dbus-launch)
 
 exec ~/bin/dwm
