@@ -43,11 +43,6 @@ alias page='zathura --fork'
 # managing dotfiles
 alias rice='git --git-dir=~/.local/repos/dotfiles --work-tree=~'
 
-# git
-alias ga='git apply'
-alias gc='git checkout'
-alias gd='git diff'
-
 # youtube-dl
 alias yt="youtube-dl"
 alias ytbest="yt -f '(bestvideo+bestaudio)/best'"

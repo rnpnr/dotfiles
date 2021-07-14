@@ -5,8 +5,8 @@ map r reload
 map R rotate
 map K zoom in
 map J zoom out
-map i recolor
-map I set recolor-keephue
+map I recolor
+map i set recolor-keephue
 map g goto top
 
 set font "monospace normal 12"
