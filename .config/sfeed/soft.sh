@@ -6,7 +6,10 @@ feeds() {
 
 filter() {
 	# replace github commits with their plaintext patches
-	sed 's:\(	.*github.*/commit/[A-z0-9]*\):\1.patch:'
+	sed '/github/s:\(/commit/[A-z0-9]*\):\1.patch:' |
+
+	# replace cgit commits with their plaintext patches
+	sed /cgit/s:/commit/:/patch/:
 }
 
 order() {
