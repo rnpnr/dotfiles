@@ -28,7 +28,7 @@ function build_files(win)
 		if method == nil then error() return end
 
 		vis:info(string.format('building \'%s\'', f))
-		method(f, out)
+		method(f)
 	end
 
 	vis:map(vis.modes.NORMAL, ',c', build)

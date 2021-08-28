@@ -9,6 +9,7 @@ vis.events.subscribe(vis.events.INIT, function()
 	vis:command("set ai")
 
 	vis:command("map normal gq vip=<Escape>")
+	vis:command("map normal ,f v$:|furigana<Enter><Escape>")
 	vis:command("map visual ,s :|sort<Enter>")
 end)
 
