@@ -1,0 +1,10 @@
+#!/bin/sh
+
+# outputs kanji in (utf-8) files to stdout
+
+# strip non-kanji
+regexp="s:[^\x{3400}-\x{4DB5}\x{4E00}-\x{9FCB}\x{F900}-\x{FA6A}]::g"
+# split each char onto a newline
+regexp="${regexp};s:(.):\1\n:g"
+
+cat "$@" | perl -CS -pe "${regexp}"
