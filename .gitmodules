@@ -28,3 +28,9 @@
 [submodule ".config/mpv/scripts/videoclip"]
 	path = .config/mpv/scripts/videoclip
 	url = https://github.com/Ajatt-Tools/videoclip.git
+[submodule "src/sh/omoidasu"]
+	path = src/sh/omoidasu
+	url = git@github.com:0x766F6964/omoidasu.git
+[submodule "src/c/oboeru"]
+	path = src/c/oboeru
+	url = git@github.com:0x766F6964/oboeru.git
