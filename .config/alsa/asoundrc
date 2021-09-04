@@ -1,6 +1,9 @@
 pcm.!default {
 	type asym
-	playback.pcm pcm.output
+	playback.pcm {
+		type plug
+		slave.pcm pcm.softvol
+	}
 	capture.pcm {
 		type plug
 		slave.pcm pcm.dsnooper
@@ -54,7 +57,7 @@ ctl.MicVol {
 pcm.softvol {
 	type softvol
 	slave.pcm pcm.output
-	control.name "SoftMaster"
+	control.name "SoftVol"
 }
 
 # mpd volume control
