@@ -3,7 +3,7 @@
 # adjusts a provided srt file by the given time in milliseconds
 
 function usage() {
-	printf "usage: %s [-]time(ms) srt\n", ARGV[0]
+	printf "usage: %s [-]time(ms) [srt ...]\n", ARGV[0]
 	exit(1)
 }
 
@@ -29,7 +29,7 @@ function bump(a, time) {
 }
 
 BEGIN {
-	if (ARGC != 3) {
+	if (ARGC < 2) {
 		usage()
 	}
 
