@@ -1,0 +1,48 @@
+#!/bin/awk -f
+
+# adjusts a provided srt file by the given time in milliseconds
+
+function usage() {
+	printf "usage: %s [-]time(ms) srt\n", ARGV[0]
+	exit(1)
+}
+
+function tomsecs(a) {
+	gsub(/,/, ":", a)
+	split(a, t, ":")
+	return (t[1] * 3600 + t[2] * 60 + t[3]) * 1000 + t[4]
+}
+
+function ftime(a) {
+	ms = a % 1000
+	a = (a - ms) / 1000
+	s = a % 60
+	a = (a - s) / 60
+	m = a % 60
+	h = (a - m) / 60
+
+	return sprintf("%02d:%02d:%02d,%03d", h, m, s, ms)
+}
+
+function bump(a, time) {
+	return ftime(tomsecs(a) + time)
+}
+
+BEGIN {
+	if (ARGC != 3) {
+		usage()
+	}
+
+	adj = ARGV[1]
+	delete ARGV[1]
+	FS = " --> "
+}
+
+!/[0-9][0-9]:[0-9][0-9],[0-9][0-9][0-9]/ {
+	print
+	next
+}
+
+{
+	printf("%s --> %s\n", bump($1, adj), bump($2, adj))
+}
