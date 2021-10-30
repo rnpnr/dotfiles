@@ -10,9 +10,11 @@ suspend
 reboot
 shutdown"
 
-case $(echo "$options" | dmenu -i -p "Action:") in
+case ${1:-$(echo "$options" | dmenu -i -p "Action:")} in
 lock)		slock ;;
 suspend)	$SUCMD /sbin/zzz ;;
 reboot)		$SUCMD /sbin/shutdown -r now ;;
 shutdown)	$SUCMD /sbin/shutdown -h now ;;
+*)		echo "usage: $0 [lock|suspend|reboot|shutdown]"
+		exit 1 ;;
 esac
