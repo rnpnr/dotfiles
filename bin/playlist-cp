@@ -15,7 +15,7 @@ usage() {
 	-f: read from playlist instead of stdin
 	-o: don't transcode
 	-p: prefix input lines
-	-s: write playist to outdir/playlists/name.mus"
+	-s: write playist to outdir/playlists/name.m3u"
 
 	exit 1
 }
