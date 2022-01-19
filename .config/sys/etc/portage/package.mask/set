@@ -14,7 +14,3 @@ media-sound/pulseaudio
 sys-apps/systemd
 sys-fs/udisks
 sys-power/upower
-
-*/*::smaeul
-dev-lang/rust::gentoo
-virtual/rust::gentoo

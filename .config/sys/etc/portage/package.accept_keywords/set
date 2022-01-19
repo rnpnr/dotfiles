@@ -6,8 +6,6 @@ x11-misc/dmenu **
 # what the h**k is the point of stable/unstable fonts
 media-fonts/* ~amd64
 
-dev-lang/rust::smaeul ~amd64
-
 # Haskell
 ~dev-lang/ghc-8.10.4 ~amd64
 
@@ -26,6 +24,3 @@ net-misc/youtube-dl ~amd64
 
 ~www-client/librewolf-89.0 ~amd64
 ~dev-libs/nss-3.67 ~amd64
-
-# remove after v0.8 or higher
-~sys-libs/liburing-2.0 ~amd64
