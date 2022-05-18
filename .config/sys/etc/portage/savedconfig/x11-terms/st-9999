@@ -94,7 +94,7 @@ char *termname = "st-256color";
 unsigned int tabspaces = 8;
 
 /* Terminal colors (16 first used in escape sequence) */
-static const char *colorname[] = {
+static const char *colordark[] = {
 	/* 8 normal colors */
 	[0]   = "#090909", /* black */
 	[1]   = "#e6404e", /* red */
@@ -103,34 +103,55 @@ static const char *colorname[] = {
 	[4]   = "#3b419c", /* blue */
 	[5]   = "#e65080", /* magenta */
 	[6]   = "#4492f4", /* cyan */
-	[7]   = "#999",    /* white */
+	[7]   = "#eae1b4", /* white */
 
 	/* 8 bright colors */
 	[8]   = "#1b1b1b", /* black */
-	[9]   = "#ed5a67", /* red */
+	[9]   = "#e65c67", /* red */
 	[10]  = "#b694f2", /* green */
 	[11]  = "#fa8aaf", /* yellow */
 	[12]  = "#5760e6", /* blue */
 	[13]  = "#e6618c", /* magenta */
 	[14]  = "#7178eb", /* cyan */
-	[15]  = "#dcdccc", /* white */
+	[15]  = "#dcdcbe", /* white */
 
 	[255] = 0,
-
-	/* more colors can be added after 255 to use with DefaultXX */
-	"#cccccc",
-	"#555555",
 };
 
+static const char *colorlight[] = {
+	/* 8 normal colors */
+	[0]   = "#eae1b4", /* black */
+	[1]   = "#e6404e", /* red */
+	[2]   = "#9e66ff", /* green */
+	[3]   = "#d96f92", /* yellow */
+	[4]   = "#3b419c", /* blue */
+	[5]   = "#e65080", /* magenta */
+	[6]   = "#4492f4", /* cyan */
+	[7]   = "#090909", /* white */
+
+	/* 8 bright colors */
+	[8]   = "#faf0c0", /* black */
+	[9]   = "#e65c67", /* red */
+	[10]  = "#ae80ff", /* green */
+	[11]  = "#fa8aaf", /* yellow */
+	[12]  = "#5760e6", /* blue */
+	[13]  = "#e6618c", /* magenta */
+	[14]  = "#7178eb", /* cyan */
+	[15]  = "#1b1b1b", /* white */
+
+	[255] = 0,
+};
+
+static const char **colorname = colordark;
 
 /*
  * Default colors (colorname index)
  * foreground, background, cursor, reverse cursor
  */
-unsigned int defaultfg = 15;
+unsigned int defaultfg = 7;
 unsigned int defaultbg = 0;
-static unsigned int defaultcs = 256;
-static unsigned int defaultrcs = 257;
+unsigned int defaultcs = 7;
+static unsigned int defaultrcs = 0;
 
 /*
  * Default shape of cursor
@@ -200,6 +221,7 @@ static Shortcut shortcuts[] = {
 	{ TERMMOD,              XK_Y,           selpaste,       {.i =  0} },
 	{ ShiftMask,            XK_Insert,      selpaste,       {.i =  0} },
 	{ TERMMOD,              XK_Num_Lock,    numlock,        {.i =  0} },
+	{ TERMMOD,              XK_I,           recolor,        {.i =  0} },
 };
 
 /*

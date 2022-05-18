@@ -1,0 +1,30 @@
+diff --git a/x.c b/x.c
+index 2a3bd38..c27db55 100644
+--- a/x.c
++++ b/x.c
+@@ -59,6 +59,7 @@ static void zoom(const Arg *);
+ static void zoomabs(const Arg *);
+ static void zoomreset(const Arg *);
+ static void ttysend(const Arg *);
++static void recolor(const Arg *);
+ 
+ /* config.h for applying patches and the configuration. */
+ #include "config.h"
+@@ -1908,6 +1909,17 @@ resize(XEvent *e)
+ 	cresize(e->xconfigure.width, e->xconfigure.height);
+ }
+ 
++void
++recolor(const Arg *A)
++{
++	if (colorname == colordark)
++		colorname = colorlight;
++	else
++		colorname = colordark;
++	xloadcols();
++	redraw();
++}
++
+ void
+ run(void)
+ {
