@@ -10,6 +10,9 @@ function macros(win)
 		{ 'normal', '\\se', 'i\\section{}<Escape>hi' },
 		{ 'normal', '\\su', 'i\\subsection{}<Escape>hi' },
 	}
+	lang['.hs'] = {
+		{ 'normal', 'gq', 'vip:|hindent<Enter><Escape>'},
+	}
 
 	local f = win.file.name
 	if f == nil then return end
@@ -21,7 +24,7 @@ function macros(win)
 	if binds == nil then return end
 
 	for _, map in pairs(binds) do
-		vis:command(string.format('map %s %s %s', map[1], map[2], map[3]))
+		vis:command(string.format('map! %s %s %s', map[1], map[2], map[3]))
 	end
 end
 
