@@ -4,6 +4,10 @@
 
 OUT=${AUDIOSINK:-"Speaker"}
 
-amixer -q set "$OUT" $@
+if [ $OUT == "pulse" ]; then
+	pactl set-sink-volume 0 $@
+else
+	amixer -q set "$OUT" $@
+fi
 
 pkill -RTMIN+2 status
