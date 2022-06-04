@@ -38,13 +38,13 @@ alias ll='ls -lh'
 alias mkdir='mkdir -p'
 alias mvi='mpv --profile=image'
 alias ncmpcpp='tput smkx && ncmpcpp'
-alias page='zathura --fork'
+alias page='tabbed -cd -r 2 zathura -e ""'
 
 # managing dotfiles
 alias rice='git --git-dir=~/.local/repos/dotfiles --work-tree=~'
 
 # youtube-dl
-alias yt="youtube-dl"
+alias yt="yt-dlp"
 alias ytbest="yt -f '(bestvideo+bestaudio)/best'"
 alias ytmus='mpv --profile=ytmus --shuffle "$YT_MUS"'
 alias ytab='yt --config-location ~/.config/youtube-dl/audiobooks'
@@ -105,6 +105,10 @@ if [ -f /etc/gentoo-release ]; then
 	alias c++='c++ -O3 -pipe -Wall -Werror'
 	alias em='doas /usr/bin/emerge'
 	alias ifconfig='doas /bin/ifconfig'
+fi
+
+if [ -f /etc/arch-release ]; then
+	alias pm='doas /usr/bin/pacman'
 fi
 
 ###############
