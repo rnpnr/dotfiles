@@ -2,7 +2,8 @@ require('vis')
 require('build')
 require('macros')
 
-require('plugins/vis-spellcheck')
+spell = require('plugins/vis-spellcheck')
+spell.lang = "en_US"
 
 vis.events.subscribe(vis.events.INIT, function()
 	vis:command("set theme dark")

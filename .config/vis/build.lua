@@ -5,7 +5,13 @@ function build_files(win)
 
 	function build_tex(f)
 		-- build pdf
-		vis:command(string.format('!lualatex %s >/dev/null', f))
+		vis:command(string.format('!pdflatex %s.tex >/dev/null', f))
+		-- update refrences
+		vis:command(string.format('!biber %s >/dev/null', f))
+		-- update glossary
+		-- vis:command(string.format('!makeglossaries %s >/dev/null', f))
+		-- build pdf
+		vis:command(string.format('!pdflatex %s.tex >/dev/null', f))
 
 		-- reload pdf (zathura does this automatically)
 		-- vis:command('!pkill -HUP mupdf')
@@ -28,7 +34,7 @@ function build_files(win)
 		if method == nil then error() return end
 
 		vis:info(string.format('building \'%s\'', f))
-		method(f)
+		method(string.sub(f, 0, i - 1))
 	end
 
 	vis:map(vis.modes.NORMAL, ',c', build)
