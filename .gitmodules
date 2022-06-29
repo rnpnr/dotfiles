@@ -34,3 +34,6 @@
 [submodule "src/c/oboeru"]
 	path = src/c/oboeru
 	url = git@github.com:0x766F6964/oboeru.git
+[submodule "src/c/jdict"]
+	path = src/c/jdict
+	url = git@github.com:0x766F6964/jdict.git
