@@ -34,6 +34,7 @@ fi
 alias c=clear
 alias e="$EDITOR"
 alias v="$EDITOR"
+alias hss='hugo server --noHTTPCache --printI18nWarnings'
 alias ll='ls -lh'
 alias mkdir='mkdir -p'
 alias mvi='mpv --profile=image'
