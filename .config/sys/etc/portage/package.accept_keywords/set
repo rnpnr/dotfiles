@@ -8,7 +8,8 @@ x11-misc/dmenu **
 media-fonts/* ~amd64
 
 # Haskell
-~dev-lang/ghc-8.10.4 ~amd64
+app-text/pandoc ~amd64
+dev-lang/ghc ~amd64
 dev-haskell/* ~amd64
 
 # Personally Unmasked

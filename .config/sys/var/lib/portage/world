@@ -17,6 +17,7 @@ app-portage/smart-live-rebuild
 app-shells/dash
 app-shells/oksh
 app-text/enchant
+app-text/pandoc
 app-text/smu
 app-text/tesseract
 app-text/texlive

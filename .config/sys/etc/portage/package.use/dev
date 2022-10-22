@@ -1,5 +1,5 @@
 dev-db/sqlite secure-delete
-dev-lang/ghc ghcbootstrap
+dev-lang/ghc ghcbootstrap -doc
 dev-lang/lua static
 dev-lang/luajit lua52compat
 dev-lang/python ncurses readline sqlite
