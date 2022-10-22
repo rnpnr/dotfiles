@@ -1,4 +1,7 @@
+sys-apps/man-pages-posix freedist
 sys-kernel/* freedist
+
+media-fonts/mikachan-font-ttf free-noncomm
 
 sys-firmware/iwlwifi-6000-ucode ipw3945
 sys-firmware/iwlwifi-cc ipw3945

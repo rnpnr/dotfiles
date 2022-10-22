@@ -3,13 +3,10 @@ app-misc/abduco static tcc
 dev-lang/yasm static
 dev-libs/libcdio static
 dev-libs/libcdio-paranoia static
-dev-libs/expat static pic
 media-libs/mesa nobloat pic
 media-libs/flac static
 media-libs/libogg static pic
-#media-libs/libvorbis static
 media-libs/opus static pic
-media-libs/tiff static pic
 media-sound/lame static pic
 
 sys-base/sbase tcc

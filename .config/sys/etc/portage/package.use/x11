@@ -3,4 +3,3 @@ x11-libs/cairo svg
 x11-libs/libxcb xkb
 x11-misc/slop -opengl
 x11-themes/gtk-engines-murrine -themes
-x11-wm/dwm -savedconfig

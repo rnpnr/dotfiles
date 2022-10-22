@@ -115,7 +115,9 @@ fi
 ###############
 # Completions #
 ###############
-set -A complete_ifconfig_1 -- $(ifconfig | sed -n '/^[a-z]/s,:.*,,p')
+if [ -f /etc/gentoo-release -o $UNAME == "OpenBSD" ]; then
+	set -A complete_ifconfig_1 -- $(ifconfig | sed -n '/^[a-z]/s,:.*,,p')
+fi
 
 if [ $UNAME == "OpenBSD" ]; then
 	PKG_LIST=$(ls /var/db/pkg)

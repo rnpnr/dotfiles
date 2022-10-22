@@ -1,5 +1,6 @@
 */*::0x766F6964 **
 app-editors/vis **
+dev-util/samurai **
 media-sound/split2flac **
 x11-misc/dmenu **
 
@@ -8,6 +9,7 @@ media-fonts/* ~amd64
 
 # Haskell
 ~dev-lang/ghc-8.10.4 ~amd64
+dev-haskell/* ~amd64
 
 # Personally Unmasked
 app-misc/abduco ~amd64
@@ -16,11 +18,13 @@ media-gfx/farbfeld ~amd64
 media-sound/ncmpcpp ~amd64
 media-video/mpv ~amd64
 net-analyzer/openbsd-netcat::musl ~amd64
-net-misc/youtube-dl ~amd64
 
 # No stable version
 ~dev-qt/qtstyleplugins-5.0.0_p20170311 ~amd64
 ~x11-misc/xidle-26052015 ~amd64
 
-~www-client/librewolf-89.0 ~amd64
-~dev-libs/nss-3.67 ~amd64
+www-apps/hugo ~amd64
+www-client/librewolf ~amd64
+~dev-libs/nss-3.83 ~amd64
+
+~app-i18n/kakasi-2.3.6 ~amd64

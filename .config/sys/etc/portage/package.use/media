@@ -1,6 +1,7 @@
 media-fonts/source-han-sans L10N: ja ko zh-TW
 media-fonts/source-pro cjk
 media-libs/audiofile -flac
+media-libs/freetype harfbuzz
 media-libs/gegl -ffmpeg
 media-libs/harfbuzz icu # needed for Tex
 media-libs/imlib2 -tiff
@@ -19,4 +20,4 @@ media-sound/ncmpcpp visualizer taglib outputs
 media-sound/vorbis-tools -ogg123
 media-video/aegisub lua_single_target_luajit
 media-video/ffmpeg openssl libdrm libass mp3 x264 x265 -hardcoded-tables
-media-video/mpv cli drm gbm lua -jpeg -xv -uchardet -vaapi
+media-video/mpv cli drm gbm lua -jpeg -xv -uchardet -vaapi lua_single_target_lua5-1

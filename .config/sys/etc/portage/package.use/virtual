@@ -1,1 +1,2 @@
 virtual/ffmpeg x264 mp3
+virtual/libcrypt static-libs

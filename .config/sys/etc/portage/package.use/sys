@@ -1,12 +1,12 @@
 sys-apps/attr static-libs
-sys-apps/busybox -savedconfig
+sys-apps/busybox -savedconfig static
 sys-apps/groff -X
 sys-apps/hwids udev
 sys-apps/man-db berkdb -manpager
 sys-apps/portage -rsync-verify
-sys-apps/shadow -cracklib
+sys-apps/shadow su -cracklib
 sys-apps/sysvinit static
-sys-apps/util-linux cryptsetup static-libs -suid -cramfs
+sys-apps/util-linux cryptsetup static-libs -su -suid -cramfs
 sys-devel/binutils cxx static-libs
 sys-devel/clang-runtime -sanitize # doesn't work in musl
 sys-devel/gcc cxx fortran lto
