@@ -6,6 +6,7 @@ media-libs/gegl -ffmpeg
 media-libs/harfbuzz icu # needed for Tex
 media-libs/imlib2 -tiff
 media-libs/jbig2dec -png
+media-libs/leptonica tiff # for tesseract tiff support
 media-libs/libbluray aacs
 media-libs/libjpeg-turbo static-libs
 media-libs/libpng apng
