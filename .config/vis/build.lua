@@ -5,13 +5,13 @@ function build_files(win)
 
 	function build_tex(f)
 		-- build pdf
-		vis:command(string.format('!pdflatex %s.tex >/dev/null', f))
+		vis:command(string.format('!pdflatex -halt-on-error %s.tex >/dev/null', f))
 		-- update refrences
 		vis:command(string.format('!biber %s >/dev/null', f))
 		-- update glossary
 		-- vis:command(string.format('!makeglossaries %s >/dev/null', f))
 		-- build pdf
-		vis:command(string.format('!pdflatex %s.tex >/dev/null', f))
+		vis:command(string.format('!pdflatex -halt-on-error %s.tex >/dev/null', f))
 
 		-- reload pdf (zathura does this automatically)
 		-- vis:command('!pkill -HUP mupdf')
