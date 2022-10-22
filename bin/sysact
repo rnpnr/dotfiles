@@ -11,7 +11,7 @@ reboot
 shutdown"
 
 case ${1:-$(echo "$options" | dmenu -i -p "Action:")} in
-lock)		slock ;;
+lock)		ibus engine xkb:us::eng ; slock ;;
 suspend)	$SUCMD /sbin/zzz ;;
 reboot)		$SUCMD /sbin/shutdown -r now ;;
 shutdown)	$SUCMD /sbin/shutdown -h now ;;
