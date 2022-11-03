@@ -86,6 +86,7 @@ x11-misc/slock
 x11-misc/slop
 x11-misc/tabbed
 x11-misc/xbanish
+x11-misc/xdotool
 x11-misc/xidle
 x11-terms/st
 x11-themes/gtk-engines-murrine

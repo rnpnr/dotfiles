@@ -7,4 +7,4 @@
 password=$(spm search . | cut -d '/' -f 5- | dmenu -i -p "Password:") || exit 0
 password=${password%.*}
 
-spm show "$password" | head -1 | xclip -r -sel clip -l 1 > /dev/null 2>&1
+xdotool type --delay 0 $(spm show "$password" | head -1)
