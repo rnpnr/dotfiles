@@ -1,5 +1,6 @@
 app-admin/doas
 app-admin/spm
+app-crypt/pinentry-dmenu
 app-dicts/kasumi
 app-dicts/qolibri
 app-editors/hyx

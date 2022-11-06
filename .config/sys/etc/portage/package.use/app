@@ -1,7 +1,5 @@
-app-crypt/gcr gtk
 app-crypt/gnupg -ssl
 app-crypt/mit-krb5 -keyutils -pkinit
-app-crypt/pinentry gtk
 app-dicts/myspell-en l10n_en
 app-emulation/qemu -curl -doc -gtk -pin-upstream-blobs -usb -vnc
 app-i18n/ibus gtk3

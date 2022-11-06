@@ -1,0 +1,28 @@
+/* See LICENSE file for copyright and license details. */
+
+/* minimum length to use for displaying the pw field */
+static int minpwlen = 16;
+
+/* character to be used as a replacement for typed characters */
+static const char *asterisk = "*";
+
+/* if 0, pinentry-dmenu appears at bottom */
+static int topbar = 1;
+
+/* adjusts the bars vertical padding */
+static const unsigned int padbar = 8;
+
+/* default X11 font or font set */
+static const char *fonts[] = {
+	"Go Mono:style=bold:size=14",
+	"あんずもじ:style=Regular:size=18",
+};
+
+static const char *prompt = NULL;      /* -p  option; prompt to the left of input field */
+static const char *colors[SchemeLast][4] = {
+	/*     fg         bg       */
+	[SchemePrompt] = { "#a274f2", "#090909" },
+	[SchemeNormal] = { "#666666", "#090909" },
+	[SchemeSelect] = { "#666666", "#090909" },
+	[SchemeDesc]   = { "#666666", "#090909" }
+};
