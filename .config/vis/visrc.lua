@@ -12,6 +12,9 @@ vis.events.subscribe(vis.events.INIT, function()
 	vis:command("map normal gq vip=<Escape>")
 	vis:command("map normal ,f v$:|furigana<Enter><Escape>")
 	vis:command("map visual ,s :|sort<Enter>")
+
+	-- remove spaces, tabs, and \r from end of line
+	vis:map(vis.modes.NORMAL, "vo", ":x/[ \t\r]+$/ d<Enter>")
 end)
 
 vis.events.subscribe(vis.events.WIN_OPEN, function(win)

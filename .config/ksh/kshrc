@@ -76,14 +76,6 @@ IFS='
 	done
 }
 
-fix_line_endings() {
-	tmpfile=$(mktemp)
-	for file; do
-		sed 's:\x0d::;s:^﻿::' "$file" >| "$tmpfile"
-		mv "$tmpfile" "$file"
-	done
-}
-
 toutf8() {
 	tmpfile=$(mktemp)
 	for file; do
