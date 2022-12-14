@@ -1,7 +1,6 @@
 #!/bin/sh
 
-# uses dmenu to select a password to copy to the clipboard
-# it is removed from the clipboard once pasted
+# types a dmenu selected password
 # make sure gpg-agent is running
 
 password=$(spm search . | cut -d '/' -f 5- | dmenu -i -p "Password:") || exit 0
