@@ -3,6 +3,8 @@ require('util')
 local function fmt(file, path)
 	local win = vis.win
 	local fmt = {}
+	fmt["ansi_c"] = "clang-format -fallback-style=none"
+	fmt["cpp"] = "clang-format -fallback-style=none"
 	fmt["bibtex"] = "bibtidy"
 
 	local cmd = fmt[win.syntax]
