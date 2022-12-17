@@ -1,4 +1,5 @@
 require('vis')
+require('util')
 require('build')
 require('macros')
 
@@ -20,4 +21,11 @@ end)
 
 vis.events.subscribe(vis.events.WIN_OPEN, function(win)
 	vis:command("set rnu")
+end)
+
+vis.events.subscribe(vis.events.WIN_CLOSE, function(win)
+	local f, e = splitext(win.file.name)
+	if e == '.tex' then
+		vis:command(string.format("!texclean %s", f .. e))
+	end
 end)

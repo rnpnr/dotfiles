@@ -1,0 +1,14 @@
+#!/bin/sh
+
+# cleanup tex output clutter
+
+case "$1" in
+*.tex)
+	f=$(readlink -f "$1")
+	d=$(dirname "$f")
+	b="${f%.*}"
+	junk=$(find "$d" -type f | grep -E -e ".*\\.log" -e "^$b\\.(4tc|xref|tmp|pyc|pyg|pyo|fls|vrb|fdb_latexmk|bak|swp|aux|log|synctex\\(busy\\)|lof|lot|maf|idx|mtc|mtc0|nav|out|snm|toc|bcf|run\\.xml|synctex\\.gz|blg|bbl)")
+	rm $junk
+	;;
+*)	echo "usage: $0: file.tex" ;;
+esac
