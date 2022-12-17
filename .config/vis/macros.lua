@@ -1,4 +1,6 @@
-function macros(win)
+require('util')
+
+local function macros(win)
 	local lang = {}
 	lang['.tex'] = {
 		{ 'normal', '\\bf', 'i\\\\textbf{}<Escape>hi' },
@@ -14,18 +16,13 @@ function macros(win)
 		{ 'normal', 'gq', 'vip:|hindent<Enter><Escape>'},
 	}
 
-	local f = win.file.name
-	if f == nil then return end
+	local _, e = splitext(win.file.name)
 
-	local i = string.find(f, '%.')
-	if i == nil then return end
-
-	local binds = lang[string.sub(f, i)]
+	local binds = lang[e]
 	if binds == nil then return end
 
 	for _, map in pairs(binds) do
 		vis:command(string.format('map! %s %s %s', map[1], map[2], map[3]))
 	end
 end
-
 vis.events.subscribe(vis.events.WIN_OPEN, macros)

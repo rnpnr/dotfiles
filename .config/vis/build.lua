@@ -1,4 +1,6 @@
-function build_files(win)
+require('util')
+
+local function build_files(win)
 	function error()
 		vis:info('This filetype is not supported')
 	end
@@ -24,21 +26,17 @@ function build_files(win)
 		-- write file
 		vis:command('w')
 
-		local f = win.file.name
+		local f, e = splitext(win.file.name)
 		if f == nil then error() return end
 
-		local i = string.find(f, '%.')
-		if i == nil then error() return end
-
-		local method = lang[string.sub(f, i)]
+		local method = lang[e]
 		if method == nil then error() return end
 
-		vis:info(string.format('building \'%s\'', f))
-		method(string.sub(f, 0, i - 1))
+		vis:info(string.format('building: %s', f .. e))
+		method(f)
 	end
 
 	vis:map(vis.modes.NORMAL, ',c', build)
 	vis:command_register('build', build)
 end
-
 vis.events.subscribe(vis.events.WIN_OPEN, build_files)
