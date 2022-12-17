@@ -1,5 +1,29 @@
 require('util')
 
+local function fmt(file, path)
+	local win = vis.win
+	local fmt = {}
+	fmt["bibtex"] = "bibtidy"
+
+	local cmd = fmt[win.syntax]
+	if cmd == nil then return true end
+
+	local err, ostr, estr = vis:pipe(file, {start = 0, finish = file.size}, cmd)
+	if err ~= 0 then
+		if estr then
+			vis:message(estr)
+		end
+		return false
+	end
+
+	local pos = win.selection.pos
+	file:delete(0, file.size)
+	file:insert(0, ostr)
+	win.selection.pos = pos
+	return true
+end
+vis.events.subscribe(vis.events.FILE_SAVE_PRE, fmt)
+
 local function build_files(win)
 	function error()
 		vis:info('This filetype is not supported')
