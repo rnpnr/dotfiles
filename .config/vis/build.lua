@@ -58,7 +58,7 @@ local function build_files(win)
 		local method = lang[e]
 		if method == nil then error() return end
 
-		vis:info(string.format('building: %s', f .. e))
+		vis:info("building: " .. f .. e)
 		method(f)
 	end
 

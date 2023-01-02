@@ -26,6 +26,6 @@ end)
 vis.events.subscribe(vis.events.WIN_CLOSE, function(win)
 	local f, e = splitext(win.file.name)
 	if e == '.tex' then
-		vis:command(string.format("!texclean %s", f .. e))
+		vis:command("!texclean " .. f .. e)
 	end
 end)
