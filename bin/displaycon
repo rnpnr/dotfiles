@@ -2,16 +2,42 @@
 
 # dmenu selection script for controlling monitors
 
-case $(printf "rotate\nmanage" | dmenu -i -p "Action:") in 
-"rotate")
-	monitor=$(xrandr --listactivemonitors | awk '{print $4}' |
-		grep -v "^$" | dmenu -i -p "Monitor:") || exit 0
+one_scr() {
+	xrandr --output "$1" --primary --auto --scale 1.0x1.0 \
+		$(echo "$allscrs" | grep -v "^$1" | awk '{print "--output", $1, "--off"}' | paste -sd ' ' -)
+}
 
-	direction=$(printf "normal\nright\nleft\ninverted" |
-		dmenu -i -p "Direction:") || exit 0
+multi_scr() {
+	primary=$(echo "$scrs" | dmenu -i -p "Primary:")
+	xrandr --output $primary --auto --scale 1.0x1.0 --primary
+	manage $(echo "$scrs" | grep -v "^$primary")
+}
 
-	xrandr --output $monitor --rotate $direction
-	case $direction in
+manage() {
+	for i in "$@"; do
+		case $(printf "enable\ndisable\nmove\nrotate" | dmenu -i -p "Action ($i):") in
+		"enable"|"move")
+			loc=$(printf "left-of\nright-of\nabove\nbelow" |
+				dmenu -i -p "Location ($i):") || exit 0
+			relative=$(echo "$scrs" | dmenu -i -p "Relative ($i):") || exit 0
+			direction=$(printf "normal\nright\nleft\ninverted" |
+				dmenu -i -p "Direction ($i):") || exit 0
+			xrandr --output $i --$loc $relative \
+				--rotate $direction --auto
+			;;
+		"rotate")
+			direction=$(printf "normal\nright\nleft\ninverted" |
+				dmenu -i -p "Direction ($i):") || exit 0
+			xrandr --output $i --rotate $direction --auto
+			;;
+		"disable") xrandr --output $i --off ;;
+		*) exit 0 ;;
+		esac
+	done
+}
+
+set_bg() {
+	case $1 in
 	"left"|"right")
 		bgs "$HOME"/.config/v_wallpaper.*
 		;;
@@ -19,29 +45,22 @@ case $(printf "rotate\nmanage" | dmenu -i -p "Action:") in
 		bgs -z "$HOME"/.config/h_wallpaper.*
 		;;
 	esac
-	;;
+}
 
-"manage")
-	monitor=$(xrandr | grep ' connected' | cut -f 1 -d ' ' |
-		dmenu -i -p "Monitor:") || exit 0
+allscrs=$(xrandr | grep 'connected')
+scrs=$(echo "$allscrs" | awk '/ connected/ {print $1}')
+direction="normal"
 
-	case $(printf "enable\ndisable\nmove" | dmenu -i -p "Action:") in
-	"enable"|"move")
-		loc=$(printf "left-of\nright-of\nabove\nbelow" |
-			dmenu -i -p "Location:") || exit 0
-
-		relative=$(xrandr --listactivemonitors | awk '{print $4}' |
-			grep -v "^$" | dmenu -i -p "Relative:") || exit 0
-
-		direction=$(printf "normal\nright\nleft\ninverted" |
-			dmenu -i -p "Direction:") || exit 0
-
-		xrandr --output $monitor --$loc $relative \
-			--rotate $direction --auto
-		;;
-	"disable")
-		xrandr --output $monitor --off
-		;;
+choice=$(printf "%s\nmulti\nmanage" "$scrs" | dmenu -i -p "Displaycon:") || exit 0
+case "$choice" in
+"multi")
+	case $(echo "$scrs" | wc -l) in
+	1) one_scr "$scrs" ;;
+	*) multi_scr ;;
 	esac
 	;;
+"manage") manage "$scrs" ;;
+*) one_scr "$choice" ;;
 esac
+
+set_bg $direction
