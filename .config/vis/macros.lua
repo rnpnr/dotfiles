@@ -16,7 +16,7 @@ local function macros(win)
 		{ 'normal', 'gq', 'vip:|hindent<Enter><Escape>'},
 	}
 
-	local _, e = splitext(win.file.name)
+	local _, e = util:splitext(win.file.name)
 
 	local binds = lang[e]
 	if binds == nil then return end

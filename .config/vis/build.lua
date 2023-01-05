@@ -52,7 +52,7 @@ local function build_files(win)
 		-- write file
 		vis:command('w')
 
-		local f, e = splitext(win.file.name)
+		local f, e = util:splitext(win.file.name)
 		if f == nil then error() return end
 
 		local method = lang[e]

@@ -1,4 +1,5 @@
-function splitext(file)
+util = {}
+function util:splitext(file)
 	if file == nil then return nil, nil end
 	local i = string.find(file, '%.')
 	if i == nil then return file, nil end
