@@ -9,11 +9,11 @@ local function decrypt(file)
 	local err, ostr, estr = vis:pipe(file, {start = 0, finish = file.size}, "gpg -d")
 	if err ~= 0 then return false end
 
-	local i = string.find(estr, "ID")
-	local j = string.find(estr, ",", i)
-	local keyid = string.sub(estr, i+3, j-1)
+	local i = estr:find("ID")
+	local j = estr:find(",", i)
+	local keyid = estr:sub(i+3, j-1)
 	if keyid ~= gpg.key then
-		vis:info(estr)
+		vis:info(estr:gsub("\n[ ]*", " "))
 		gpg.key = keyid
 	end
 
