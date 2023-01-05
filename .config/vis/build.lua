@@ -8,7 +8,7 @@ local function fmt(file, path)
 	fmt["bibtex"] = "bibtidy"
 
 	local cmd = fmt[win.syntax]
-	if cmd == nil then return true end
+	if cmd == nil then return end
 
 	local err, ostr, estr = vis:pipe(file, {start = 0, finish = file.size}, cmd)
 	if err ~= 0 then
