@@ -37,3 +37,6 @@
 [submodule "src/c/jdict"]
 	path = src/c/jdict
 	url = git@github.com:rnpnr/jdict.git
+[submodule ".config/mpv/scripts/mpv-toolbox"]
+	path = .config/mpv/scripts/mpv-toolbox
+	url = https://codeberg.org/NRK/mpv-toolbox.git
