@@ -1,19 +1,32 @@
 require('util')
 
 local function macros(win)
+	local function fi(str, fkeys)
+		return function ()
+			local win = vis.win
+			local pos = win.selection.pos
+			win.file:insert(pos, str)
+			win.selection.pos = pos + #str
+			vis:feedkeys(fkeys)
+			return true
+		end
+	end
+
+	local m = vis.modes
 	local lang = {}
 	lang['.tex'] = {
-		{ 'normal', '\\bf', 'i\\\\textbf{}<Escape>hi' },
-		{ 'normal', '\\ca', 'i\\begin{cases}<Enter>\\end{cases}<Escape>O' },
-		{ 'normal', '\\do', 'i\\begin{document}<Enter><Enter><Enter>\\end{document}<Escape>kO\\item' },
-		{ 'normal', '\\en', 'i\\begin{enumerate}<Enter><Enter><Enter>\\end{enumerate}<Escape>kO\\item' },
-		{ 'normal', '\\eq', 'i\\begin{equation}<Enter>\\end{equation}<Escape>O' },
-		{ 'normal', '\\it', 'i\\begin{itemize}<Enter><Enter><Enter>\\end{itemize}<Escape>kO\\item' },
-		{ 'normal', '\\se', 'i\\section{}<Escape>hi' },
-		{ 'normal', '\\su', 'i\\subsection{}<Escape>hi' },
+		{ m.NORMAL, "\\al", fi("\\begin{align*}\n\\end{align*}", "O") },
+		{ m.NORMAL, "\\bf", fi("\\textbf{}", "hi") },
+		{ m.NORMAL, "\\ca", fi("\\begin{cases}\n\\end{cases}", "O") },
+		{ m.NORMAL, "\\cb", fi("\\begin{center}\n\\colorboxed{blue}{\n}\n\\end{center}", "kO") },
+		{ m.NORMAL, "\\en", fi("\\begin{enumerate}\n\n\\item \n\n\\end{enumerate}", "kkA") },
+		{ m.NORMAL, "\\eq", fi("\\begin{equation}\n\\end{equation}", "O") },
+		{ m.NORMAL, "\\it", fi("\\begin{itemize}\n\n\\item \n\n\\end{itemize}", "kkA") },
+		{ m.NORMAL, "\\se", fi("\\section{}", "hi") },
+		{ m.NORMAL, "\\su", fi("\\subsection{}", "hi") },
 	}
 	lang['.hs'] = {
-		{ 'normal', 'gq', 'vip:|hindent<Enter><Escape>'},
+		{ m.NORMAL, "gq", fi("", "vip:|hindent<Enter><Escape>") },
 	}
 
 	local _, e = util:splitext(win.file.name)
@@ -22,7 +35,7 @@ local function macros(win)
 	if binds == nil then return end
 
 	for _, map in pairs(binds) do
-		vis:command(string.format('map! %s %s %s', map[1], map[2], map[3]))
+		vis:map(map[1], map[2], map[3])
 	end
 end
 vis.events.subscribe(vis.events.WIN_OPEN, macros)
