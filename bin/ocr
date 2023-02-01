@@ -2,7 +2,9 @@
 
 # copy text from an image to the clipboard
 # deps: imagemagick tesseract slop xclip
-# you probably want the capture2text jpn file from here:
+# you probably want the jpn.traineddata or jpn_vert.traineddata from here:
+# https://github.com/tesseract-ocr/tessdata
+# or the capture2text one here:
 # https://sourceforge.net/projects/capture2text/files/Dictionaries/Japanese.zip/download
 
 TESS_DATA="$HOME/.local/share/tesseract"
