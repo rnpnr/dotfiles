@@ -1,3 +1,6 @@
+app-alternatives/gzip pigz -reference
+app-alternatives/sh dash -bash
+app-alternatives/yacc byacc -bison
 app-crypt/gnupg -ssl
 app-crypt/mit-krb5 -keyutils -pkinit
 app-dicts/myspell-en l10n_en
@@ -7,6 +10,7 @@ app-i18n/kakasi l10n_ja
 app-shells/bash -net
 app-shells/dash static
 app-text/hunspell l10n_en
+app-text/mandoc system-man
 app-text/mupdf -opengl -curl -javascript -ssl
-app-text/tesseract tiff
+app-text/tesseract float32 tiff
 app-text/texlive graphics luatex science l10n_ja -X

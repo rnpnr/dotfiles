@@ -1,4 +1,4 @@
-*/*::0x766F6964 **
+*/*::rnpnr **
 app-editors/vis **
 dev-util/samurai **
 media-sound/split2flac **
@@ -11,11 +11,13 @@ media-fonts/* ~amd64
 app-text/pandoc ~amd64
 dev-lang/ghc ~amd64
 dev-haskell/* ~amd64
+dev-util/shellcheck ~amd64
 
 # Personally Unmasked
 app-misc/abduco ~amd64
 games-emulation/higan ~amd64
 media-gfx/farbfeld ~amd64
+media-libs/libplacebo ~amd64
 media-sound/ncmpcpp ~amd64
 media-video/mpv ~amd64
 net-analyzer/openbsd-netcat::musl ~amd64
@@ -26,6 +28,8 @@ net-analyzer/openbsd-netcat::musl ~amd64
 
 www-apps/hugo ~amd64
 www-client/librewolf ~amd64
-~dev-libs/nss-3.83 ~amd64
+www-client/firefox ~amd64
+dev-libs/nss ~amd64
 
 ~app-i18n/kakasi-2.3.6 ~amd64
+app-text/tesseract ~amd64

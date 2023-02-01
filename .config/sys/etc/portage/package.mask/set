@@ -1,10 +1,4 @@
-media-libs/mesa::gentoo
 net-fs/samba::gentoo
-
->sys-boot/syslinux-4.07
-
-# Willh shitware
->sys-apps/openrc-0.17
 
 # Don't need net-tools and iproute
 sys-apps/iproute2

@@ -12,4 +12,5 @@ dev-libs/libpcre2 jit
 dev-libs/nss -nss-pem
 dev-python/PyQt5 dbus
 dev-qt/qtgui dbus ibus
+dev-qt/qtwebchannel qml
 dev-vcs/git -python -perl -pcre -webdav

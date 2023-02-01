@@ -1,4 +1,5 @@
 app-admin/doas
+app-admin/pwgen
 app-admin/spm
 app-crypt/pinentry-dmenu
 app-dicts/kasumi
@@ -23,10 +24,6 @@ app-text/smu
 app-text/tesseract
 app-text/texlive
 app-text/zathura-pdf-mupdf
-cross-avr/avr-libc
-cross-avr/binutils
-cross-avr/gcc
-dev-embedded/avrdude
 dev-lang/ghc
 dev-lang/go
 dev-libs/libcdio-paranoia
@@ -34,6 +31,7 @@ dev-lua/lpeg
 dev-python/eyeD3
 dev-qt/qtstyleplugins
 dev-util/samurai
+dev-util/shellcheck
 media-fonts/dejavu
 media-fonts/mikachan-font-ttf
 media-fonts/shinonome
@@ -42,8 +40,7 @@ media-fonts/source-sans
 media-fonts/source-serif
 media-gfx/farbfeld
 media-gfx/imagemagick
-media-gfx/jpeginfo
-media-gfx/jpegoptim
+media-libs/libva-intel-driver
 media-libs/mesa
 media-sound/mpc
 media-sound/mpd
@@ -60,13 +57,12 @@ net-misc/openntpd
 net-misc/yt-dlp
 net-news/sfeed
 net-p2p/rtorrent
+net-vpn/openvpn
 net-wireless/wpa_supplicant
 sys-apps/busybox
 sys-apps/man-pages
 sys-apps/man-pages-posix
 sys-apps/sbase
-sys-boot/syslinux
-sys-devel/crossdev
 sys-devel/gdb
 sys-devel/tcc
 sys-firmware/iwlwifi-cc
@@ -75,7 +71,7 @@ sys-fs/ntfs3g
 sys-fs/simple-mtpfs
 sys-kernel/gentoo-sources
 www-apps/hugo
-www-client/librewolf
+www-client/firefox
 www-client/surfraw
 x11-apps/xrandr
 x11-apps/xset
@@ -87,6 +83,7 @@ x11-misc/slock
 x11-misc/slop
 x11-misc/tabbed
 x11-misc/xbanish
+x11-misc/xclip
 x11-misc/xdotool
 x11-misc/xidle
 x11-terms/st

@@ -1,2 +1,2 @@
 www-apps/hugo -sass
-www-client/librewolf bindist dbus -clang custom-optimization custom-cflags -gmp-autoupdate system-png
+www-client/firefox bindist dbus -clang custom-optimization custom-cflags -gmp-autoupdate system-png
