@@ -2,7 +2,7 @@
 
 # takes input filenames from stdin or file (-f), converts to a
 # reasonable format, or not (-o), and copies them to the same directory
-# structure located prefixed with directory specified on command line
+# structure prefixed with specified outdir
 # for ex: echo "a/b/foo.flac" | playlist-cp mus
 # produces mus/a/b/foo.ogg, it also checks a/b/ for any covers and cps them
 
@@ -40,27 +40,27 @@ outdir="$(realpath $1)"
 while read -r line; do
 	filedir=$(dirname "$line")
 	filename=$(basename "$line")
-	dir="$outdir"/"$filedir"
-	outname="$filename"
-	[ -d "$dir" ] || mkdir -p "$dir"
+	odir="$outdir/$filedir"
+	oname="$filename"
+	[ -d "$odir" ] || mkdir -p "$odir"
 
-	# copy covers
-	[ -f "$dir"/[Cc]over.* ] || cp "${prefix}$filedir"/[Cc]over.* "$dir"
+	# if cover doesn't exist in odir copy it over
+	[ -f "$odir"/[Cc]over.* ] || cp "${prefix}$filedir"/[Cc]over.* "$odir"
 
 	case "${line}" in
 	*.flac)
 		if [ $no_transcode ]; then
-			[ -f "$dir"/"$outname" ] || cp "${prefix}$line" "$dir"/"$outname"
+			[ -f "$odir/$oname" ] || cp "${prefix}$line" "$odir/$oname"
 		else
-			outname="$(echo $filename | sed 's:flac:ogg:')"
-			[ -f "$dir"/"$outname" ] ||
-			oggenc $OGGENC -o "$dir"/"$outname" "${prefix}$line"
+			oname="$(echo $filename | sed 's:flac:ogg:')"
+			[ -f "$odir/$oname" ] ||
+			oggenc $OGGENC -o "$odir/$oname" "${prefix}$line"
 		fi
 		;;
-	*) [ -f "$dir"/"$outname" ] || cp "${prefix}$line" "$dir"/"$outname" ;;
+	*) [ -f "$odir/$oname" ] || cp "${prefix}$line" "$odir/$oname" ;;
 	esac
 
-	[ $save_playlist ] && echo ".."/"$filedir"/"$outname" >> "$tmplist"
+	[ $save_playlist ] && echo "../$filedir/$oname" >> "$tmplist"
 done < $input
 
 if [ $save_playlist ]; then
