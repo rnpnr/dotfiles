@@ -52,7 +52,7 @@ local function build_files(win)
 		-- write file
 		vis:command('w')
 
-		local f, e = util:splitext(win.file.name)
+		local f, e = util:splitext(vis.win.file.name)
 		if f == nil then error() return end
 
 		local method = lang[e]
@@ -62,7 +62,7 @@ local function build_files(win)
 		method(f)
 	end
 
-	vis:map(vis.modes.NORMAL, ',c', build)
-	vis:command_register('build', build)
+	vis:map(vis.modes.NORMAL, ',c', build, "build file in current window")
+	vis:command_register('build', build, "build file in current window")
 end
-vis.events.subscribe(vis.events.WIN_OPEN, build_files)
+vis.events.subscribe(vis.events.INIT, build_files)
