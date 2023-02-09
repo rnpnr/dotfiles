@@ -35,7 +35,7 @@ local function macros(win)
 	if binds == nil then return end
 
 	for _, map in pairs(binds) do
-		vis:map(map[1], map[2], map[3])
+		win:map(map[1], map[2], map[3])
 	end
 end
 vis.events.subscribe(vis.events.WIN_OPEN, macros)
