@@ -8,4 +8,4 @@ xid="$XDG_RUNTIME_DIR/page.xid"
 [ -f "$xid" ] && $(xprop -id "$(<$xid)" >/dev/null 2>&1) ||
 	tabbed -n page -cd >| "$xid"
 
-zathura --fork -e "$(<$xid)" $@
+zathura --fork -e "$(<$xid)" "$@"
