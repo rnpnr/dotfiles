@@ -1,0 +1,11 @@
+#!/bin/sh
+
+# page: opens documents with zathura embedded in tabbed
+# if page is already open documents are opened there instead
+
+xid="$XDG_RUNTIME_DIR/page.xid"
+
+[ -f "$xid" ] && $(xprop -id "$(<$xid)" >/dev/null 2>&1) ||
+	tabbed -n page -cd >| "$xid"
+
+zathura --fork -e "$(<$xid)" $@
