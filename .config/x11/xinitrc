@@ -1,18 +1,18 @@
 bgs -z ~/.config/h_wallpaper.jpg
 
 [ -z $SSH_AGENT_PID ] && eval $(ssh-agent)
-[ $(pgrep gpg-agent) ] || gpg-agent --daemon
+pidof -s gpg-agent || gpg-agent --daemon
 
-[ $(pgrep mpd) ] || mpd
-[ $(pgrep cron) ] || cron -f ~/.config/cron/crontab
-[ $(pgrep xbanish) ] || xbanish &
+pidof -s cron || cron -f ~/.config/cron/crontab
 
-[ $(pgrep status) ] || status &
-[ $(pgrep mpdidle) ] || mpdidle &
-
-[ -d /tmp/downloads ] || mkdir /tmp/downloads
+as="mpd mpdidle status xbanish"
+for cmd in $as; do
+	pidof -s "$cmd" || "$cmd" &
+done >/dev/null 2>&1
 
 xset s off -dpms
+
+[ -d /tmp/downloads ] || mkdir /tmp/downloads
 
 export $(dbus-launch)
 
