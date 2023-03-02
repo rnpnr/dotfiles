@@ -7,6 +7,33 @@ one_scr() {
 		$(echo "$allscrs" | grep -v "^$1" | awk '{print "--output", $1, "--off"}' | paste -sd ' ' -)
 }
 
+two_scr() {
+	case $(printf "no\nyes" | dmenu -i -p "Duplicate Screen?") in
+	"yes") mirror $(echo "$scrs" | dmenu -i -p "Optimize for:") ;;
+	"no") multi_scr ;;
+	*) exit 0 ;;
+	esac
+}
+
+mirror() {
+	primary="$1"
+	secondary=$(echo "$scrs" | grep -v "^$1")
+
+	tres=$(xrandr -q | sed -n "/^$primary/{n;p}" | awk '{print $1}')
+	pri_res_x=${tres%x*}
+	pri_res_y=${tres#*x}
+	tres=$(xrandr -q | sed -n "/^$secondary/{n;p}" | awk '{print $1}')
+	sec_res_x=${tres%x*}
+	sec_res_y=${tres#*x}
+
+	scale_x=$(echo "$pri_res_x / $sec_res_x" | bc -l)
+	scale_y=$(echo "$pri_res_y / $sec_res_y" | bc -l)
+
+	xrandr --output "$primary" --primary --auto --scale 1.0x1.0 \
+	       --output "$secondary" --same-as "$primary" \
+	       --auto --scale "${scale_x}x${scale_y}"
+}
+
 multi_scr() {
 	primary=$(echo "$scrs" | dmenu -i -p "Primary:")
 	xrandr --output $primary --auto --scale 1.0x1.0 --primary
@@ -56,6 +83,7 @@ case "$choice" in
 "multi")
 	case $(echo "$scrs" | wc -l) in
 	1) one_scr "$scrs" ;;
+	2) two_scr ;;
 	*) multi_scr ;;
 	esac
 	;;
