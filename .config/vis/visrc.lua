@@ -5,7 +5,7 @@ require('macros')
 require('gpg')
 
 spell = require('plugins/vis-spellcheck')
-spell.lang = "en_US"
+spell.default_lang = "en_US"
 
 vis.events.subscribe(vis.events.INIT, function()
 	vis:command("set theme dark")
