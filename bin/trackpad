@@ -1,0 +1,16 @@
+#!/bin/sh
+
+# (de)activate/toggle trackpad
+
+tp=$(xinput list | sed -n '/Touchpad/{s:.*↳ \(.*\)id=.*:\1:;s:[[:space:]]*$::p}') || exit 0
+enabled=$(xinput list-props "$tp" | awk '/Device Enabled/{print $4}')
+
+[ $# -eq 1 ] || set err
+case $1 in
+enable) ;;
+disable) ;;
+toggle) [ "$enabled" = "1" ] && set disable || set enable ;;
+*) echo "usage: trackpad enable|disable|toggle"; exit 1 ;;
+esac
+
+xinput "$1" "$tp"
