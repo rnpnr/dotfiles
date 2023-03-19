@@ -7,6 +7,8 @@ require('gpg')
 spell = require('plugins/vis-spellcheck')
 spell.default_lang = "en_US"
 
+mww = 72 -- Min Window Width
+
 vis.events.subscribe(vis.events.INIT, function()
 	vis:command("set theme dark")
 	vis:command("set ai")
@@ -29,8 +31,26 @@ vis.events.subscribe(vis.events.INIT, function()
 	end, "swap ui layout")
 end)
 
+local function adjust_layout(wclose)
+	local ui = vis.ui
+	local tw, nw = 0, 0
+	for w in vis:windows() do
+		tw = tw + w.width
+		nw = nw + 1
+	end
+	if wclose == true then nw = nw - 1 end
+	if ui.layout == ui.layouts.HORIZONTAL then
+		if vis.win.width > nw * mww then
+			ui:arrange(ui.layouts.VERTICAL)
+		end
+	elseif tw/nw < mww then
+		ui:arrange(ui.layouts.HORIZONTAL)
+	end
+end
+
 vis.events.subscribe(vis.events.WIN_OPEN, function(win)
 	vis:command("set rnu")
+	adjust_layout(false)
 end)
 
 vis.events.subscribe(vis.events.WIN_CLOSE, function(win)
@@ -38,4 +58,5 @@ vis.events.subscribe(vis.events.WIN_CLOSE, function(win)
 	if e == '.tex' then
 		vis:command("!texclean " .. f .. e)
 	end
+	adjust_layout(true)
 end)
