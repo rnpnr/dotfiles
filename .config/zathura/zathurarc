@@ -9,14 +9,21 @@ map I recolor
 map i set recolor-keephue
 map g goto top
 
+set recolor
+set recolor-keephue
+set recolor-darkcolor "#dcdccc"
+set recolor-lightcolor "#090909"
+
 set font "monospace normal 12"
+
+set window-title-basename true
+set window-title-page true
+set statusbar-home-tilde true
+
+set scroll-page-aware true
 
 set statusbar-h-padding 8
 set statusbar-v-padding 4
-
-set recolor
-set recolor-darkcolor "#dcdccc"
-set recolor-lightcolor "#090909"
 
 set completion-bg "#090909"
 set completion-fg "#dcdccc"
