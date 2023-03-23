@@ -10,7 +10,7 @@ spell.default_lang = "en_US"
 mww = 72 -- Min Window Width
 
 vis.events.subscribe(vis.events.INIT, function()
-	vis:command("set theme dark")
+	vis:command("set theme term")
 	vis:command("set ai")
 
 	vis:command("map normal gq vip=<Escape>")
