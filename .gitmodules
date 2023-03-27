@@ -40,3 +40,6 @@
 [submodule ".config/mpv/scripts/mpv-toolbox"]
 	path = .config/mpv/scripts/mpv-toolbox
 	url = https://codeberg.org/NRK/mpv-toolbox.git
+[submodule ".config/vis/plugins/vis-gpg"]
+	path = .config/vis/plugins/vis-gpg
+	url = git@github.com:rnpnr/vis-gpg.git

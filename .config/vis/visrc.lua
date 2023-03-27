@@ -2,7 +2,7 @@ require('vis')
 require('util')
 require('build')
 require('macros')
-require('gpg')
+require('plugins/vis-gpg/vis-gpg')
 
 spell = require('plugins/vis-spellcheck')
 spell.default_lang = "en_US"
