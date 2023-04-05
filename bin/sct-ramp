@@ -1,0 +1,27 @@
+#!/bin/sh
+
+# slowly ramps screen temperature
+
+SS=100 # Step Size
+SP=10  # Step Period [s]
+
+usage()
+{
+	printf "usage: %s temperature\n" "$*" >&2
+	exit 1
+}
+
+[ $# -ne 1 ] && usage "$(basename "$0")"
+[ "$1" -eq 0 ] && set -- 6500
+
+temp=$(sct | cut -d ' ' -f 5)
+[ "$temp" -gt "$1" ] && SS="-$SS"
+
+for i in $(seq "$temp" $SS "$1"); do
+	sct "$i"
+	sleep $SP
+done
+# cleanup any remainder
+sct "$1"
+
+notify "sct-ramp: $1" "complete"
