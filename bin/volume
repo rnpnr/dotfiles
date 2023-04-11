@@ -5,7 +5,11 @@
 OUT=${AUDIOSINK:-"Speaker"}
 
 if [ $OUT == "pulse" ]; then
-	pactl set-sink-volume 0 $@
+	if [ "$1" == "toggle" ]; then
+		pactl set-sink-mute 0 $@
+	else
+		pactl set-sink-volume 0 $@
+	fi
 else
 	amixer -q set "$OUT" $@
 fi
