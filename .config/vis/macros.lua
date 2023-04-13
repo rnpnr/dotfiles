@@ -1,5 +1,3 @@
-require('util')
-
 -- function chain
 local function fc(argv)
 	return function ()
@@ -30,7 +28,7 @@ end
 local function macros(win)
 	local m = vis.modes
 	local lang = {}
-	lang['.tex'] = {
+	lang["latex"] = {
 		{ m.NORMAL, "\\al", fc({ ins("\\begin{align*}\n\\end{align*}"), fk("O") }) },
 		{ m.NORMAL, "\\bf", fc({ ins("\\textbf{}"), fk("hi") }) },
 		{ m.NORMAL, "\\ca", fc({ ins("\\begin{cases}\n\\end{cases}"), fk("O") }) },
@@ -41,13 +39,11 @@ local function macros(win)
 		{ m.NORMAL, "\\se", fc({ ins("\\section{}"), fk("hi") }) },
 		{ m.NORMAL, "\\su", fc({ ins("\\subsection{}"), fk("hi") }) },
 	}
-	lang['.hs'] = {
+	lang["haskell"] = {
 		{ m.NORMAL, "gq", fk("vip:|hindent<Enter><Escape>") },
 	}
 
-	local _, e = util:splitext(win.file.name)
-
-	local binds = lang[e]
+	local binds = lang[win.syntax]
 	if binds == nil then return end
 
 	for _, map in pairs(binds) do
