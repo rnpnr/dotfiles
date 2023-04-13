@@ -17,6 +17,19 @@ local function ins(str)
 	end
 end
 
+-- surround selection
+local function sur(p, s)
+	return function ()
+		local win = vis.win
+		for sel in win:selections_iterator() do
+			win.file:insert(sel.range.start, p)
+			win.file:insert(sel.range.finish, s)
+		end
+		win:draw()
+		return true
+	end
+end
+
 -- feedkeys
 local function fk(fkeys)
 	return function ()
@@ -30,14 +43,20 @@ local function macros(win)
 	local lang = {}
 	lang["latex"] = {
 		{ m.NORMAL, "\\al", fc({ ins("\\begin{align*}\n\\end{align*}"), fk("O") }) },
-		{ m.NORMAL, "\\bf", fc({ ins("\\textbf{}"), fk("hi") }) },
 		{ m.NORMAL, "\\ca", fc({ ins("\\begin{cases}\n\\end{cases}"), fk("O") }) },
 		{ m.NORMAL, "\\cb", fc({ ins("\\begin{center}\n\\colorboxed{blue}{\n}\n\\end{center}"), fk("kO") }) },
 		{ m.NORMAL, "\\en", fc({ ins("\\begin{enumerate}\n\n\\item \n\n\\end{enumerate}"), fk("kkA") }) },
 		{ m.NORMAL, "\\eq", fc({ ins("\\begin{equation*}\n\\end{equation*}"), fk("O") }) },
+		{ m.NORMAL, "\\fi", fc({ ins("\\begin{figure}\n\\includegraphics[width=\\textwidth]{}\n\\end{figure}"), fk("k$hi") }) },
 		{ m.NORMAL, "\\it", fc({ ins("\\begin{itemize}\n\n\\item \n\n\\end{itemize}"), fk("kkA") }) },
+		{ m.NORMAL, "\\ne", fc({ ins("\\begin{equation}\n\\end{equation}"), fk("O") }) },
 		{ m.NORMAL, "\\se", fc({ ins("\\section{}"), fk("hi") }) },
 		{ m.NORMAL, "\\su", fc({ ins("\\subsection{}"), fk("hi") }) },
+		{ m.VISUAL, "\\bf", sur("\\textbf{", "}") },
+		{ m.VISUAL, "\\cb", sur("\\colorboxed{blue}{\n", "}\n") },
+		{ m.VISUAL, "\\ce", sur("\\begin{center}\n", "\\end{center}\n") },
+		{ m.VISUAL, "\\em", sur("\\emph{", "}") },
+		{ m.VISUAL, "\\hl", sur("\\hl{", "}") },
 	}
 	lang["haskell"] = {
 		{ m.NORMAL, "gq", fk("vip:|hindent<Enter><Escape>") },
