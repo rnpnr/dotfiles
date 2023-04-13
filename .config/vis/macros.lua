@@ -1,32 +1,48 @@
 require('util')
 
-local function macros(win)
-	local function fi(str, fkeys)
-		return function ()
-			local win = vis.win
-			local pos = win.selection.pos
-			win.file:insert(pos, str)
-			win.selection.pos = pos + #str
-			vis:feedkeys(fkeys)
-			return true
-		end
+-- function chain
+local function fc(argv)
+	return function ()
+		for _, f in ipairs(argv) do f() end
+		return true
 	end
+end
 
+-- insert
+local function ins(str)
+	return function ()
+		local win = vis.win
+		local pos = win.selection.pos
+		win.file:insert(pos, str)
+		win.selection.pos = pos + #str
+		return true
+	end
+end
+
+-- feedkeys
+local function fk(fkeys)
+	return function ()
+		vis:feedkeys(fkeys)
+		return true
+	end
+end
+
+local function macros(win)
 	local m = vis.modes
 	local lang = {}
 	lang['.tex'] = {
-		{ m.NORMAL, "\\al", fi("\\begin{align*}\n\\end{align*}", "O") },
-		{ m.NORMAL, "\\bf", fi("\\textbf{}", "hi") },
-		{ m.NORMAL, "\\ca", fi("\\begin{cases}\n\\end{cases}", "O") },
-		{ m.NORMAL, "\\cb", fi("\\begin{center}\n\\colorboxed{blue}{\n}\n\\end{center}", "kO") },
-		{ m.NORMAL, "\\en", fi("\\begin{enumerate}\n\n\\item \n\n\\end{enumerate}", "kkA") },
-		{ m.NORMAL, "\\eq", fi("\\begin{equation}\n\\end{equation}", "O") },
-		{ m.NORMAL, "\\it", fi("\\begin{itemize}\n\n\\item \n\n\\end{itemize}", "kkA") },
-		{ m.NORMAL, "\\se", fi("\\section{}", "hi") },
-		{ m.NORMAL, "\\su", fi("\\subsection{}", "hi") },
+		{ m.NORMAL, "\\al", fc({ ins("\\begin{align*}\n\\end{align*}"), fk("O") }) },
+		{ m.NORMAL, "\\bf", fc({ ins("\\textbf{}"), fk("hi") }) },
+		{ m.NORMAL, "\\ca", fc({ ins("\\begin{cases}\n\\end{cases}"), fk("O") }) },
+		{ m.NORMAL, "\\cb", fc({ ins("\\begin{center}\n\\colorboxed{blue}{\n}\n\\end{center}"), fk("kO") }) },
+		{ m.NORMAL, "\\en", fc({ ins("\\begin{enumerate}\n\n\\item \n\n\\end{enumerate}"), fk("kkA") }) },
+		{ m.NORMAL, "\\eq", fc({ ins("\\begin{equation*}\n\\end{equation*}"), fk("O") }) },
+		{ m.NORMAL, "\\it", fc({ ins("\\begin{itemize}\n\n\\item \n\n\\end{itemize}"), fk("kkA") }) },
+		{ m.NORMAL, "\\se", fc({ ins("\\section{}"), fk("hi") }) },
+		{ m.NORMAL, "\\su", fc({ ins("\\subsection{}"), fk("hi") }) },
 	}
 	lang['.hs'] = {
-		{ m.NORMAL, "gq", fi("", "vip:|hindent<Enter><Escape>") },
+		{ m.NORMAL, "gq", fk("vip:|hindent<Enter><Escape>") },
 	}
 
 	local _, e = util:splitext(win.file.name)
