@@ -43,3 +43,6 @@
 [submodule ".config/vis/plugins/vis-gpg"]
 	path = .config/vis/plugins/vis-gpg
 	url = git@github.com:rnpnr/vis-gpg.git
+[submodule ".config/vis/plugins/vis-lint"]
+	path = .config/vis/plugins/vis-lint
+	url = git@github.com:rnpnr/vis-lint.git
