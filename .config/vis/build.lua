@@ -1,6 +1,6 @@
 require('util')
 
-local function fmt(file, path)
+local function fmt_file(file)
 	local win = vis.win
 	local fmt = {}
 	fmt["ansi_c"] = "clang-format -fallback-style=none"
@@ -12,9 +12,7 @@ local function fmt(file, path)
 
 	local err, ostr, estr = vis:pipe(file, {start = 0, finish = file.size}, cmd)
 	if err ~= 0 then
-		if estr then
-			vis:message(estr)
-		end
+		if estr then vis:message(estr) end
 		return false
 	end
 
@@ -24,45 +22,53 @@ local function fmt(file, path)
 	win.selection.pos = pos
 	return true
 end
-vis.events.subscribe(vis.events.FILE_SAVE_PRE, fmt)
+vis.events.subscribe(vis.events.FILE_SAVE_PRE, fmt_file)
 
 local function build_files(win)
-	function error()
-		vis:info('This filetype is not supported')
-	end
+	local build_tex = function (f)
+		local cmd = "pdflatex -halt-on-error " .. f.name
 
-	function build_tex(f)
 		-- build pdf
-		vis:command(string.format('!pdflatex -halt-on-error %s.tex >/dev/null', f))
+		local err, ostr = vis:pipe(f, {start = 0, finish = 0}, cmd)
+		if err ~= 0 then
+			if ostr then vis:message(ostr) end
+			return false
+		end
+
+		local fp = util:splitext(f.name)
 		-- update refrences
-		vis:command(string.format('!biber %s >/dev/null', f))
+		vis:command("!biber " .. fp .. " >/dev/null")
 		-- update glossary
-		-- vis:command(string.format('!makeglossaries %s >/dev/null', f))
-		-- build pdf
-		vis:command(string.format('!pdflatex -halt-on-error %s.tex >/dev/null', f))
+		-- vis:command("!makeglossaries " .. fp .. " >/dev/null")
+
+		-- build pdf with updated references
+		err = vis:pipe(f, {start = 0, finish = 0}, cmd)
+		if err ~= 0 then return false end
 
 		-- reload pdf (zathura does this automatically)
 		-- vis:command('!pkill -HUP mupdf')
+
+		return true
 	end
 
 	local lang = {}
-	lang['.tex']    = build_tex
+	lang["latex"]    = build_tex
 
-	function build()
-		-- write file
-		vis:command('w')
-
-		local f, e = util:splitext(vis.win.file.name)
-		if f == nil then error() return end
-
-		local method = lang[e]
-		if method == nil then error() return end
-
-		vis:info("building: " .. f .. e)
-		method(f)
+	local builder = lang[win.syntax]
+	if builder == nil then
+		builder = function ()
+			vis:info(win.syntax .. ': filetype not supported')
+			return false
+		end
 	end
 
-	vis:map(vis.modes.NORMAL, ',c', build, "build file in current window")
-	vis:command_register('build', build, "build file in current window")
+	win:map(vis.modes.NORMAL, ",c", function ()
+			vis:command('w')
+			vis:info("building: " .. win.file.name)
+			return builder(win.file)
+		end, "build file in current window")
 end
-vis.events.subscribe(vis.events.INIT, build_files)
+vis.events.subscribe(vis.events.WIN_OPEN, build_files)
+vis:command_register("build", function()
+		vis:feedkeys(",c")
+	end, "build file in current window")
