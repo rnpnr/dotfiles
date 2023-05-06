@@ -31,7 +31,10 @@ local function build_files(win)
 		-- build pdf
 		local err, ostr = vis:pipe(f, {start = 0, finish = 0}, cmd)
 		if err ~= 0 then
-			if ostr then vis:message(ostr) end
+			if ostr then
+				util:message_clear(vis)
+				vis:message(ostr)
+			end
 			return false
 		end
 
