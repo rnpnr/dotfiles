@@ -9,6 +9,7 @@ media-fonts/* ~amd64
 
 # Haskell
 app-text/pandoc ~amd64
+app-text/pandoc-cli ~amd64
 dev-lang/ghc ~amd64
 dev-haskell/* ~amd64
 dev-util/shellcheck ~amd64

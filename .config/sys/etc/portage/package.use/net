@@ -1,4 +1,5 @@
 net-libs/nodejs -icu -npm -system-icu
 net-misc/curl ssh
 net-misc/openntpd constraints
+net-misc/yt-dlp man
 net-vpn/openvpn -lz4 -lzo

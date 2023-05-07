@@ -8,8 +8,11 @@ dev-libs/boost nls
 dev-libs/elfutils -utils
 dev-libs/glib dbus
 dev-libs/gmp pic static-libs
+dev-libs/json-c static-libs # cryptsetup
 dev-libs/libpcre2 jit
 dev-libs/nss -nss-pem
+dev-libs/openssl static-libs # cryptsetup
+dev-libs/popt static-libs # cryptsetup
 dev-python/PyQt5 dbus
 dev-qt/qtgui dbus ibus
 dev-qt/qtwebchannel qml

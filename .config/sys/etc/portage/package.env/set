@@ -18,6 +18,8 @@ x11-wm/dwm tcc
 app-text/mupdf nobloat
 app-shells/bash nobloat
 sys-apps/coreutils nobloat
-www-client/librewolf nobloat
+www-client/firefox nobloat
 
-sys-libs/musl debug
+sys-libs/musl debug nomold
+
+sys-apps/sandbox nomold
