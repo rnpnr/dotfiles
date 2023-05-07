@@ -1,14 +1,15 @@
 require('vis')
-require('util')
 require('build')
 require('macros')
 require('plugins/vis-gpg')
 require('plugins/vis-lint')
 
-spell = require('plugins/vis-spellcheck')
+local util = require('util')
+
+local spell = require('plugins/vis-spellcheck')
 spell.default_lang = "en_US"
 
-mww = 72 -- Min Window Width
+local mww = 72 -- Min Window Width
 
 vis.events.subscribe(vis.events.INIT, function()
 	vis:command("set theme term")
@@ -55,7 +56,7 @@ vis.events.subscribe(vis.events.WIN_OPEN, function(win)
 end)
 
 vis.events.subscribe(vis.events.WIN_CLOSE, function(win)
-	local f, e = util:splitext(win.file.name)
+	local f, e = util.splitext(win.file.name)
 	if e == '.tex' then
 		vis:command("!texclean " .. f .. e)
 	end

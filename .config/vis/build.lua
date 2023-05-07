@@ -1,4 +1,4 @@
-require('util')
+local util = require('util')
 
 local function fmt_file(file)
 	local win = vis.win
@@ -32,13 +32,13 @@ local function build_files(win)
 		local err, ostr = vis:pipe(f, {start = 0, finish = 0}, cmd)
 		if err ~= 0 then
 			if ostr then
-				util:message_clear(vis)
+				util.message_clear(vis)
 				vis:message(ostr)
 			end
 			return false
 		end
 
-		local fp = util:splitext(f.name)
+		local fp = util.splitext(f.name)
 		-- update refrences
 		vis:command("!biber " .. fp .. " >/dev/null")
 		-- update glossary
