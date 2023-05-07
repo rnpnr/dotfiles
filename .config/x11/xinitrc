@@ -1,13 +1,13 @@
 bgs -z ~/.config/h_wallpaper.jpg
 
 [ -z $SSH_AGENT_PID ] && eval $(ssh-agent)
-pidof -s gpg-agent || gpg-agent --daemon
+pidof -q gpg-agent || gpg-agent --daemon
 
-pidof -s cron || cron -f ~/.config/cron/crontab
+pidof -q cron || cron -f ~/.config/cron/crontab
 
 as="mpd mpdidle status xbanish"
 for cmd in $as; do
-	pidof -s "$cmd" || "$cmd" &
+	pidof -q "$cmd" || "$cmd" &
 done >/dev/null 2>&1
 
 xset s off -dpms
