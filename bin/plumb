@@ -1,0 +1,19 @@
+#!/bin/sh
+
+# reads urls or file paths on stdin
+# routes them to the appropriate program
+
+while read -r p ; do
+	case "$p" in
+	*mkv|*webm|*mp4|*youtube.com*|*youtu.be*|*videos.lukesmith.xyz*|*odysee.com*)
+		setsid -f mpv --no-terminal "$p" ;;
+	*png|*jpg|*jpe|*jpeg|*gif)
+		setsid -f mvi "$p" ;;
+	*pdf)
+		page "$p" ;;
+	*mp3|*flac|*opus|*ogg|*mp3?source*)
+		setsid -f mpv --no-terminal "$p" ;;
+	*)
+		setsid -f "$BROWSER" "$p" ;;
+	esac
+done
