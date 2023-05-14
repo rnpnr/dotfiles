@@ -1,0 +1,30 @@
+#!/bin/sh
+
+# presents a list of unread feed entries using dmenu
+# prints selected entry to stdout and marks it as read
+
+configdir=~/.config/sfeed
+
+usage()
+{
+	echo "usage: $(basename $0) feedname [...]"
+	exit 1
+}
+
+[ ${#} -lt 1 ] && usage
+
+unread()
+{
+	sfeed_unread "$SFEED_URL_FILE" $@
+}
+
+for arg; do
+	. $configdir/${arg}.sh
+	[ -d "$sfeedpath" ] || continue
+	list="$(unread "$sfeedpath/*")\n$list"
+done
+
+url=$(echo "$list" | dmenu -l 15 | cut -f 3)
+[ -n "$url" ] || exit 0
+echo "$url" | sfeed_markread read
+echo "$url"
