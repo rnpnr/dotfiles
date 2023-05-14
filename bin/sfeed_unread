@@ -1,0 +1,49 @@
+#!/bin/awk -E
+
+# outputs unread feeds to stdout in the format:
+# feed name \t feed title \t feed url
+# if -c is specified only output a count of unread and total feeds
+
+function usage() {
+	print "usage: sfeed_unread [-c] sfeed_url_file feeds"
+	print "\t-c: print counts"
+	die = 1
+	exit(1)
+}
+
+BEGIN {
+
+	if (ARGC < 3)
+		usage()
+
+	if (ARGV[1] == "-c") {
+		cflag = 1
+		delete ARGV[1]
+	}
+
+	FS = "\t"
+	OFS = "\t"
+}
+
+# URL file: has only 1 field
+NF == 1 {
+	# generate lookup table of read URLs
+	u[$0] = 1
+	next
+}
+
+# feed file: compare with URL ($3) or id ($6)
+{
+	total++
+	if (length($3) || length($6)) {
+		if (u[$3] || u[$6])
+			read++
+		else if (!cflag)
+			print $7, $2, $3
+	}
+}
+
+END {
+	if (!die && cflag)
+		print "U: " (total - read) " T: " total
+}
