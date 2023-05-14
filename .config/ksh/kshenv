@@ -6,6 +6,7 @@ export HISTFILE=~/.config/ksh/history
 export HISTSIZE=10000
 export HISTCONTROL=ignoredups:ignorespace
 export QT_STYLE_OVERRIDE=gtk2
+export SFEED_URL_FILE=$HOME/.cache/sfeed/urls
 export EDITOR=vis
 export VISUAL=vis
 
