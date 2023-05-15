@@ -7,7 +7,7 @@ pidof -q cron || cron -f ~/.config/cron/crontab
 
 as="mpd mpdidle status xbanish"
 for cmd in $as; do
-	pidof -q "$cmd" || "$cmd" &
+	pidof -q "$cmd" || setsid -f "$cmd"
 done >/dev/null 2>&1
 
 xset s off -dpms
