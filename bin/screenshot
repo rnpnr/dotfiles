@@ -1,0 +1,32 @@
+#!/bin/sh
+
+# select an area and perform the selected action
+
+output="$(date -u +%Y年%m月%d日%T).png"
+clip_cmd="xclip -sel clip -t image/png"
+
+options="\
+area (copy)
+current window (copy)
+full screen (copy)
+area
+current window
+full screen
+OCR"
+
+case $(echo "$options" | dmenu -i -l 7 -p "Screenshot: ") in
+"area (copy)")
+	import -window root -crop $(slop -f '%g') png:- | ${clip_cmd} ;;
+"current window (copy)")
+	import -window "$(xdotool getactivewindow)" png:- | ${clip_cmd} ;;
+"full screen (copy)")
+	import -window root png:- | ${clip_cmd} ;;
+"area")
+	import -window root -crop $(slop -f '%g') "sel-$output" ;;
+"current window")
+	import -window "$(xdotool getactivewindow)" "win-$output" ;;
+"full screen")
+	import -window root "full-$output" ;;
+"OCR")
+	ocr ;;
+esac
