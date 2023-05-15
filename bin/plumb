@@ -8,7 +8,7 @@ while read -r p ; do
 	*mkv|*webm|*mp4|*youtube.com*|*youtu.be*|*videos.lukesmith.xyz*|*odysee.com*)
 		setsid -f mpv --no-terminal "$p" ;;
 	*png|*jpg|*jpe|*jpeg|*gif)
-		setsid -f mvi "$p" ;;
+		setsid -f mpv --profile=image --no-terminal "$p" ;;
 	*pdf)
 		page "$p" ;;
 	*mp3|*flac|*opus|*ogg|*mp3?source*)
