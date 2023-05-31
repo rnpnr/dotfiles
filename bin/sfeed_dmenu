@@ -24,7 +24,7 @@ for arg; do
 	list=$(printf "%s\n" "$(unread "$sfeedpath/*")" "$list")
 done
 
-url=$(echo "$list" | grep -v "^$" | dmenu -l 15 | cut -f 3)
+url=$(echo "$list" | dmenu -l 15 | cut -f 3)
 [ -n "$url" ] || exit 0
 echo "$url" | sfeed_markread read
 echo "$url"
