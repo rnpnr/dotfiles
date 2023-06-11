@@ -1,15 +1,15 @@
 [submodule "src/c/links"]
 	path = src/c/links
-	url = git@github.com:rnpnr/links.git
+	url = git@git.rnpnr.xyz:links.git
 [submodule "src/c/dir2list"]
 	path = src/c/dir2list
-	url = git@github.com:rnpnr/dir2list.git
+	url = git@git.rnpnr.xyz:dir2list.git
 [submodule "src/c/status"]
 	path = src/c/status
-	url = git@github.com:rnpnr/status.git
+	url = git@git.rnpnr.xyz:status.git
 [submodule "src/c/doas"]
 	path = src/c/doas
-	url = git@github.com:rnpnr/doas.git
+	url = git@git.rnpnr.xyz:doas.git
 [submodule ".config/mpv/scripts/mpv-reload"]
 	path = .config/mpv/scripts/mpv-reload
 	url = https://github.com/4e6/mpv-reload.git
@@ -18,10 +18,10 @@
 	url = https://github.com/occivink/mpv-image-viewer.git
 [submodule ".config/mpv/scripts/mpv2oboeru"]
 	path = .config/mpv/scripts/mpv2oboeru
-	url = git@github.com:rnpnr/mpv2oboeru.git
+	url = git@git.rnpnr.xyz:mpv2oboeru.git
 [submodule "src/c/dwm"]
 	path = src/c/dwm
-	url = git@github.com:rnpnr/dwm.git
+	url = git@git.rnpnr.xyz:dwm.git
 [submodule ".config/vis/plugins/vis-spellcheck"]
 	path = .config/vis/plugins/vis-spellcheck
 	url = https://github.com/fischerling/vis-spellcheck.git
@@ -30,19 +30,19 @@
 	url = https://github.com/Ajatt-Tools/videoclip.git
 [submodule "src/sh/omoidasu"]
 	path = src/sh/omoidasu
-	url = git@github.com:rnpnr/omoidasu.git
+	url = git@git.rnpnr.xyz:omoidasu.git
 [submodule "src/c/oboeru"]
 	path = src/c/oboeru
-	url = git@github.com:rnpnr/oboeru.git
+	url = git@git.rnpnr.xyz:oboeru.git
 [submodule "src/c/jdict"]
 	path = src/c/jdict
-	url = git@github.com:rnpnr/jdict.git
+	url = git@git.rnpnr.xyz:jdict.git
 [submodule ".config/mpv/scripts/mpv-toolbox"]
 	path = .config/mpv/scripts/mpv-toolbox
 	url = https://codeberg.org/NRK/mpv-toolbox.git
 [submodule ".config/vis/plugins/vis-gpg"]
 	path = .config/vis/plugins/vis-gpg
-	url = git@github.com:rnpnr/vis-gpg.git
+	url = git@git.rnpnr.xyz:vis-gpg.git
 [submodule ".config/vis/plugins/vis-lint"]
 	path = .config/vis/plugins/vis-lint
-	url = git@github.com:rnpnr/vis-lint.git
+	url = git@git.rnpnr.xyz:vis-lint.git
