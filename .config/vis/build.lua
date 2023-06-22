@@ -29,7 +29,7 @@ local function build_files(win)
 		local cmd = "pdflatex -halt-on-error " .. f.name
 
 		-- build pdf
-		local err, ostr = vis:pipe(f, {start = 0, finish = 0}, cmd)
+		local err, ostr = vis:pipe(cmd)
 		if err ~= 0 then
 			if ostr then
 				util.message_clear(vis)
@@ -45,7 +45,7 @@ local function build_files(win)
 		-- vis:command("!makeglossaries " .. fp .. " >/dev/null")
 
 		-- build pdf with updated references
-		err = vis:pipe(f, {start = 0, finish = 0}, cmd)
+		err = vis:pipe(cmd)
 		if err ~= 0 then return false end
 
 		-- reload pdf (zathura does this automatically)
