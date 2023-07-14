@@ -1,0 +1,46 @@
+#!/bin/awk -f
+
+# converts a Sub Station Alpha (ASS) subtitle file to SubRip (SRT)
+
+function tomsecs(a) {
+	gsub(/\./, ":", a)
+	split(a, t, ":")
+	return (t[1] * 3600 + t[2] * 60 + t[3]) * 1000 + t[4] * 10
+}
+
+function ftime(a) {
+	ms = a % 1000
+	a = (a - ms) / 1000
+	s = a % 60
+	a = (a - s) / 60
+	m = a % 60
+	h = (a - m) / 60
+
+	return sprintf("%02d:%02d:%02d,%03d", h, m, s, ms)
+}
+
+BEGIN {
+	FS = ","
+}
+
+!/^Dialogue: / {
+	next
+}
+
+{
+	start = tomsecs($2)
+	end = tomsecs($3)
+	if (end - start != 0) {
+		if (NF > 10)
+			gsub(/[^}]+}/, "", $NF)
+		subs[start] = sprintf("%s\n%s", ftime(end), $NF)
+	}
+}
+
+END {
+	n = asorti(subs, idxs, "@ind_num_asc")
+	for (i = 1; i <= n; i++) {
+		print i
+		printf("%s --> %s\n\n", ftime(idxs[i]), subs[idxs[i]])
+	}
+}
