@@ -1,0 +1,12 @@
+#!/bin/awk -f
+
+# renumbers an SRT file
+
+BEGIN { count = 1 }
+
+!/^[0-9]+$/ {
+	print
+	next
+}
+
+{ print count++ }
