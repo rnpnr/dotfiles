@@ -16,17 +16,17 @@ OCR"
 
 case $(echo "$options" | dmenu -i -l 7 -p "Screenshot: ") in
 "area (copy)")
-	import -window root -crop $(slop -f '%g') png:- | ${clip_cmd} ;;
+	sxot -g "$(sx4)" | optipng-pipe | ${clip_cmd} ;;
 "current window (copy)")
-	import -window "$(xdotool getactivewindow)" png:- | ${clip_cmd} ;;
+	sxot -g "$(sx4 -w "$(xdotool getactivewindow)")" | optipng-pipe | ${clip_cmd} ;;
 "full screen (copy)")
-	import -window root png:- | ${clip_cmd} ;;
+	sxot | optipng-pipe | ${clip_cmd} ;;
 "area")
-	import -window root -crop $(slop -f '%g') "sel-$output" ;;
+	sxot -g "$(sx4)" | optipng-pipe > "sel-${output}" ;;
 "current window")
-	import -window "$(xdotool getactivewindow)" "win-$output" ;;
+	sxot -g "$(sx4 -w "$(xdotool getactivewindow)")" | optipng-pipe > "win-${output}" ;;
 "full screen")
-	import -window root "full-$output" ;;
+	sxot | optipng-pipe > "full-${output}" ;;
 "OCR")
 	ocr ;;
 esac

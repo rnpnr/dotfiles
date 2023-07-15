@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # copy text from an image to the clipboard
-# deps: imagemagick tesseract slop xclip
+# deps: tesseract sxot sx4 xclip
 # you probably want the jpn.traineddata or jpn_vert.traineddata from here:
 # https://github.com/tesseract-ocr/tessdata
 # or the capture2text one here:
@@ -9,7 +9,8 @@
 
 TESS_DATA="$HOME/.local/share/tesseract"
 
-usage() {
+usage()
+{
 	echo "usage: ocr [-l lang][-d dpi]"
 	exit 1
 }
@@ -25,7 +26,7 @@ done
 lang=${lang:-jpn}
 dpi=${dpi:-96}
 
-import -window root -crop $(slop -f '%g') png:- |
+sxot -g "$(sx4)" |
 tesseract stdin stdout \
 	--dpi $dpi -l $lang \
 	--tessdata-dir "$TESS_DATA" |
