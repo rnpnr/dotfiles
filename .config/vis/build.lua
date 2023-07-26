@@ -1,26 +1,16 @@
 local util = require('util')
 
 local function fmt_file(file)
-	local win = vis.win
-	local fmt = {}
-	fmt["ansi_c"] = "clang-format -fallback-style=none"
-	fmt["cpp"] = "clang-format -fallback-style=none"
-	fmt["bibtex"] = "bibtidy"
-
-	local cmd = fmt[win.syntax]
-	if cmd == nil then return end
-
-	local err, ostr, estr = vis:pipe(file, {start = 0, finish = file.size}, cmd)
-	if err ~= 0 then
-		if estr then vis:message(estr) end
-		return false
+	local M = require('plugins/vis-lint')
+	M.logger = function(str, level)
+		if level == M.log.ERROR then
+			vis:message(str)
+		end
 	end
-
-	local pos = win.selection.pos
-	file:delete(0, file.size)
-	file:insert(0, ostr)
-	win.selection.pos = pos
-	return true
+	M.fixers["ansi_c"] = { "clang-format -fallback-style=none" }
+	M.fixers["cpp"] = { "clang-format -fallback-style=none" }
+	M.fixers["bibtex"] = { "bibtidy" }
+	return M.fix(file)
 end
 vis.events.subscribe(vis.events.FILE_SAVE_PRE, fmt_file)
 
