@@ -1,0 +1,16 @@
+#!/bin/sh
+
+# cleans up stale urls in ${SFEED_URL_FILE}
+
+files=$(find "${XDG_CACHE_HOME}/sfeed" -type f | grep -v "${SFEED_URL_FILE}")
+tmp=$(mktemp)
+awk -F '\t' '
+{ url[$3] = 1 }
+END {
+	while ((getline < "'"${SFEED_URL_FILE}"'") > 0) {
+		if (url[$0])
+			print $0
+	}
+}' ${files} > "${tmp}"
+
+mv "${tmp}" "${SFEED_URL_FILE}"
