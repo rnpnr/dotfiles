@@ -1,6 +1,7 @@
 require('vis')
 require('build')
 require('macros')
+require('set-title')
 require('plugins/vis-gpg')
 require('plugins/vis-lint')
 
