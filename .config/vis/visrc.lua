@@ -13,7 +13,7 @@ local mww = 72 -- Min Window Width
 
 vis.events.subscribe(vis.events.INIT, function()
 	vis:command("set theme term")
-	vis:command("set ai")
+	vis.options.ai = true
 
 	vis:command("map normal gq vip=<Escape>")
 	vis:command("map normal ,f v$:|furigana<Enter><Escape>")
@@ -23,12 +23,12 @@ vis.events.subscribe(vis.events.INIT, function()
 		vis:command("x/[ \t\r]+$/ d")
 	end, "remove spaces, tabs, and \r from end of all lines")
 
-	vis:map(vis.modes.NORMAL, ",l", function()
+	vis:map(vis.modes.NORMAL, " l", function()
 		local ui = vis.ui
 		if ui.layout == ui.layouts.HORIZONTAL then
-			ui:arrange(ui.layouts.VERTICAL)
+			ui.layout = ui.layouts.VERTICAL
 		else
-			ui:arrange(ui.layouts.HORIZONTAL)
+			ui.layout = ui.layouts.HORIZONTAL
 		end
 	end, "swap ui layout")
 end)
@@ -43,15 +43,15 @@ local function adjust_layout(wclose)
 	if wclose == true then nw = nw - 1 end
 	if ui.layout == ui.layouts.HORIZONTAL then
 		if vis.win.width > nw * mww then
-			ui:arrange(ui.layouts.VERTICAL)
+			ui.layout = ui.layouts.VERTICAL
 		end
 	elseif tw/nw < mww then
-		ui:arrange(ui.layouts.HORIZONTAL)
+		ui.layout = ui.layouts.HORIZONTAL
 	end
 end
 
 vis.events.subscribe(vis.events.WIN_OPEN, function(win)
-	vis:command("set rnu")
+	win.options.rnu = true
 	adjust_layout(false)
 end)
 
