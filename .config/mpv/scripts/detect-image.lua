@@ -5,6 +5,11 @@ mp.register_event("file-loaded", function()
 	for _, t in pairs(tl) do
 		a = a or t.type == "audio"
 	end
-	mp.set_property_native("user-data/is-image",
-	                       (fc == 0 or fc == 1) and a == 0)
+	local isimg = (fc == 0 or fc == 1) and a == 0
+	mp.set_property_native("user-data/is-image", isimg)
+	if isimg then
+		mp.commandv("enable-section", "image")
+	else
+		mp.commandv("disable-section", "image")
+	end
 end)
