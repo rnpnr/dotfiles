@@ -16,10 +16,10 @@ vis.events.subscribe(vis.events.FILE_SAVE_PRE, fmt_file)
 
 local function build_files(win)
 	local build_tex = function (f)
-		local cmd = "pdflatex -halt-on-error " .. f.name
+		local cmd = "pdflatex -halt-on-error "
 
-		-- build pdf
-		local err, ostr = vis:pipe(cmd)
+		-- build in draft mode to update references
+		local err, ostr = vis:pipe(cmd .. "-draftmode " .. f.name)
 		if err ~= 0 then
 			if ostr then
 				util.message_clear(vis)
@@ -34,8 +34,8 @@ local function build_files(win)
 		-- update glossary
 		-- vis:command("!makeglossaries " .. fp .. " >/dev/null")
 
-		-- build pdf with updated references
-		err = vis:pipe(cmd)
+		-- build actual pdf
+		err = vis:pipe(cmd .. f.name)
 		if err ~= 0 then return false end
 
 		-- reload pdf (zathura does this automatically)
