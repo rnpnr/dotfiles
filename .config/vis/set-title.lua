@@ -6,7 +6,7 @@ vis.events.subscribe(vis.events.WIN_OPEN, function(win)
 	set_title(win.file.name or "[No Name]")
 end)
 
-vis.events.subscribe(vis.events.FILE_SAVE_POST, function(file, path)
+vis.events.subscribe(vis.events.FILE_SAVE_POST, function(file)
 	set_title(file.name)
 end)
 
