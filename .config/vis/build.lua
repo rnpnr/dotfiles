@@ -55,13 +55,13 @@ local function build_files(win)
 		end
 	end
 
-	win:map(vis.modes.NORMAL, ",c", function ()
+	win:map(vis.modes.NORMAL, " c", function ()
 			vis:command('w')
 			vis:info("building: " .. win.file.name)
 			return builder(win.file)
 		end, "build file in current window")
 end
 vis.events.subscribe(vis.events.WIN_OPEN, build_files)
-vis:command_register("build", function()
-		vis:feedkeys(",c")
+vis:command_register("build", function ()
+		vis:feedkeys(" c")
 	end, "build file in current window")
