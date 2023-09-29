@@ -1,12 +1,9 @@
 #!/bin/sh
 
-awk 'BEGIN { I=0 ; J=0 ; K="" }
-	/^\[submodule/{ N+=1 ; J=1 ; K=$2 ; gsub(/("vendor\/|["\]])/, "", K) }
-	{ print K, N, J, $0 } ; { J+=1 }' \
+awk '/^\[submodule/ { count++; smods[count] = $0; next }
+	/^\t/ { smods[count] = smods[count] $0 }
+	END { for (line in smods) print smods[line] }' \
 	.gitmodules \
 	| sort \
-	| awk '{ $1="" ; $2="" ; $3="" ; print }' \
-	| sed 's/^ *//g' \
-	| awk '/^\[/{ print ; next } { print "\t" $0 }' \
-	> .gitmodules.new &&  mv .gitmodules.new .gitmodules
-
+	| awk '{ gsub("\t", "\n\t"); print }' \
+	> .gitmodules.new && mv .gitmodules.new .gitmodules
