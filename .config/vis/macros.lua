@@ -56,6 +56,7 @@ local function macros(win)
 		{ m.NORMAL, "\\eq", fc({ lenv("equation*"), fk("O") }) },
 		{ m.NORMAL, "\\fi", fc({ lenv("figure", "\\includegraphics[width=\\textwidth]{}"), fk("k$hi") }) },
 		{ m.NORMAL, "\\it", fc({ lenv("itemize", "\n\\item \n"), fk("kkA") }) },
+		{ m.NORMAL, "\\mi", fc({ ins("\\begin{minipage}[c]{0.49\\textwidth}\n\\end{minipage}\\hfill"), fk("O") }) },
 		{ m.NORMAL, "\\ne", fc({ lenv("equation"), fk("O") }) },
 		{ m.NORMAL, "\\se", fc({ ins("\\section{}"), fk("hi") }) },
 		{ m.NORMAL, "\\su", fc({ ins("\\subsection{}"), fk("hi") }) },
@@ -64,6 +65,7 @@ local function macros(win)
 		{ m.VISUAL, "\\ce", sur("\\begin{center}\n", "\\end{center}\n") },
 		{ m.VISUAL, "\\em", sur("\\emph{", "}") },
 		{ m.VISUAL, "\\hl", sur("\\hl{", "}") },
+		{ m.VISUAL, "\\mi", sur("\\begin{minipage}[c]{0.49\\textwidth}\n", "\\end{minipage}\\hfill\n") },
 	}
 	lang["haskell"] = {
 		{ m.NORMAL, "gq", fk("vip:|hindent<Enter><Escape>") },
