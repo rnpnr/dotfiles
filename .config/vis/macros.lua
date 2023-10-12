@@ -38,18 +38,25 @@ local function fk(fkeys)
 	end
 end
 
+-- inserts a latex environment
+local lenv = function(env, inner)
+	local out = "\\begin{%s}\n%s\\end{%s}"
+	if (inner) then inner = inner .. "\n" end
+	return ins(out:format(env, (inner or ""), env))
+end
+
 local function macros(win)
 	local m = vis.modes
 	local lang = {}
 	lang["latex"] = {
-		{ m.NORMAL, "\\al", fc({ ins("\\begin{align*}\n\\end{align*}"), fk("O") }) },
-		{ m.NORMAL, "\\ca", fc({ ins("\\begin{cases}\n\\end{cases}"), fk("O") }) },
-		{ m.NORMAL, "\\cb", fc({ ins("\\begin{center}\n\\colorboxed{blue}{\n}\n\\end{center}"), fk("kO") }) },
-		{ m.NORMAL, "\\en", fc({ ins("\\begin{enumerate}\n\n\\item \n\n\\end{enumerate}"), fk("kkA") }) },
-		{ m.NORMAL, "\\eq", fc({ ins("\\begin{equation*}\n\\end{equation*}"), fk("O") }) },
-		{ m.NORMAL, "\\fi", fc({ ins("\\begin{figure}\n\\includegraphics[width=\\textwidth]{}\n\\end{figure}"), fk("k$hi") }) },
-		{ m.NORMAL, "\\it", fc({ ins("\\begin{itemize}\n\n\\item \n\n\\end{itemize}"), fk("kkA") }) },
-		{ m.NORMAL, "\\ne", fc({ ins("\\begin{equation}\n\\end{equation}"), fk("O") }) },
+		{ m.NORMAL, "\\al", fc({ lenv("align*"), fk("O") }) },
+		{ m.NORMAL, "\\ca", fc({ lenv("cases"), fk("O") }) },
+		{ m.NORMAL, "\\cb", fc({ lenv("center", "\\colorboxed{blue}{\n}"), fk("kO") }) },
+		{ m.NORMAL, "\\en", fc({ lenv("enumerate","\n\\item \n"), fk("kkA") }) },
+		{ m.NORMAL, "\\eq", fc({ lenv("equation*"), fk("O") }) },
+		{ m.NORMAL, "\\fi", fc({ lenv("figure", "\\includegraphics[width=\\textwidth]{}"), fk("k$hi") }) },
+		{ m.NORMAL, "\\it", fc({ lenv("itemize", "\n\\item \n"), fk("kkA") }) },
+		{ m.NORMAL, "\\ne", fc({ lenv("equation"), fk("O") }) },
 		{ m.NORMAL, "\\se", fc({ ins("\\section{}"), fk("hi") }) },
 		{ m.NORMAL, "\\su", fc({ ins("\\subsection{}"), fk("hi") }) },
 		{ m.VISUAL, "\\bf", sur("\\textbf{", "}") },
