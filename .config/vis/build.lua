@@ -10,6 +10,7 @@ local function fmt_file(file)
 	M.fixers["ansi_c"] = { "clang-format -fallback-style=none" }
 	M.fixers["cpp"] = { "clang-format -fallback-style=none" }
 	M.fixers["bibtex"] = { "bibtidy" }
+	M.fixers["json"] = { "jq --tab" }
 	return M.fix(file)
 end
 vis.events.subscribe(vis.events.FILE_SAVE_PRE, fmt_file)
