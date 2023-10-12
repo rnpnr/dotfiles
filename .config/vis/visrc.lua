@@ -72,7 +72,3 @@ vis.events.subscribe(vis.events.WIN_CLOSE, function(win)
 	end
 	adjust_layout(true)
 end)
-
-vis.events.subscribe(vis.events.FILE_SAVE_PRE, function(file, path)
-	vis:feedkeys("vo")
-end)
