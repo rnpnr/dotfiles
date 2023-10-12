@@ -17,7 +17,7 @@ vis.events.subscribe(vis.events.FILE_SAVE_PRE, fmt_file)
 
 local function build_files(win)
 	local build_tex = function (f)
-		local cmd = "pdflatex -halt-on-error "
+		local cmd = "pdflatex -halt-on-error -shell-escape "
 
 		-- build in draft mode to update references
 		local err, ostr = vis:pipe(cmd .. "-draftmode " .. f.name)
