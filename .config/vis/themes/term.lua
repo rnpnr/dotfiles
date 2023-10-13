@@ -51,3 +51,10 @@ lexers.STYLE_COMMAND = lexers.STYLE_KEYWORD
 lexers.STYLE_COMMAND_SECTION = lexers.STYLE_CLASS
 lexers.STYLE_ENVIRONMENT = lexers.STYLE_TYPE
 lexers.STYLE_ENVIRONMENT_MATH = lexers.STYLE_NUMBER
+
+-- markdown and friends
+lexers.STYLE_HEADING_H1 = 'fore:cyan,bold'
+lexers.STYLE_HEADING_H2 = lexers.STYLE_HEADING_H1
+lexers.STYLE_HEADING_H3 = lexers.STYLE_HEADING_H1
+lexers.STYLE_BOLD = 'fore:,bold'
+lexers.STYLE_ITALIC = 'fore:,italics'
