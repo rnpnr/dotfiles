@@ -1,10 +1,4 @@
--- function chain
-local function fc(argv)
-	return function ()
-		for _, f in ipairs(argv) do f() end
-		return true
-	end
-end
+local util = require('util')
 
 -- insert
 local function ins(str)
@@ -30,14 +24,6 @@ local function sur(p, s)
 	end
 end
 
--- feedkeys
-local function fk(fkeys)
-	return function ()
-		vis:feedkeys(fkeys)
-		return true
-	end
-end
-
 -- inserts a latex environment
 local lenv = function(env, inner)
 	local out = "\\begin{%s}\n%s\\end{%s}"
@@ -47,6 +33,8 @@ end
 
 local function macros(win)
 	local m = vis.modes
+	local fc, fk = util.function_chain, util.feedkeys
+
 	local lang = {}
 	lang["latex"] = {
 		{ m.NORMAL, "\\al", fc({ lenv("align*"), fk("O") }) },

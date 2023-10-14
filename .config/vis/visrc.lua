@@ -26,15 +26,15 @@ vis.events.subscribe(vis.events.INIT, function()
 
 	vis.options = { autoindent = true }
 
-	vis:command("map normal gq vip=<Escape>")
-	vis:command("map normal ,f v$:|furigana<Enter><Escape>")
-	vis:command("map visual ,s :|sort<Enter>")
+	local m, fk, cmd = vis.modes, util.feedkeys, util.command
+	vis:map(m.NORMAL, " f", fk("v$:|furigana<Enter><Escape>"))
+	vis:map(m.NORMAL, "gq", fk("vip=<Escape>"))
+	vis:map(m.VISUAL, " s", cmd("|sort"))
 
-	vis:map(vis.modes.NORMAL, "vo", function()
-		vis:command("x/[ \t\r]+$/ d")
-	end, "remove spaces, tabs, and \r from end of all lines")
+	vis:map(m.NORMAL, "vo", cmd("x/[ \t\r]+$/ d"),
+	        "remove whitespace from end of all lines")
 
-	vis:map(vis.modes.NORMAL, " l", function()
+	vis:map(m.NORMAL, " l", function()
 		local ui = vis.ui
 		if ui.layout == ui.layouts.HORIZONTAL then
 			ui.layout = ui.layouts.VERTICAL

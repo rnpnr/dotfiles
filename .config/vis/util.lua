@@ -12,4 +12,25 @@ function util.message_clear(vis)
 	vis.win.file:delete(0, vis.win.file.size)
 end
 
+-- returns a function that when called runs all functions in argv
+function util.function_chain(argv)
+	return function ()
+		for _, f in ipairs(argv) do f() end
+	end
+end
+
+-- returns a function that when called runs vis:feedkeys(keys)
+function util.feedkeys(keys)
+	return function ()
+		vis:feedkeys(keys)
+	end
+end
+
+-- returns a function that when called runs vis:command(cmd)
+function util.command(cmd)
+	return function()
+		vis:command(cmd)
+	end
+end
+
 return util
