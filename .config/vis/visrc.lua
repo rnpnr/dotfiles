@@ -23,7 +23,8 @@ vis.ftdetect.filetypes.matlab.cmd = { "set tw 4" }
 
 vis.events.subscribe(vis.events.INIT, function()
 	vis:command("set theme term")
-	vis.options.ai = true
+
+	vis.options = { autoindent = true }
 
 	vis:command("map normal gq vip=<Escape>")
 	vis:command("map normal ,f v$:|furigana<Enter><Escape>")
@@ -61,7 +62,7 @@ local function adjust_layout(wclose)
 end
 
 vis.events.subscribe(vis.events.WIN_OPEN, function(win)
-	win.options.rnu = true
+	win.options = { relativenumbers = true }
 	adjust_layout(false)
 end)
 
