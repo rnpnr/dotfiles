@@ -16,15 +16,15 @@ OCR"
 
 case $(echo "$options" | dmenu -i -l 7 -p "Screenshot: ") in
 "area (copy)")
-	sxot -g "$(sx4)" | optipng-pipe | ${clip_cmd} ;;
+	sxot -g "$(selx)" | optipng-pipe | ${clip_cmd} ;;
 "current window (copy)")
-	sxot -g "$(sx4 -w "$(xdotool getactivewindow)")" | optipng-pipe | ${clip_cmd} ;;
+	sxot -g "$(selx -w "$(xdotool getactivewindow)")" | optipng-pipe | ${clip_cmd} ;;
 "full screen (copy)")
 	sxot | optipng-pipe | ${clip_cmd} ;;
 "area")
-	sxot -g "$(sx4)" | optipng-pipe > "sel-${output}" ;;
+	sxot -g "$(selx)" | optipng-pipe > "sel-${output}" ;;
 "current window")
-	sxot -g "$(sx4 -w "$(xdotool getactivewindow)")" | optipng-pipe > "win-${output}" ;;
+	sxot -g "$(selx -w "$(xdotool getactivewindow)")" | optipng-pipe > "win-${output}" ;;
 "full screen")
 	sxot | optipng-pipe > "full-${output}" ;;
 "OCR")
