@@ -5,7 +5,7 @@ pidof -q gpg-agent || gpg-agent --daemon
 
 pidof -q cron || cron -f ~/.config/cron/crontab
 
-as="mpd mpdidle status xbanish"
+as="status xbanish"
 for cmd in $as; do
 	pidof -q "$cmd" || setsid -f "$cmd"
 done >/dev/null 2>&1

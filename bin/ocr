@@ -21,7 +21,7 @@ while getopts "l:d:" arg; do
 	esac
 done
 
-lang=${lang:-jpn}
+lang=${lang:-jpn_vert}
 dpi=${dpi:-96}
 
 sxot -g "$(selx)" |
