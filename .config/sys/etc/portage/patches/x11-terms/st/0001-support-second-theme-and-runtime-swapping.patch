@@ -1,5 +1,14 @@
+From 32c7373697e60ff0449b6f30c071855e721e0f5e Mon Sep 17 00:00:00 2001
+From: Randy Palamar <palamar@ualberta.ca>
+Date: Tue, 24 Oct 2023 06:06:03 -0600
+Subject: [PATCH] support second theme and runtime swapping
+
+---
+ x.c | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
+
 diff --git a/x.c b/x.c
-index 2a3bd38..c27db55 100644
+index b36fb8c..bed68ef 100644
 --- a/x.c
 +++ b/x.c
 @@ -59,6 +59,7 @@ static void zoom(const Arg *);
@@ -10,7 +19,7 @@ index 2a3bd38..c27db55 100644
  
  /* config.h for applying patches and the configuration. */
  #include "config.h"
-@@ -1908,6 +1909,17 @@ resize(XEvent *e)
+@@ -1911,6 +1912,17 @@ resize(XEvent *e)
  	cresize(e->xconfigure.width, e->xconfigure.height);
  }
  
@@ -28,3 +37,6 @@ index 2a3bd38..c27db55 100644
  void
  run(void)
  {
+-- 
+2.42.0
+

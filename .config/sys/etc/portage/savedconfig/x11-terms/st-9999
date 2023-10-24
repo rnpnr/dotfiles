@@ -6,7 +6,7 @@
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
 static char *font = "Go Mono:style=Regular:size=14:antialias=true:autohint=true";
-static int borderpx = 12;
+static struct { int x, y; } pad = { 12, 12 };
 
 /*
  * What program is execed by st depends of these precedence rules:
@@ -221,8 +221,12 @@ static Shortcut shortcuts[] = {
 	{ TERMMOD,              XK_Y,           selpaste,       {.i =  0} },
 	{ ShiftMask,            XK_Insert,      selpaste,       {.i =  0} },
 	{ TERMMOD,              XK_Num_Lock,    numlock,        {.i =  0} },
-	{ TERMMOD,              XK_I,           recolor,        {.i =  0} },
 	{ TERMMOD,              XK_Return,      newterm,        {.i =  0} },
+	{ TERMMOD,              XK_I,           recolor,        {.i =  0} },
+	{ TERMMOD,              XK_K,           ypadinc,        {.i = +20} },
+	{ TERMMOD,              XK_J,           ypadinc,        {.i = -20} },
+	{ TERMMOD,              XK_L,           xpadinc,        {.i = +20} },
+	{ TERMMOD,              XK_H,           xpadinc,        {.i = -20} },
 };
 
 /*
