@@ -1,0 +1,27 @@
+#!/bin/sh
+
+# calculates the average time from executing cmd n times (128 default)
+
+N=128
+
+usage()
+{
+	echo "usage: ${0##*/} [-n samples] cmd [arg ...]"
+}
+
+if [ "$1" = "-n" ]; then
+	 shift; N="${1}"; shift
+fi
+[ $# -gt 0 ] || usage
+
+for _ in $(seq "${N}"); do
+	time -p "$@" 2>&1 >/dev/null
+done | awk '
+/real/ { real = real + $2; nr++ }
+/user/ { user = user + $2; nu++ }
+/sys/  { sys = sys + $2; ns++ }
+END {
+	if (nr > 0) printf("real %f\n", real / nr)
+	if (nu > 0) printf("user %f\n", user / nu)
+	if (ns > 0) printf("sys %f\n", sys / ns)
+}'
