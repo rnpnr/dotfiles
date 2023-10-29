@@ -2,15 +2,14 @@
 
 # calculates the average time from executing cmd n times (128 default)
 
-N=128
-
 usage()
 {
 	echo "usage: ${0##*/} [-n samples] cmd [arg ...]"
 }
 
+N=128
 if [ "$1" = "-n" ]; then
-	 shift; N="${1}"; shift
+	N="${2}"; shift 2
 fi
 [ $# -gt 0 ] || usage
 
