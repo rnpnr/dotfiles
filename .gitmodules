@@ -6,41 +6,41 @@
 	url = https://codeberg.org/NRK/mpv-toolbox.git
 [submodule ".config/mpv/scripts/mpv2oboeru"]
 	path = .config/mpv/scripts/mpv2oboeru
-	url = git@git.rnpnr.xyz:mpv2oboeru.git
+	url = git@rnpnr.xyz:mpv2oboeru.git
 [submodule ".config/mpv/scripts/videoclip"]
 	path = .config/mpv/scripts/videoclip
 	url = https://github.com/Ajatt-Tools/videoclip.git
 [submodule ".config/vis/plugins/vis-gpg"]
 	path = .config/vis/plugins/vis-gpg
-	url = git@git.rnpnr.xyz:vis-gpg.git
+	url = git@rnpnr.xyz:vis-gpg.git
 [submodule ".config/vis/plugins/vis-lint"]
 	path = .config/vis/plugins/vis-lint
-	url = git@git.rnpnr.xyz:vis-lint.git
+	url = git@rnpnr.xyz:vis-lint.git
 [submodule ".config/vis/plugins/vis-spellcheck"]
 	path = .config/vis/plugins/vis-spellcheck
 	url = https://github.com/fischerling/vis-spellcheck.git
 [submodule "src/c/dir2list"]
 	path = src/c/dir2list
-	url = git@git.rnpnr.xyz:dir2list.git
+	url = git@rnpnr.xyz:dir2list.git
 [submodule "src/c/doas"]
 	path = src/c/doas
-	url = git@git.rnpnr.xyz:doas.git
+	url = git@rnpnr.xyz:doas.git
 [submodule "src/c/dwm"]
 	path = src/c/dwm
-	url = git@git.rnpnr.xyz:dwm.git
+	url = git@rnpnr.xyz:dwm.git
 	branch = rnpnr
 [submodule "src/c/jdict"]
 	path = src/c/jdict
-	url = git@git.rnpnr.xyz:jdict.git
+	url = git@rnpnr.xyz:jdict.git
 [submodule "src/c/links"]
 	path = src/c/links
-	url = git@git.rnpnr.xyz:links.git
+	url = git@rnpnr.xyz:links.git
 [submodule "src/c/oboeru"]
 	path = src/c/oboeru
-	url = git@git.rnpnr.xyz:oboeru.git
+	url = git@rnpnr.xyz:oboeru.git
 [submodule "src/c/status"]
 	path = src/c/status
-	url = git@git.rnpnr.xyz:status.git
+	url = git@rnpnr.xyz:status.git
 [submodule "src/sh/omoidasu"]
 	path = src/sh/omoidasu
-	url = git@git.rnpnr.xyz:omoidasu.git
+	url = git@rnpnr.xyz:omoidasu.git
