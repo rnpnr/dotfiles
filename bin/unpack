@@ -23,7 +23,7 @@ case "$#" in
 esac
 
 [ -f "$1" ] || die "unpack: $1: not a regular file"
-[ -d "$2" ] || mkdir "$2" >/dev/null 2>&1 || die "unpack: $2: not a directory"
+mkdir -p "$2" >/dev/null 2>&1 || die "unpack: $2: not a directory"
 
 case $(file -ib -- "$1" | cut -d ';' -f 1 | cut -d '/' -f 2) in
 bzip2|x-bzip2) run bzip2 -dc "$1" | tar -C "$2" -x ;;
