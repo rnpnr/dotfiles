@@ -15,6 +15,7 @@ export CARGO_HOME=$XDG_DATA_HOME/cargo
 export GNUPGHOME=$XDG_DATA_HOME/gnupg
 export GOMODCACHE=$XDG_CACHE_HOME/go/pkg/mod
 export GOPATH=$XDG_DATA_HOME/go
+export MBLAZE=$XDG_DATA_HOME/mblaze
 export PLATFORMIO_CORE_DIR=$XDG_DATA_HOME/platformio
 export TEXMFCONFIG=$XDG_CONFIG_HOME/texlive/texmf-config
 export TEXMFHOME=$XDG_DATA_HOME/texmf

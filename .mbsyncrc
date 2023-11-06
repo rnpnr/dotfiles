@@ -1,0 +1,17 @@
+IMAPStore rnpnr-remote
+Host mail.rnpnr.xyz
+User randy
+PassCmd "spm show randy@rnpnr.xyz | head -1"
+
+MaildirStore rnpnr-local
+SubFolders Verbatim
+Path ~/.local/mail/
+Inbox ~/.local/mail/INBOX
+
+Channel rnpnr
+Far :rnpnr-remote:
+Near :rnpnr-local:
+Expunge Both
+Create Both
+SyncState *
+# done

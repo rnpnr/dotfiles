@@ -1,0 +1,12 @@
+defaults
+port 587
+tls on
+
+account rnpnr.xyz
+host mail.rnpnr.xyz
+from randy@rnpnr.xyz
+auth on
+user randy
+passwordeval spm show randy@rnpnr.xyz
+
+account default : rnpnr.xyz

@@ -1,0 +1,4 @@
+Local-Mailbox: Randy Palamar <randy@rnpnr.xyz>
+FQDN: rnpnr.xyz
+Outbox: ~/.local/mail/Outbox
+Sendmail: msmtp
