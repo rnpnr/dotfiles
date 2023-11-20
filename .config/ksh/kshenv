@@ -1,14 +1,20 @@
 export BROWSER=browser
 #export MPD_HOST=~/.config/mpd/socket
 export MPD_HOST="localhost"
+export LESS='-FRM'
 export LESSHISTFILE="-"
 export HISTFILE=~/.config/ksh/history
 export HISTSIZE=10000
 export HISTCONTROL=ignoredups:ignorespace
-export QT_STYLE_OVERRIDE=gtk2
 export SFEED_URL_FILE=$HOME/.cache/sfeed/urls
 export EDITOR=vis
 export VISUAL=vis
+
+# this is broken and doesn't work properly with netbsd-curses
+unset TERMINFO_DIRS
+
+# improve readability of samu output
+export NINJA_STATUS="[36;1m[%e (s): %s/%t][0m "
 
 # these programs like to make a mess of ~
 export CARGO_HOME=$XDG_DATA_HOME/cargo
