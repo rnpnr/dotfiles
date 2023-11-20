@@ -1,4 +1,3 @@
-sys-apps/man-pages-posix freedist
 sys-kernel/* freedist
 
 media-fonts/mikachan-font-ttf free-noncomm

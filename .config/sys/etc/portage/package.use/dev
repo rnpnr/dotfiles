@@ -13,7 +13,7 @@ dev-libs/libpcre2 jit
 dev-libs/nss -nss-pem
 dev-libs/openssl static-libs # cryptsetup
 dev-libs/popt static-libs # cryptsetup
-dev-python/PyQt5 dbus
-dev-qt/qtgui dbus ibus
+dev-lua/ldoc lua_single_target_luajit
+dev-qt/qtgui dbus egl ibus
 dev-qt/qtwebchannel qml
-dev-vcs/git -python -perl -pcre -webdav
+dev-vcs/git -iconv -python -perl -pcre -webdav

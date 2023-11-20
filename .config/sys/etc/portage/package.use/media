@@ -1,5 +1,6 @@
 media-fonts/source-han-sans L10N: ja ko zh-TW
 media-fonts/source-pro cjk
+media-gfx/imagemagick svg xml
 media-libs/audiofile -flac
 media-libs/freetype harfbuzz
 media-libs/gegl -ffmpeg
@@ -9,6 +10,8 @@ media-libs/jbig2dec -png
 media-libs/leptonica tiff # for tesseract tiff support
 media-libs/libbluray aacs
 media-libs/libjpeg-turbo static-libs
+media-libs/libogg static-libs
+media-libs/libplacebo unwind
 media-libs/libpng apng
 media-libs/libsdl2 gles2 ibus dbus
 media-libs/libvpx postproc
@@ -19,5 +22,5 @@ media-sound/lame -frontend
 media-sound/mpd fifo -mad -curl -icu -network
 media-sound/ncmpcpp visualizer taglib outputs
 media-sound/vorbis-tools -ogg123
-media-video/ffmpeg openssl libdrm libass mp3 x264 x265 -hardcoded-tables
-media-video/mpv cli drm gbm lua -jpeg -xv -uchardet -vaapi lua_single_target_lua5-1
+media-video/ffmpeg openssl libplacebo libdrm libass mp3 x264 x265 -hardcoded-tables
+media-video/mpv cli drm gbm lua -jpeg -uchardet -vaapi

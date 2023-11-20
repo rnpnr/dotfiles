@@ -1,2 +1,1 @@
-www-apps/hugo -sass
-www-client/firefox bindist dbus -clang custom-optimization custom-cflags system-png
+www-client/firefox bindist clang dbus hwaccel openh264 system-png -telemetry

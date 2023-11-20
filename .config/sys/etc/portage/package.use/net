@@ -1,3 +1,4 @@
+net-dns/unbound threads
 net-libs/nodejs -icu -npm -system-icu
 net-misc/curl ssh
 net-misc/openntpd constraints

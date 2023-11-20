@@ -13,6 +13,7 @@ app-text/hunspell l10n_en
 app-text/mandoc system-man
 app-text/mupdf -opengl -curl -javascript -ssl
 app-text/pandoc-cli -server -lua
+app-text/poppler cairo
 app-text/tesseract float32 tiff
 app-text/texlive graphics luatex science l10n_ja -X
 app-text/zathura-pdf-mupdf -javascript

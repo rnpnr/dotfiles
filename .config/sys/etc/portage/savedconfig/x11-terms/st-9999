@@ -98,8 +98,8 @@ static const char *colordark[] = {
 	/* 8 normal colors */
 	[0]   = "#090909", /* black */
 	[1]   = "#e6404e", /* red */
-	[2]   = "#a274f2", /* green */
-	[3]   = "#d96f92", /* yellow */
+	[2]   = "#35973e", /* green */
+	[3]   = "#a274f2", /* yellow */
 	[4]   = "#3b419c", /* blue */
 	[5]   = "#e65080", /* magenta */
 	[6]   = "#4492f4", /* cyan */
@@ -107,9 +107,9 @@ static const char *colordark[] = {
 
 	/* 8 bright colors */
 	[8]   = "#1b1b1b", /* black */
-	[9]   = "#e65c67", /* red */
-	[10]  = "#b694f2", /* green */
-	[11]  = "#fa8aaf", /* yellow */
+	[9]   = "#c35f60", /* red */
+	[10]  = "#68b168", /* green */
+	[11]  = "#b694f2", /* yellow */
 	[12]  = "#5760e6", /* blue */
 	[13]  = "#e6618c", /* magenta */
 	[14]  = "#7178eb", /* cyan */
@@ -122,8 +122,8 @@ static const char *colorlight[] = {
 	/* 8 normal colors */
 	[0]   = "#eae1b4", /* black */
 	[1]   = "#e6404e", /* red */
-	[2]   = "#9e66ff", /* green */
-	[3]   = "#d96f92", /* yellow */
+	[2]   = "#35973e", /* green */
+	[3]   = "#9e66ff", /* yellow */
 	[4]   = "#3b419c", /* blue */
 	[5]   = "#e65080", /* magenta */
 	[6]   = "#4492f4", /* cyan */
@@ -131,9 +131,9 @@ static const char *colorlight[] = {
 
 	/* 8 bright colors */
 	[8]   = "#faf0c0", /* black */
-	[9]   = "#e65c67", /* red */
-	[10]  = "#ae80ff", /* green */
-	[11]  = "#fa8aaf", /* yellow */
+	[9]   = "#b94648", /* red */
+	[10]  = "#4e974e", /* green */
+	[11]  = "#ae80ff", /* yellow */
 	[12]  = "#5760e6", /* blue */
 	[13]  = "#e6618c", /* magenta */
 	[14]  = "#7178eb", /* cyan */

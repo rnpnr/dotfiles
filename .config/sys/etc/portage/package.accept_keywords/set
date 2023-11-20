@@ -1,8 +1,8 @@
 */*::rnpnr **
-app-editors/vis **
 dev-util/samurai **
 media-sound/split2flac **
 x11-misc/dmenu **
+x11-terms/st-terminfo **
 
 # what the h**k is the point of stable/unstable fonts
 media-fonts/* ~amd64
@@ -10,8 +10,10 @@ media-fonts/* ~amd64
 # Haskell
 app-text/pandoc ~amd64
 app-text/pandoc-cli ~amd64
+virtual/pandoc ~amd64
 dev-lang/ghc ~amd64
 dev-haskell/* ~amd64
+dev-util/shake ~amd64
 dev-util/shellcheck ~amd64
 
 # Personally Unmasked
@@ -21,16 +23,22 @@ media-gfx/farbfeld ~amd64
 media-libs/libplacebo ~amd64
 media-sound/ncmpcpp ~amd64
 media-video/mpv ~amd64
-net-analyzer/openbsd-netcat::musl ~amd64
+
+~dev-libs/blake3-1.5.0 ~amd64
+~sys-devel/mold-2.3.3 ~amd64
+
+dev-libs/randomx::guru ~amd64
+dev-libs/supercop::guru ~amd64
+net-p2p/monero::guru ~amd64
 
 # No stable version
-~dev-qt/qtstyleplugins-5.0.0_p20170311 ~amd64
 ~x11-misc/xidle-26052015 ~amd64
 
-www-apps/hugo ~amd64
-www-client/librewolf ~amd64
 www-client/firefox ~amd64
 dev-libs/nss ~amd64
+~dev-util/cbindgen-0.26.0 ~amd64
 
-~app-i18n/kakasi-2.3.6 ~amd64
 app-text/tesseract ~amd64
+
+# unfucky mpv
+~dev-lang/luajit-2.1.0_beta3_p20220613 ~amd64

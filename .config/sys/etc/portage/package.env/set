@@ -1,25 +1,12 @@
-app-admin/pwgen static
-app-misc/abduco static tcc
+app-misc/abduco static
 dev-lang/yasm static
-dev-libs/libcdio static
-dev-libs/libcdio-paranoia static
-media-libs/mesa nobloat pic
-media-libs/flac static
-media-libs/libogg static pic
-media-libs/opus static pic
-media-sound/lame static pic
 
-sys-base/sbase tcc
-x11-misc/dmenu tcc
-x11-misc/xbanish tcc
-x11-terms/st tcc
-x11-wm/dwm tcc
-
-app-text/mupdf nobloat
 app-shells/bash nobloat
+app-text/mupdf nobloat
 sys-apps/coreutils nobloat
 www-client/firefox nobloat
 
-sys-libs/musl debug nomold
+dev-lang/ghc nomold
 
-sys-apps/sandbox nomold
+dev-libs/openssl debug
+sys-libs/musl debug

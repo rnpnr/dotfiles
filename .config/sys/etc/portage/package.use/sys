@@ -1,6 +1,4 @@
 sys-apps/attr static-libs
-sys-apps/busybox -savedconfig static
-sys-apps/grep -egrep-fgrep static
 sys-apps/groff -X
 sys-apps/hwids udev
 sys-apps/openrc sysv-utils -netifrc
