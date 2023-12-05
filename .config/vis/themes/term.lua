@@ -6,7 +6,7 @@ lexers.STYLE_DEFAULT = ''
 lexers.STYLE_NOTHING = ''
 lexers.STYLE_ATTRIBUTE = 'bold'
 lexers.STYLE_CLASS = 'bold'
-lexers.STYLE_COMMENT = ''
+lexers.STYLE_COMMENT = 'dim'
 lexers.STYLE_CONSTANT = ''
 lexers.STYLE_DEFINITION = ''
 lexers.STYLE_ERROR = 'fore:red'
@@ -17,7 +17,7 @@ lexers.STYLE_HEADING = 'bold'
 lexers.STYLE_KEYWORD = 'bold'
 lexers.STYLE_LABEL = 'bold'
 lexers.STYLE_NUMBER = ''
-lexers.STYLE_OPERATOR = 'fore:green'
+lexers.STYLE_OPERATOR = 'fore:yellow'
 lexers.STYLE_REGEX = ''
 lexers.STYLE_STRING = ''
 lexers.STYLE_PREPROCESSOR = 'bold'
@@ -30,7 +30,7 @@ lexers.STYLE_IDENTIFIER = ''
 
 lexers.STYLE_LINENUMBER = ''
 lexers.STYLE_LINENUMBER_CURSOR = 'bold'
-lexers.STYLE_CURSOR = 'reverse'
+lexers.STYLE_CURSOR = 'back:white,fore:black'
 lexers.STYLE_CURSOR_PRIMARY = lexers.STYLE_CURSOR
 lexers.STYLE_CURSOR_LINE = 'underlined'
 lexers.STYLE_COLOR_COLUMN = 'back:' .. grey0
@@ -53,8 +53,6 @@ lexers.STYLE_ENVIRONMENT = lexers.STYLE_TYPE
 lexers.STYLE_ENVIRONMENT_MATH = lexers.STYLE_NUMBER
 
 -- markdown and friends
-lexers.STYLE_HEADING_H1 = 'fore:cyan,bold'
-lexers.STYLE_HEADING_H2 = lexers.STYLE_HEADING_H1
-lexers.STYLE_HEADING_H3 = lexers.STYLE_HEADING_H1
+for i = 1,6 do lexers['STYLE_HEADING_H'..i] = 'fore:cyan,bold' end
 lexers.STYLE_BOLD = 'bold'
 lexers.STYLE_ITALIC = 'italics'
