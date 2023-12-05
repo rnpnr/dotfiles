@@ -3,8 +3,8 @@ require('build')
 require('macros')
 require('set-title')
 require('plugins/vis-gpg')
-require('plugins/vis-lint')
 
+local lint = require('plugins/vis-lint')
 local util = require('util')
 
 local spell = require('plugins/vis-spellcheck')
@@ -20,6 +20,9 @@ assert(table.remove(vis.ftdetect.filetypes.objective_c.ext, 1) == "%.m$")
 -- use smaller tabs for heavily nested matlab classes and latex
 vis.ftdetect.filetypes.latex.cmd = { "set tw 4" }
 vis.ftdetect.filetypes.matlab.cmd = { "set tw 4" }
+
+vis.ftdetect.filetypes.haskell.cmd = { "set tw 4", "set expandtab true" }
+lint.fixers["haskell"] = { "hindent --indent-size 4 --sort-imports" }
 
 vis.events.subscribe(vis.events.INIT, function()
 	vis:command("set theme term")
@@ -42,7 +45,20 @@ vis.events.subscribe(vis.events.INIT, function()
 			ui.layout = ui.layouts.HORIZONTAL
 		end
 	end, "swap ui layout")
+
+	vis:map(m.NORMAL, " i", function()
+		vis:message("syntax = " .. tostring(vis.win.syntax))
+	end, "dump info to message window")
 end)
+
+vis:command_register("ag", function(argv)
+	for _, arg in ipairs(argv) do
+		local cmd = "ag " .. arg
+		vis:message(cmd .. ":")
+		local _, out = vis:pipe(cmd)
+		vis:message(tostring(out))
+	end
+end, "Search for each regex in argv with the_silver_searcher")
 
 local function adjust_layout(wclose)
 	local ui = vis.ui
