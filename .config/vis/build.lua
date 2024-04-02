@@ -55,9 +55,23 @@ local function build_files(win)
 
 		return true, info
 	end
+	local build_python = function (f)
+		local _, ostr, estr = vis:pipe('python ' .. f.name)
+		if estr then
+			util.message_clear(vis)
+			vis:message(estr)
+			return false
+		end
+		if ostr then
+			util.message_clear(vis)
+			vis:message(ostr)
+		end
+		return true
+	end
 
 	local lang = {}
 	lang["latex"]    = build_tex
+	lang["python"]   = build_python
 
 	local builder = lang[win.syntax]
 	if builder == nil then
