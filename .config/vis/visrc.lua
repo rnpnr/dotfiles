@@ -26,6 +26,11 @@ vis.ftdetect.filetypes.matlab.cmd = { "set tw 4" }
 vis.ftdetect.filetypes.haskell.cmd = { "set tw 4", "set expandtab true" }
 lint.fixers["haskell"] = { "hindent --indent-size 4 --sort-imports" }
 
+lint.fixers["python"] = {"black -l 80 -q -"}
+vis.ftdetect.filetypes.python.cmd = { "set tw 4", "set expandtab true" }
+
+vis.ftdetect.filetypes.yaml.cmd = { "set tw 2", "set expandtab true" }
+
 vis.events.subscribe(vis.events.INIT, function()
 	vis:command("set theme term")
 
@@ -64,12 +69,11 @@ end, "Search for each regex in argv with the_silver_searcher")
 
 local function adjust_layout(wclose)
 	local ui = vis.ui
-	local tw, nw = 0, 0
+	local tw, nw = 0, wclose and -1 or 0
 	for w in vis:windows() do
 		tw = tw + w.width
 		nw = nw + 1
 	end
-	if wclose == true then nw = nw - 1 end
 	if ui.layout == ui.layouts.HORIZONTAL then
 		if vis.win.width > nw * mww then
 			ui.layout = ui.layouts.VERTICAL
@@ -80,7 +84,18 @@ local function adjust_layout(wclose)
 end
 
 vis.events.subscribe(vis.events.WIN_OPEN, function(win)
-	win.options = { relativenumbers = true }
+	win.options = {
+		colorcolumn = 80,
+		relativenumbers = true,
+	}
+
+	local m, cmd = vis.modes, util.command
+	-- pass some args to fmt(1)
+	local fmtcmd = ":|fmt -l %d -w 66"
+	local fmt = cmd(fmtcmd:format(win.options.tabwidth))
+	win:map(m.NORMAL, "=", fmt)
+	win:map(m.VISUAL, "=", fmt)
+
 	adjust_layout(false)
 end)
 
