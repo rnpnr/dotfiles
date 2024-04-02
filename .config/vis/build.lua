@@ -17,7 +17,7 @@ vis.events.subscribe(vis.events.FILE_SAVE_PRE, fmt_file)
 
 local function build_files(win)
 	local build_tex = function (f)
-		local cmd = "pdflatex -halt-on-error -shell-escape "
+		local cmd = "xelatex -halt-on-error -shell-escape "
 
 		-- build in draft mode to update references
 		local err, ostr = vis:pipe(cmd .. "-draftmode " .. f.name)
@@ -39,10 +39,21 @@ local function build_files(win)
 		err = vis:pipe(cmd .. f.name)
 		if err ~= 0 then return false end
 
+		-- check for FIXMEs
+		local pos = win.selection.pos
+		local info
+		vis:command("x/FIXME/")
+		-- pathological case: if cursor is on the end of a FIXME
+		if #win.selections and pos ~= win.selection.pos then
+			info = "FIXMEs: " .. tostring(#win.selections)
+		end
+		vis:feedkeys("<Escape><Escape>")
+		win.selection.pos = pos
+
 		-- reload pdf (zathura does this automatically)
 		-- vis:command('!pkill -HUP mupdf')
 
-		return true
+		return true, info
 	end
 
 	local lang = {}
@@ -58,8 +69,11 @@ local function build_files(win)
 
 	win:map(vis.modes.NORMAL, " c", function ()
 			vis:command('w')
-			vis:info("building: " .. win.file.name)
-			return builder(win.file)
+			local s = "built: " .. win.file.name
+			local ret, info = builder(win.file)
+			if info then s = s .. " | info: " .. info end
+			if ret == true then vis:info(s) end
+			return ret
 		end, "build file in current window")
 end
 vis.events.subscribe(vis.events.WIN_OPEN, build_files)

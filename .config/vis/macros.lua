@@ -12,12 +12,13 @@ local function ins(str)
 end
 
 -- surround selection
-local function sur(p, s)
+local function sur(pre, suf, trim)
 	return function ()
 		local win = vis.win
+		if trim then vis:feedkeys("_") end
 		for sel in win:selections_iterator() do
-			win.file:insert(sel.range.start, p)
-			win.file:insert(sel.range.finish, s)
+			win.file:insert(sel.range.start, pre)
+			win.file:insert(sel.range.finish, suf)
 		end
 		win:draw()
 		return true
@@ -42,17 +43,17 @@ local function macros(win)
 		{ m.NORMAL, "\\cb", fc({ lenv("center", "\\colorboxed{blue}{\n}"), fk("kO") }) },
 		{ m.NORMAL, "\\en", fc({ lenv("enumerate","\n\\item \n"), fk("kkA") }) },
 		{ m.NORMAL, "\\eq", fc({ lenv("equation*"), fk("O") }) },
-		{ m.NORMAL, "\\fi", fc({ lenv("figure", "\\includegraphics[width=\\textwidth]{}"), fk("k$hi") }) },
+		{ m.NORMAL, "\\fi", fc({ lenv("figure", "\t\\includegraphics[width=\\textwidth]{}"), fk("k$hi") }) },
 		{ m.NORMAL, "\\it", fc({ lenv("itemize", "\n\\item \n"), fk("kkA") }) },
 		{ m.NORMAL, "\\mi", fc({ ins("\\begin{minipage}[c]{0.49\\textwidth}\n\\end{minipage}\\hfill"), fk("O") }) },
 		{ m.NORMAL, "\\ne", fc({ lenv("equation"), fk("O") }) },
 		{ m.NORMAL, "\\se", fc({ ins("\\section{}"), fk("hi") }) },
 		{ m.NORMAL, "\\su", fc({ ins("\\subsection{}"), fk("hi") }) },
-		{ m.VISUAL, "\\bf", sur("\\textbf{", "}") },
+		{ m.VISUAL, "\\bf", sur("\\textbf{", "}", true) },
 		{ m.VISUAL, "\\cb", sur("\\colorboxed{blue}{\n", "}\n") },
 		{ m.VISUAL, "\\ce", sur("\\begin{center}\n", "\\end{center}\n") },
-		{ m.VISUAL, "\\em", sur("\\emph{", "}") },
-		{ m.VISUAL, "\\hl", sur("\\hl{", "}") },
+		{ m.VISUAL, "\\em", sur("\\emph{", "}", true) },
+		{ m.VISUAL, "\\hl", sur("\\hl{", "}", true) },
 		{ m.VISUAL, "\\mi", sur("\\begin{minipage}[c]{0.49\\textwidth}\n", "\\end{minipage}\\hfill\n") },
 	}
 	lang["haskell"] = {
