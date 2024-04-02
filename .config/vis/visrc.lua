@@ -6,6 +6,8 @@ require('plugins/vis-gpg')
 
 local lint = require('plugins/vis-lint')
 local util = require('util')
+local highlight = require('highlight')
+highlight.keywords = { "FIXME", "TODO", "CLEANUP" }
 
 local spell = require('plugins/vis-spellcheck')
 spell.default_lang = "en_US"
