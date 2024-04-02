@@ -7,8 +7,8 @@ export HISTFILE=~/.config/ksh/history
 export HISTSIZE=10000
 export HISTCONTROL=ignoredups:ignorespace
 export SFEED_URL_FILE=$HOME/.cache/sfeed/urls
-export EDITOR=vis
-export VISUAL=vis
+export EDITOR=/usr/alt/bin/vis
+export VISUAL=/usr/alt/bin/vis
 
 # this is broken and doesn't work properly with netbsd-curses
 unset TERMINFO_DIRS
