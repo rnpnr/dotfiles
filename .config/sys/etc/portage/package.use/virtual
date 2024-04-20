@@ -1,2 +1,3 @@
 virtual/ffmpeg x264 mp3
+virtual/imagemagick-tools tiff
 virtual/libcrypt static-libs

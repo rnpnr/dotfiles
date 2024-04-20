@@ -6,6 +6,3 @@ media-sound/pulseaudio
 sys-apps/systemd
 sys-fs/udisks
 sys-power/upower
-
-# waiting for better versions
-<dev-lang/ghc-9.4.4

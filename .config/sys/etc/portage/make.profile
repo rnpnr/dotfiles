@@ -1,1 +1,1 @@
-/usr/portage/gentoo/profiles/default/linux/amd64/17.0/musl/hardened
+/usr/portage/clang-musl/profiles/default/linux/amd64/17.0/musl/llvm-toolchain/hardened

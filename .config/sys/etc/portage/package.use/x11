@@ -2,3 +2,4 @@ x11-base/xorg-server -elogind -minimal suid
 x11-libs/cairo svg
 x11-libs/libxcb xkb
 x11-themes/gtk-engines-murrine -themes
+x11-libs/libdrm video_cards_radeon

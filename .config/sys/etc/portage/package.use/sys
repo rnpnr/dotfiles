@@ -5,19 +5,21 @@ sys-apps/openrc sysv-utils -netifrc
 sys-apps/portage -rsync-verify
 sys-apps/shadow su -cracklib
 sys-apps/util-linux static-libs -su -suid -cramfs
+sys-apps/xdg-desktop-portal flatpak
 sys-boot/syslinux -efi
 sys-devel/binutils cxx static-libs
-sys-devel/clang-common stricter
+sys-devel/clang-runtime sanitize
 sys-devel/gcc cxx fortran lto
-sys-devel/gdb -server -python
-sys-devel/llvm gold
 sys-firmware/ipxe -savedconfig
 sys-fs/btrfs-progs -man -convert
 sys-fs/cryptsetup openssl urandom static -argon2 -udev
 sys-fs/lvm2 static static-libs -udev # cryptsetup
 sys-kernel/gentoo-sources symlink experimental
+sys-kernel/installkernel -dracut
 sys-libs/binutils-libs static-libs
 sys-libs/ldb -python
+sys-libs/libunwind static-libs
 sys-libs/libxcrypt static-libs
+sys-libs/llvm-libunwind static-libs
 sys-libs/zlib minizip static-libs
 sys-process/procps ncurses

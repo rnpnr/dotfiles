@@ -1,4 +1,5 @@
 dev-db/sqlite secure-delete
+dev-debug/gdb -server
 dev-lang/ghc ghcbootstrap -doc
 dev-lang/lua static
 dev-lang/luajit lua52compat
@@ -14,6 +15,8 @@ dev-libs/nss -nss-pem
 dev-libs/openssl static-libs # cryptsetup
 dev-libs/popt static-libs # cryptsetup
 dev-lua/ldoc lua_single_target_luajit
+dev-python/matplotlib latex
+dev-python/numpy -lapack
 dev-qt/qtgui dbus egl ibus
 dev-qt/qtwebchannel qml
-dev-vcs/git -iconv -python -perl -pcre -webdav
+dev-vcs/git -iconv -python -pcre -webdav

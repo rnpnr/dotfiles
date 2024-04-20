@@ -1,6 +1,8 @@
 app-alternatives/gzip pigz -reference
+app-alternatives/ninja samurai -reference
 app-alternatives/sh dash -bash
 app-alternatives/yacc byacc -bison
+app-arch/zstd static-libs
 app-crypt/gnupg -ssl
 app-crypt/mit-krb5 -keyutils -pkinit
 app-dicts/myspell-en l10n_en
@@ -16,4 +18,5 @@ app-text/pandoc-cli -server -lua
 app-text/poppler cairo
 app-text/tesseract float32 tiff
 app-text/texlive graphics luatex science l10n_ja -X
+app-text/texlive-core xetex
 app-text/zathura-pdf-mupdf -javascript

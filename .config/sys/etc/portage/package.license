@@ -1,4 +1,5 @@
 sys-kernel/* freedist
+sys-kernel/linux-firmware *
 
 media-fonts/mikachan-font-ttf free-noncomm
 

@@ -1,2 +1,2 @@
-LD=ld
+LD=ld.lld
 LDFLAGS="-Wl,-O1 -Wl,--as-needed"

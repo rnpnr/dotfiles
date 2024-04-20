@@ -4,9 +4,13 @@ dev-lang/yasm static
 app-shells/bash nobloat
 app-text/mupdf nobloat
 sys-apps/coreutils nobloat
-www-client/firefox nobloat
 
 dev-lang/ghc nomold
 
-dev-libs/openssl debug
 sys-libs/musl debug
+
+# misuses the linker
+gui-libs/gtk nomold
+
+# possibly broken configure script
+#sys-firmware/seabios useld

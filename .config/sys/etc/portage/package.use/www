@@ -1,1 +1,1 @@
-www-client/firefox bindist clang dbus hwaccel openh264 system-png -telemetry
+www-client/firefox clang hwaccel openh264 system-png -telemetry
