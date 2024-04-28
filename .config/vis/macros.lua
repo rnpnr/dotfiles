@@ -57,7 +57,7 @@ local function macros(win)
 		{ m.VISUAL, "\\mi", sur("\\begin{minipage}[c]{0.49\\textwidth}\n", "\\end{minipage}\\hfill\n") },
 	}
 	lang["haskell"] = {
-		{ m.NORMAL, "gq", fk("vip:|hindent<Enter><Escape>") },
+		{ m.NORMAL, "gq", "vip:|hindent<Enter><Escape>" },
 	}
 
 	local binds = lang[win.syntax]

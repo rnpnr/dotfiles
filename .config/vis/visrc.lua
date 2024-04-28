@@ -37,9 +37,9 @@ vis.events.subscribe(vis.events.INIT, function()
 
 	vis.options = { autoindent = true }
 
-	local m, fk, cmd = vis.modes, util.feedkeys, util.command
-	vis:map(m.NORMAL, " f", fk("v$:|furigana<Enter><Escape>"))
-	vis:map(m.NORMAL, "gq", fk("vip=<Escape>"))
+	local m, cmd = vis.modes, util.command
+	vis:map(m.NORMAL, " f", "v$:|furigana<Enter><Escape>")
+	vis:map(m.NORMAL, "gq", "vip=<Escape>")
 	vis:map(m.VISUAL, " s", cmd("|sort"))
 
 	vis:map(m.NORMAL, "vo", cmd("x/[ \t\r]+$/ d"),
