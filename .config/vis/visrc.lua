@@ -3,14 +3,16 @@ require('build')
 require('macros')
 require('set-title')
 require('plugins/vis-gpg')
+require('plugins/vis-spellcheck')
 
 local lint = require('plugins/vis-lint')
 local util = require('util')
 local highlight = require('highlight')
-highlight.keywords = { "FIXME", "TODO", "CLEANUP" }
-
-local spell = require('plugins/vis-spellcheck')
-spell.default_lang = "en_US"
+highlight.keywords = {
+	FIXME = 'fore:red,underlined,bold',
+	NOTE  = 'fore:green,underlined,bold',
+	TODO  = 'fore:magenta,underlined,bold',
+}
 
 local mww = 72 -- Min Window Width
 

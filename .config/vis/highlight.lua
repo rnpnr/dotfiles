@@ -2,33 +2,36 @@ local M = {}
 
 local lpeg_pattern
 local get_keywords = function(range_or_text)
-	local keywords = M.keywords
-	if not keywords or #keywords == 0 then return end
-
 	if not lpeg_pattern then
 		local lpeg = vis.lpeg
-		local words = lpeg.P(keywords[1])
-		for i = 2, #keywords, 1 do
-			words = words + lpeg.P(keywords[i])
+		local keywords = M.keywords
+
+		-- TODO: can't this be done better?
+		local words
+		for tag, _ in pairs(keywords) do
+			if words then
+				words = words + lpeg.P(tag)
+			else
+				words = lpeg.P(tag)
+			end
 		end
+		if not words then return end
 		local cap = (1 - words)^0 * (lpeg.Cp() * words * lpeg.Cp())
 		lpeg_pattern = lpeg.Ct(cap * ((1 - words) * cap)^0)
 	end
 
-	local txt
-	if type(range_or_text) == 'string' then
-		txt = range_or_text
-	else
+	local txt = range_or_text
+	if type(range_or_text) == 'table' then
 		txt = vis.win.file:content(range_or_text)
 	end
 
 	local kws = lpeg_pattern:match(txt)
 	if not kws then return end
 
-	local kwt = {}
-	local i = 1
+	local i, kwt = 1, {}
 	repeat
-		table.insert(kwt, {kws[i], kws[i + 1] - 1})
+		local kw = txt:sub(kws[i], kws[i + 1] - 1)
+		table.insert(kwt, {kws[i], kws[i + 1] - 1, kw})
 		i = i + 2
 	until (i > #kws)
 	return kwt
@@ -37,11 +40,26 @@ end
 local last_data
 local last_modified_toks
 local wrap_lexer = function()
+	if not M.keywords then return end
 	if not vis.win.syntax or not vis.lexers.load then return end
 
 	local vlexer = vis.lexers.load(vis.win.syntax, nil, true)
 	if not vlexer or not vlexer.lex then return end
 	local old_lex_func = vlexer.lex
+
+	-- Append new tags to lexer
+	for tag, style in pairs(M.keywords) do
+		if not vlexer._TAGS[tag] then
+			-- NOTE: _TAGS needs to be ordered and _TAGS[tag] needs
+			-- to equal the numerical table index of tag in _TAGS
+			-- why? ask the scintillua authors ¯\_(ツ)_/¯
+			table.insert(vlexer._TAGS, tag)
+			local tid = #vlexer._TAGS
+			vlexer._TAGS[tag] = tid
+			assert(tid < vis.win.STYLE_LEXER_MAX)
+			vis.win:style_define(tid, style)
+		end
+	end
 
 	vlexer.lex = function(lexer, data, index)
 		local tokens = old_lex_func(lexer, data, index)
@@ -75,8 +93,7 @@ local wrap_lexer = function()
 					table.insert(new_tokens, token_type)
 					table.insert(new_tokens, kws)
 				end
-				-- insert kw as error token
-				table.insert(new_tokens, vis.lexers.ERROR)
+				table.insert(new_tokens, kwp[3])
 				if token_end < kwe then
 					table.insert(new_tokens, token_end + 1)
 					i = i + 2
