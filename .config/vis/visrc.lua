@@ -39,6 +39,8 @@ vis.events.subscribe(vis.events.INIT, function()
 
 	local m, cmd = vis.modes, util.command
 	vis:map(m.NORMAL, " f", "v$:|furigana<Enter><Escape>")
+	vis:map(m.NORMAL, " j", "<vis-window-next>")
+	vis:map(m.NORMAL, " k", "<vis-window-prev>")
 	vis:map(m.NORMAL, "gq", "vip=<Escape>")
 	vis:map(m.VISUAL, " s", cmd("|sort"))
 

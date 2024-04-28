@@ -38,15 +38,15 @@ local function macros(win)
 
 	local lang = {}
 	lang["latex"] = {
-		{ m.NORMAL, "\\al", fc({ lenv("align*"), fk("O") }) },
-		{ m.NORMAL, "\\ca", fc({ lenv("cases"), fk("O") }) },
-		{ m.NORMAL, "\\cb", fc({ lenv("center", "\\colorboxed{blue}{\n}"), fk("kO") }) },
+		{ m.NORMAL, "\\al", fc({ lenv("align*"), fk("O\t") }) },
+		{ m.NORMAL, "\\ca", fc({ lenv("cases"), fk("O\t") }) },
+		{ m.NORMAL, "\\cb", fc({ lenv("center", "\\colorboxed{blue}{\n}"), fk("kO\t") }) },
 		{ m.NORMAL, "\\en", fc({ lenv("enumerate","\n\\item \n"), fk("kkA") }) },
-		{ m.NORMAL, "\\eq", fc({ lenv("equation*"), fk("O") }) },
+		{ m.NORMAL, "\\eq", fc({ lenv("equation*"), fk("O\t") }) },
 		{ m.NORMAL, "\\fi", fc({ lenv("figure", "\t\\includegraphics[width=\\textwidth]{}"), fk("k$hi") }) },
 		{ m.NORMAL, "\\it", fc({ lenv("itemize", "\n\\item \n"), fk("kkA") }) },
-		{ m.NORMAL, "\\mi", fc({ ins("\\begin{minipage}[c]{0.49\\textwidth}\n\\end{minipage}\\hfill"), fk("O") }) },
-		{ m.NORMAL, "\\ne", fc({ lenv("equation"), fk("O") }) },
+		{ m.NORMAL, "\\mi", fc({ ins("\\begin{minipage}[c]{0.49\\textwidth}\n\\end{minipage}\\hfill"), fk("O\t") }) },
+		{ m.NORMAL, "\\ne", fc({ lenv("equation"), fk("O\t") }) },
 		{ m.NORMAL, "\\se", fc({ ins("\\section{}"), fk("hi") }) },
 		{ m.NORMAL, "\\su", fc({ ins("\\subsection{}"), fk("hi") }) },
 		{ m.VISUAL, "\\bf", sur("\\textbf{", "}", true) },
