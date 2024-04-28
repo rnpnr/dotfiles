@@ -1,6 +1,6 @@
 local util = require('util')
 
-local function fmt_file(file)
+vis.events.subscribe(vis.events.FILE_SAVE_PRE, function(file)
 	local M = require('plugins/vis-lint')
 	M.logger = function(str, level)
 		if level == M.log.ERROR then
@@ -8,12 +8,11 @@ local function fmt_file(file)
 		end
 	end
 	M.fixers["ansi_c"] = { "clang-format -fallback-style=none" }
-	M.fixers["cpp"] = { "clang-format -fallback-style=none" }
 	M.fixers["bibtex"] = { "bibtidy" }
-	M.fixers["json"] = { "jq --tab" }
+	M.fixers["cpp"]    = { "clang-format -fallback-style=none" }
+	M.fixers["json"]   = { "jq --tab" }
 	return M.fix(file)
-end
-vis.events.subscribe(vis.events.FILE_SAVE_PRE, fmt_file)
+end)
 
 local function build_files(win)
 	local build_tex = function (f)
@@ -69,7 +68,7 @@ local function build_files(win)
 		return true
 	end
 
-	local lang = {}
+	local lang       = {}
 	lang["latex"]    = build_tex
 	lang["python"]   = build_python
 
@@ -91,6 +90,3 @@ local function build_files(win)
 		end, "build file in current window")
 end
 vis.events.subscribe(vis.events.WIN_OPEN, build_files)
-vis:command_register("build", function ()
-		vis:feedkeys(" c")
-	end, "build file in current window")

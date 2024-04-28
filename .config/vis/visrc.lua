@@ -17,12 +17,11 @@ highlight.keywords = {
 local mww = 72 -- Min Window Width
 
 -- detect matlab with %.m not objective_c
-vis.ftdetect.filetypes.matlab = {}
-vis.ftdetect.filetypes.matlab.ext = { "%.m$" }
+vis.ftdetect.filetypes.matlab = { ext = { "%.m$" } }
 assert(table.remove(vis.ftdetect.filetypes.objective_c.ext, 1) == "%.m$")
 
 -- use smaller tabs for heavily nested matlab classes and latex
-vis.ftdetect.filetypes.latex.cmd = { "set tw 4" }
+vis.ftdetect.filetypes.latex.cmd  = { "set tw 4" }
 vis.ftdetect.filetypes.matlab.cmd = { "set tw 4" }
 
 vis.ftdetect.filetypes.haskell.cmd = { "set tw 4", "set expandtab true" }
