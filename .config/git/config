@@ -1,0 +1,33 @@
+[user]
+	email = randy@rnpnr.xyz
+	name = Randy Palamar
+[alias]
+	a  = add
+	ca = commit --amend
+	cv = commit -v
+	cm = commit -m
+	d  = diff
+	ds = diff --staged
+	s  = status -s
+[commit]
+	gpgsign = true
+[tag]
+	gpgsign = true
+[pull]
+	rebase = true
+[log]
+	abbrevCommit = true
+[diff]
+	ignoreSubmodules = dirty
+[sendemail]
+	smtpserver = /usr/alt/bin/msmtp
+[init]
+	defaultBranch = master
+[safe]
+	directory = /usr/portage/local
+	directory = /usr/alt
+[advice]
+	skippedCherryPicks = false
+[core]
+	excludesfile = ~/.config/git/ignore
+	hooksPath    = ~/.config/git/hooks
