@@ -1,4 +1,4 @@
-From 480c18ef43128e7801dc781fdab9513edc63414d Mon Sep 17 00:00:00 2001
+From ac563d3c42d01d5920771c68bf58a89bde33f0a0 Mon Sep 17 00:00:00 2001
 From: Randy Palamar <palamar@ualberta.ca>
 Date: Thu, 25 Feb 2021 23:53:47 -0700
 Subject: [PATCH] support setting the default font size on invocation
@@ -42,7 +42,7 @@ index 39120b4..57ddfb8 100644
  use a tty
  .I line
 diff --git a/x.c b/x.c
-index bed68ef..58789c7 100644
+index 9baca54..2407c7e 100644
 --- a/x.c
 +++ b/x.c
 @@ -4,6 +4,7 @@
@@ -62,7 +62,7 @@ index bed68ef..58789c7 100644
  
  	/* colors */
  	xw.cmap = XDefaultColormap(xw.dpy, xw.scr);
-@@ -2086,6 +2087,11 @@ main(int argc, char *argv[])
+@@ -2092,6 +2093,11 @@ main(int argc, char *argv[])
  	case 'v':
  		die("%s " VERSION "\n", argv0);
  		break;
@@ -75,5 +75,5 @@ index bed68ef..58789c7 100644
  		usage();
  	} ARGEND;
 -- 
-2.42.0
+2.44.0
 
