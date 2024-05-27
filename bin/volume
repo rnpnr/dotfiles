@@ -4,8 +4,8 @@
 
 OUT=${AUDIOSINK:-"Speaker"}
 
-if [ $OUT == "pulse" ]; then
-	if [ "$1" == "toggle" ]; then
+if [ $OUT = "pulse" ]; then
+	if [ "$1" = "toggle" ]; then
 		pactl set-sink-mute 0 $@
 	else
 		pactl set-sink-volume 0 $@
