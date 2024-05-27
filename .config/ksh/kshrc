@@ -11,6 +11,7 @@ KSHDIR=~/.config/ksh
 [ -f $KSHDIR/local ] && . $KSHDIR/local
 [ -f $KSHDIR/kshenv ] && . $KSHDIR/kshenv
 
+export PS4='$(tput bold)\$>$(tput sgr0) '
 PS1='$(tput bold)\W \$$(tput sgr0) '
 if [ -n "$SSH_CONNECTION" ]; then
 	PS1="(\h) $PS1"
@@ -34,7 +35,6 @@ fi
 alias c=clear
 alias e="$EDITOR"
 alias v="$EDITOR"
-alias hss='hugo server --noHTTPCache --printI18nWarnings'
 alias ll='ls -lh'
 alias mkdir='mkdir -p'
 alias mvi='mpv --profile=image'
