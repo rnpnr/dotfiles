@@ -62,14 +62,14 @@ vis.events.subscribe(vis.events.INIT, function()
 	end, "dump info to message window")
 end)
 
-vis:command_register("ag", function(argv)
+vis:command_register("aq", function(argv)
 	for _, arg in ipairs(argv) do
-		local cmd = "ag " .. arg
+		local cmd = "ag -Q " .. arg
 		vis:message(cmd .. ":")
 		local _, out = vis:pipe(cmd)
 		vis:message(tostring(out))
 	end
-end, "Search for each regex in argv with the_silver_searcher")
+end, "Search for each literal in argv with the_silver_searcher")
 
 local function adjust_layout(wclose)
 	local ui = vis.ui
