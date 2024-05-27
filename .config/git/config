@@ -2,10 +2,9 @@
 	email = randy@rnpnr.xyz
 	name = Randy Palamar
 [alias]
-	a  = add
 	ca = commit --amend
-	cv = commit -v
 	cm = commit -m
+	cv = commit -v
 	d  = diff
 	ds = diff --staged
 	s  = status -s
@@ -19,6 +18,7 @@
 	abbrevCommit = true
 [diff]
 	ignoreSubmodules = dirty
+	algorithm = histogram
 [sendemail]
 	smtpserver = /usr/alt/bin/msmtp
 [init]
