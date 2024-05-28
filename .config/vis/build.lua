@@ -1,3 +1,4 @@
+local gf   = require('goto-ref')
 local util = require('util')
 
 vis.events.subscribe(vis.events.FILE_SAVE_PRE, function(file)
@@ -54,6 +55,7 @@ local function build_files(win)
 
 		return true, info
 	end
+
 	local build_python = function (f)
 		local _, ostr, estr = vis:pipe('python ' .. f.name)
 		if estr then
@@ -68,7 +70,23 @@ local function build_files(win)
 		return true
 	end
 
+	local build_c = function (f)
+		local _, ostr, estr = vis:pipe('./build.sh')
+		if estr then
+			filepairs = gf.generate_line_indices(estr)
+			if #filepairs then
+				local forward, backward = gf.generate_iterators(filepairs)
+				vis:map(vis.modes.NORMAL, "gn", forward)
+				vis:map(vis.modes.NORMAL, "gp", backward)
+			end
+			util.message_clear(vis)
+			vis:message(tostring(estr))
+		end
+		return true
+	end
+
 	local lang       = {}
+	lang["ansi_c"]   = build_c
 	lang["latex"]    = build_tex
 	lang["python"]   = build_python
 

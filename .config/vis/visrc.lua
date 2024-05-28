@@ -6,6 +6,7 @@ require('plugins/vis-gpg')
 require('plugins/vis-spellcheck')
 
 local lint = require('plugins/vis-lint')
+local gf   = require('goto-ref')
 local util = require('util')
 local highlight = require('highlight')
 highlight.keywords = {
@@ -62,12 +63,22 @@ vis.events.subscribe(vis.events.INIT, function()
 	end, "dump info to message window")
 end)
 
-vis:command_register("aq", function(argv)
+vis:command_register("ag", function(argv)
+	local filepairs = {}
 	for _, arg in ipairs(argv) do
-		local cmd = "ag -Q " .. arg
-		vis:message(cmd .. ":")
-		local _, out = vis:pipe(cmd)
-		vis:message(tostring(out))
+		local _, out = vis:pipe("ag -Q " .. arg)
+		if out then
+			vis:message(tostring(out))
+			newpairs = gf.generate_line_indices(out)
+			for i = 1, #newpairs do
+				table.insert(filepairs, newpairs[i])
+			end
+		end
+	end
+	if #filepairs then
+		local forward, backward = gf.generate_iterators(filepairs)
+		vis:map(vis.modes.NORMAL, "gn", forward)
+		vis:map(vis.modes.NORMAL, "gp", backward)
 	end
 end, "Search for each literal in argv with the_silver_searcher")
 
