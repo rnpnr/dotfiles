@@ -37,7 +37,7 @@ M.generate_line_indices = function(data)
 		found, _, file, line = s:find('^([^:]+):([%d]+):')
 		if found then table.insert(ret, {file, line}) end
 	end
-	return #ret > 0 and ret or nil
+	return ret
 end
 
 return M

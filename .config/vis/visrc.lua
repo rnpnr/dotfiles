@@ -65,6 +65,7 @@ end)
 
 vis:command_register("ag", function(argv)
 	local filepairs = {}
+	util.message_clear(vis)
 	for _, arg in ipairs(argv) do
 		local _, out = vis:pipe("ag -Q " .. arg)
 		if out then

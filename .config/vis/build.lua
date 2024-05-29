@@ -73,7 +73,7 @@ local function build_files(win)
 	local build_c = function (f)
 		local _, ostr, estr = vis:pipe('./build.sh')
 		if estr then
-			filepairs = gf.generate_line_indices(estr)
+			local filepairs = gf.generate_line_indices(estr)
 			if #filepairs then
 				local forward, backward = gf.generate_iterators(filepairs)
 				vis:map(vis.modes.NORMAL, "gn", forward)
