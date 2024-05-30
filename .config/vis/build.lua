@@ -73,7 +73,13 @@ local function build_files(win)
 	local build_c = function (f)
 		local _, ostr, estr = vis:pipe('./build.sh')
 		if estr then
-			local filepairs = gf.generate_line_indices(estr)
+			local filter = function(str)
+				local result = str:find("^/usr/include") ~= nil
+				result = result or str:find("^In file included")
+				return result
+			end
+
+			local filepairs = gf.generate_line_indices(estr, filter)
 			if #filepairs then
 				local forward, backward = gf.generate_iterators(filepairs)
 				vis:map(vis.modes.NORMAL, "gn", forward)

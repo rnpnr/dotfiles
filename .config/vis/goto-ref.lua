@@ -1,22 +1,23 @@
 local M = {}
 
 local focus_file = function(name)
+	local realpath = io.popen("realpath " .. name):read("*a"):sub(1, -2)
 	for win in vis:windows() do
-		if win.file and win.file.name == name then
+		if win.file and win.file.path == realpath then
 			vis.win = win
 			return
 		end
 	end
-	vis:command(":o " .. name)
+	vis:command(":o " .. realpath)
 end
 
 M.generate_iterators = function(file_index_table)
 	local current_index = 1;
 
 	local iterate = function(inc)
-		local file, line = table.unpack(file_index_table[current_index])
+		local file, line, col = table.unpack(file_index_table[current_index])
 		focus_file(file)
-		vis.win.selection:to(line, 1)
+		vis.win.selection:to(line, type(col) == 'number' and col or 1)
 		current_index = current_index + inc
 		if current_index > #file_index_table then
 			current_index = 1
@@ -31,11 +32,14 @@ M.generate_iterators = function(file_index_table)
 	return forward, backward
 end
 
-M.generate_line_indices = function(data)
+M.generate_line_indices = function(data, filter)
 	local ret = {}
 	for s in data:gmatch("[^\n]*") do
-		found, _, file, line = s:find('^([^:]+):([%d]+):')
-		if found then table.insert(ret, {file, line}) end
+		local skip = filter and filter(s)
+		if not skip then
+			local found, _, file, line, col = s:find('^([^:]+):([%d]+):([%d]*):?')
+			if found then table.insert(ret, {file, line, col}) end
+		end
 	end
 	return ret
 end
