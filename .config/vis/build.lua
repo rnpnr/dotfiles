@@ -105,7 +105,7 @@ local function build_files(win)
 	end
 
 	win:map(vis.modes.NORMAL, " c", function ()
-			vis:command('w')
+			vis:command('X/.*/w')
 			local s = "built: " .. win.file.name
 			local ret, info = builder(win.file)
 			if info then s = s .. " | info: " .. info end
