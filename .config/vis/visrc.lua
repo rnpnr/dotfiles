@@ -64,23 +64,16 @@ vis.events.subscribe(vis.events.INIT, function()
 end)
 
 vis:command_register("ag", function(argv)
-	local filepairs = {}
 	util.message_clear(vis)
+	local outstr = ""
 	for _, arg in ipairs(argv) do
-		local _, out = vis:pipe("ag -Q " .. arg)
+		local _, out = vis:pipe("ag -Q --column " .. arg)
 		if out then
-			vis:message(tostring(out))
-			newpairs = gf.generate_line_indices(out)
-			for i = 1, #newpairs do
-				table.insert(filepairs, newpairs[i])
-			end
+			vis:message(out)
+			outstr = outstr .. out
 		end
 	end
-	if #filepairs then
-		local forward, backward = gf.generate_iterators(filepairs)
-		vis:map(vis.modes.NORMAL, "gn", forward)
-		vis:map(vis.modes.NORMAL, "gp", backward)
-	end
+	gf.setup_iterators_from_text(outstr)
 end, "Search for each literal in argv with the_silver_searcher")
 
 local function adjust_layout(wclose)

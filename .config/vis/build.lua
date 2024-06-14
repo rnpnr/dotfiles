@@ -15,19 +15,21 @@ vis.events.subscribe(vis.events.FILE_SAVE_PRE, function(file)
 	return M.fix(file)
 end)
 
+local logger = function(clear, ostr, estr)
+	if ostr == nil and estr == nil then return end
+	if clear then util.message_clear(vis) end
+	if ostr  then vis:message(ostr)       end
+	if estr  then vis:message(estr)       end
+	vis:message(string.rep("=", vis.win.viewport.width / 2))
+end
+
 local function build_files(win)
 	local build_tex = function (f)
 		local cmd = "xelatex -halt-on-error -shell-escape "
 
 		-- build in draft mode to update references
 		local err, ostr = vis:pipe(cmd .. "-draftmode " .. f.name)
-		if err ~= 0 then
-			if ostr then
-				util.message_clear(vis)
-				vis:message(ostr)
-			end
-			return false
-		end
+		if err ~= 0 then logger(true, ostr) return false end
 
 		local fp = util.splitext(f.name)
 		-- update refrences
@@ -58,41 +60,25 @@ local function build_files(win)
 
 	local build_python = function (f)
 		local _, ostr, estr = vis:pipe('python ' .. f.name)
-		if estr then
-			util.message_clear(vis)
-			vis:message(estr)
-			return false
-		end
-		if ostr then
-			util.message_clear(vis)
-			vis:message(ostr)
-		end
+		logger(true, ostr, estr)
+		if estr then return false end
 		return true
 	end
 
 	local build_c = function (f)
 		local _, ostr, estr = vis:pipe('./build.sh')
-		if estr then
-			local filter = function(str)
-				local result = str:find("^/usr/include") ~= nil
-				result = result or str:find("^In file included")
-				return result
-			end
-
-			local filepairs = gf.generate_line_indices(estr, filter)
-			if #filepairs then
-				local forward, backward = gf.generate_iterators(filepairs)
-				vis:map(vis.modes.NORMAL, "gn", forward)
-				vis:map(vis.modes.NORMAL, "gp", backward)
-			end
-			util.message_clear(vis)
-			vis:message(tostring(estr))
-		end
+		logger(true, ostr, estr)
+		gf.setup_iterators_from_text(estr, function(str)
+			local result = str:find("^/usr/include") ~= nil
+			result = result or str:find("^In file included")
+			return result
+		end)
 		return true
 	end
 
 	local lang       = {}
 	lang["ansi_c"]   = build_c
+	lang["cpp"]      = build_c
 	lang["latex"]    = build_tex
 	lang["python"]   = build_python
 

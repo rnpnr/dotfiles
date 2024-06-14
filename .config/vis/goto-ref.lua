@@ -44,4 +44,14 @@ M.generate_line_indices = function(data, filter)
 	return ret
 end
 
+M.setup_iterators_from_text = function(text, filter)
+	if text == nil or #text == 0 then return end
+	local filepairs = M.generate_line_indices(text, filter)
+	if #filepairs then
+		local forward, backward = M.generate_iterators(filepairs)
+		vis:map(vis.modes.NORMAL, "gn", forward)
+		vis:map(vis.modes.NORMAL, "gp", backward)
+	end
+end
+
 return M

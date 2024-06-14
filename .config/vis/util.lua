@@ -10,6 +10,7 @@ end
 function util.message_clear(vis)
 	vis:message("") -- hack: focus the message window
 	vis.win.file:delete(0, vis.win.file.size)
+	vis:command("q")
 end
 
 -- returns a function that when called runs all functions in argv
