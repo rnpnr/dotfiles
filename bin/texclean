@@ -1,7 +1,5 @@
 #!/bin/sh
 
-set -e
-
 # cleanup tex output clutter
 
 case "$1" in
@@ -10,7 +8,9 @@ case "$1" in
 	d=$(dirname "$f")
 	b="${f%.*}"
 	junk=$(find "$d" -type f | grep -E -e ".*\\.log" -e "^$b\\.(4tc|xref|tmp|pyc|pyg|pyo|fls|vrb|fdb_latexmk|bak|swp|aux|log|synctex\\(busy\\)|lof|lot|maf|idx|mtc|mtc0|nav|out|snm|toc|bcf|run\\.xml|synctex\\.gz|blg|bbl)")
-	rm $junk
+	more=$(find "$d" -type d | grep "_min*")
+	[ -n "$junk" ] && rm $junk
+	[ -n "$more" ] && rm -r $more
 	;;
 *)	echo "usage: $0: file.tex" ;;
 esac
