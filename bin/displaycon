@@ -16,8 +16,8 @@ fn display_location_orientation {
 }
 
 fn display_one {
-	extra_args=`{printf '%s' $all_scrs ^ $nl | grep -v $disp(1) | awk '{print "--output", $1, "--off"}' | paste -sd ' ' -}
-	xrandr --output $disp(1) --primary --auto --scale 1.0x1.0 $extra_args
+	extra_args=`{printf '%s' $all_scrs ^ $nl | grep -v $1 | awk '{print "--output", $1, "--off"}' | paste -sd ' ' -}
+	xrandr --output $1 --primary --auto --scale 1.0x1.0 $extra_args
 }
 
 dmenu_args=(                                \
@@ -29,7 +29,9 @@ dmenu_args=(                                \
 
 switch ($#all_scrs) {
 case 1
-	display_one
+	ifs=' '
+	connected_display=`{printf '%s' $all_scrs ^ $nl}
+	display_one $connected_display(1)
 case *
 	ifs=':'
 	func=`{printf '%s' $dmenu_args ^ $nl | dmenu -i -l $#dmenu_args -p 'Display Profile?'}
@@ -42,6 +44,6 @@ case *
 	case DBN
 		display_location_orientation 'below'    'normal'
 	case ONE
-		display_one
+		display_one $disp(1)
 	}
 }
