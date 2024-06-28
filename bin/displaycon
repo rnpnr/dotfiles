@@ -1,94 +1,47 @@
-#!/bin/sh
+#!/usr/alt/bin/rc
 
-# dmenu selection script for controlling monitors
+disp=(DisplayPort-0 HDMI-A-0)
 
-one_scr() {
-	xrandr --output "$1" --primary --auto --scale 1.0x1.0 \
-		$(echo "$allscrs" | grep -v "^$1" | awk '{print "--output", $1, "--off"}' | paste -sd ' ' -)
+nl='
+'
+
+oldifs=$ifs
+ifs=$nl
+all_scrs=`{xrandr | grep '\sconnected'}
+ifs=$oldifs
+
+fn display_location_orientation {
+	xrandr --output $disp(1) --auto --scale 1.0x1.0 --primary
+	xrandr --output $disp(2) --$1 $disp(1) --rotate $2 --auto
 }
 
-two_scr() {
-	case $(printf "no\nyes" | dmenu -i -p "Duplicate Screen?") in
-	"yes") mirror $(echo "$scrs" | dmenu -i -p "Optimize for:") ;;
-	"no") multi_scr ;;
-	*) exit 0 ;;
-	esac
+fn display_one {
+	extra_args=`{printf '%s' $all_scrs ^ $nl | grep -v $disp(1) | awk '{print "--output", $1, "--off"}' | paste -sd ' ' -}
+	xrandr --output $disp(1) --primary --auto --scale 1.0x1.0 $extra_args
 }
 
-mirror() {
-	primary="$1"
-	secondary=$(echo "$scrs" | grep -v "^$1")
+dmenu_args=(                                \
+'DLL: Display Left of with Left Rotation'   \
+'DLN: Display Left of with Normal Rotation' \
+'DBN: Display Below with Normal Rotation'   \
+'ONE: Primary Display Only'                 \
+)
 
-	tres=$(xrandr -q | sed -n "/^$primary/{n;p}" | awk '{print $1}')
-	pri_res_x=${tres%x*}
-	pri_res_y=${tres#*x}
-	tres=$(xrandr -q | sed -n "/^$secondary/{n;p}" | awk '{print $1}')
-	sec_res_x=${tres%x*}
-	sec_res_y=${tres#*x}
-
-	scale_x=$(echo "$pri_res_x / $sec_res_x" | bc -l)
-	scale_y=$(echo "$pri_res_y / $sec_res_y" | bc -l)
-
-	xrandr --output "$primary" --primary --auto --scale 1.0x1.0 \
-	       --output "$secondary" --same-as "$primary" \
-	       --auto --scale "${scale_x}x${scale_y}"
+switch ($#all_scrs) {
+case 1
+	display_one
+case *
+	ifs=':'
+	func=`{printf '%s' $dmenu_args ^ $nl | dmenu -i -l $#dmenu_args -p 'Display Profile?'}
+	ifs=$oldifs
+	switch ($func(1)) {
+	case DLL
+		display_location_orientation 'left-of'  'left'
+	case DLN
+		display_location_orientation 'left-of'  'normal'
+	case DBN
+		display_location_orientation 'below'    'normal'
+	case ONE
+		display_one
+	}
 }
-
-multi_scr() {
-	primary=$(echo "$scrs" | dmenu -i -p "Primary:")
-	xrandr --output $primary --auto --scale 1.0x1.0 --primary
-	manage $(echo "$scrs" | grep -v "^$primary")
-}
-
-manage() {
-	for i in "$@"; do
-		case $(printf "enable\ndisable\nmove\nrotate" | dmenu -i -p "Action ($i):") in
-		"enable"|"move")
-			loc=$(printf "left-of\nright-of\nabove\nbelow" |
-				dmenu -i -p "Location ($i):") || exit 0
-			relative=$(echo "$scrs" | dmenu -i -p "Relative ($i):") || exit 0
-			direction=$(printf "normal\nright\nleft\ninverted" |
-				dmenu -i -p "Direction ($i):") || exit 0
-			xrandr --output $i --$loc $relative \
-				--rotate $direction --auto
-			;;
-		"rotate")
-			direction=$(printf "normal\nright\nleft\ninverted" |
-				dmenu -i -p "Direction ($i):") || exit 0
-			xrandr --output $i --rotate $direction --auto
-			;;
-		"disable") xrandr --output $i --off ;;
-		*) exit 0 ;;
-		esac
-	done
-}
-
-set_bg() {
-	case $1 in
-	"left"|"right")
-		bgs "$HOME"/.config/v_wallpaper.*
-		;;
-	"normal"|"inverted")
-		bgs -z "$HOME"/.config/h_wallpaper.*
-		;;
-	esac
-}
-
-allscrs=$(xrandr | grep 'connected')
-scrs=$(echo "$allscrs" | awk '/ connected/ {print $1}')
-direction="normal"
-
-choice=$(printf "%s\nmulti\nmanage" "$scrs" | dmenu -i -p "Displaycon:") || exit 0
-case "$choice" in
-"multi")
-	case $(echo "$scrs" | wc -l) in
-	1) one_scr "$scrs" ;;
-	2) two_scr ;;
-	*) multi_scr ;;
-	esac
-	;;
-"manage") manage "$scrs" ;;
-*) one_scr "$choice" ;;
-esac
-
-set_bg $direction
