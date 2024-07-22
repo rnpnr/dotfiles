@@ -1,0 +1,4 @@
+#!/bin/sh
+
+mbsync -a
+mlist ~/.local/mail/INBOX | msort -rd | mthread -r | mseq -S
