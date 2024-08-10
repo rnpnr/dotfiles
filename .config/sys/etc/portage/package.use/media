@@ -1,6 +1,7 @@
 media-fonts/source-han-sans L10N: ja ko zh-TW
 media-fonts/source-pro cjk
 media-gfx/imagemagick svg tiff xml
+media-gfx/renderdoc qt5
 media-libs/freetype harfbuzz
 media-libs/gegl cairo -ffmpeg
 media-libs/harfbuzz icu # needed for Tex
@@ -14,7 +15,6 @@ media-libs/libpng apng
 media-libs/libsdl2 gles2 ibus dbus
 media-libs/libvpx postproc
 media-libs/mesa libglvnd gles1 gles2 osmesa
-media-libs/tiff -jpeg
 media-sound/alsa-utils ncurses
 media-sound/lame -frontend
 media-sound/mpd fifo -mad -curl -icu -network -audiofile
@@ -22,4 +22,5 @@ media-sound/ncmpcpp visualizer taglib outputs
 media-sound/vorbis-tools -ogg123
 media-video/ffmpeg openssl libplacebo libdrm libass mp3 x264 x265 -hardcoded-tables
 media-video/mpv cli drm gbm lua -jpeg -uchardet -vaapi -pulseaudio
+media-video/obs-studio v4l
 media-video/pipewire extra sound-server flatpak pipewire-alsa -X

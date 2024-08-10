@@ -1,1 +1,1 @@
-/usr/portage/clang-musl/profiles/default/linux/amd64/17.0/musl/llvm-toolchain/hardened
+/usr/portage/clang-musl/profiles/default/linux/amd64/23.0/split-usr/musl/llvm/hardened

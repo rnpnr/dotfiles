@@ -17,6 +17,7 @@ dev-libs/popt static-libs # cryptsetup
 dev-lua/ldoc lua_single_target_luajit
 dev-python/matplotlib latex
 dev-python/numpy -lapack
+dev-python/pillow tiff
 dev-qt/qtgui dbus egl ibus
 dev-qt/qtwebchannel qml
 dev-vcs/git -iconv -python -pcre -webdav

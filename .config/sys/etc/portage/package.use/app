@@ -2,10 +2,14 @@ app-alternatives/gzip pigz -reference
 app-alternatives/ninja samurai -reference
 app-alternatives/sh dash -bash
 app-alternatives/yacc byacc -bison
+app-arch/libarchive bzip2
 app-arch/zstd static-libs
+app-crypt/gcr gtk
 app-crypt/gnupg -ssl
+app-crypt/libsecret -vala -introspection
 app-crypt/mit-krb5 -keyutils -pkinit
 app-dicts/myspell-en l10n_en
+app-editors/vim -crypt -X # for running vis tests
 app-emulation/qemu -curl -doc -gtk -pin-upstream-blobs -usb -vnc
 app-i18n/ibus gtk3
 app-i18n/kakasi l10n_ja
@@ -16,6 +20,7 @@ app-text/mandoc system-man
 app-text/mupdf -opengl -curl -javascript -ssl
 app-text/pandoc-cli -server -lua
 app-text/poppler cairo
+app-text/tessdata_fast l10n_ja
 app-text/tesseract float32 tiff
 app-text/texlive graphics luatex science l10n_ja -X
 app-text/texlive-core xetex

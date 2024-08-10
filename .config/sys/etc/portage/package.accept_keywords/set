@@ -27,10 +27,17 @@ media-libs/libplacebo ~amd64
 media-sound/ncmpcpp ~amd64
 media-video/mpv ~amd64
 
+~media-libs/glfw-3.4 ~amd64
+
 # No stable version
 ~x11-misc/xidle-26052015 ~amd64
 
+media-gfx/renderdoc ~amd64
+media-video/obs-studio ~amd64
+
 www-client/firefox ~amd64
+~dev-libs/nss-3.103 ~amd64
+~net-libs/nodejs-22.4.1::clang-musl ~amd64
 
 app-text/tesseract ~amd64
 
@@ -39,5 +46,5 @@ app-text/tesseract ~amd64
 
 sys-kernel/gentoo-sources ~amd64
 
-dev-lang/rust::clang-musl ~amd64
-virtual/rust ~amd64
+# TEMP: needed to build with clang-18
+~app-text/doxygen-1.11.0
