@@ -1,0 +1,31 @@
+#!/usr/alt/bin/rc
+fn colourline {
+	for (c)	printf '\e[48;5;%dm%03d' $c $c
+	printf '\e[0m \n'
+}
+
+colourline `{seq 0 15}
+for (i in `{seq 0 5}) colourline `{seq `{expr $i '*' 36 + 16} `{expr $i '*' 36 + 51}}
+colourline `{seq 232 255}
+
+# Print the 16 configured terminal colors.
+
+printf '\n'
+printf '#  | ASCII | Name          | Base16\n'
+printf '---------------------------------------------\n'
+printf ' 0 |[0;40m 30 /  [0m| black         | base0  \n'
+printf ' 1 |[0;41m 31 /  [0m| red           | base8  \n'
+printf ' 2 |[0;42m 32 /  [0m| green         | base11 \n'
+printf ' 3 |[0;43m 33    [0m| yellow        | base10 \n'
+printf ' 4 |[0;44m 34    [0m| blue          | base13 \n'
+printf ' 5 |[0;45m 35    [0m| magenta       | base14 \n'
+printf ' 6 |[0;46m 36    [0m| cyan          | base12 \n'
+printf ' 7 |[2;47m 37    [0m| white         | base5  \n'
+printf ' 8 |[0;100m 90    [0m| brightblack   | base3  \n'
+printf ' 9 |[0;101m 91    [0m| brightred     | base9  \n'
+printf '10 |[0;102m 92    [0m| brightgreen   | base1  \n'
+printf '11 |[0;103m 93    [0m| brightyellow  | base2  \n'
+printf '12 |[0;104m 94    [0m| brightblue    | base4  \n'
+printf '13 |[0;105m 95    [0m| brightmagenta | base6  \n'
+printf '14 |[0;106m 96    [0m| brightcyan    | base15 \n'
+printf '15 |[2;107m 97    [0m| brightwhite   | base7  \n'
