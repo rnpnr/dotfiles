@@ -1,7 +1,7 @@
 local M = {}
 
 local lpeg_pattern
-local get_keywords = function(range_or_text)
+local get_keywords = function(win, range_or_text)
 	if not lpeg_pattern then
 		local lpeg = vis.lpeg
 		local keywords = M.keywords
@@ -22,7 +22,7 @@ local get_keywords = function(range_or_text)
 
 	local txt = range_or_text
 	if type(range_or_text) == 'table' then
-		txt = vis.win.file:content(range_or_text)
+		txt = win.file:content(range_or_text)
 	end
 
 	local kws = lpeg_pattern:match(txt)
@@ -39,26 +39,27 @@ end
 
 local last_data
 local last_modified_toks
-local wrap_lexer = function()
+local wrap_lexer = function(win)
 	if not M.keywords then return end
-	if not vis.win.syntax or not vis.lexers.load then return end
+	if not win.syntax or not vis.lexers.load then return end
 
-	local vlexer = vis.lexers.load(vis.win.syntax, nil, true)
+	local vlexer = vis.lexers.load(win.syntax, nil, true)
 	if not vlexer or not vlexer.lex then return end
 	local old_lex_func = vlexer.lex
 
 	-- Append new tags to lexer
 	for tag, style in pairs(M.keywords) do
-		if not vlexer._TAGS[tag] then
+		local tid = vlexer._TAGS[tag]
+		if not tid then
 			-- NOTE: _TAGS needs to be ordered and _TAGS[tag] needs
 			-- to equal the numerical table index of tag in _TAGS
 			-- why? ask the scintillua authors ¯\_(ツ)_/¯
 			table.insert(vlexer._TAGS, tag)
-			local tid = #vlexer._TAGS
+			tid = #vlexer._TAGS
 			vlexer._TAGS[tag] = tid
-			assert(tid < vis.win.STYLE_LEXER_MAX)
-			vis.win:style_define(tid, style)
+			assert(tid < win.STYLE_LEXER_MAX)
 		end
+		win:style_define(tid, style)
 	end
 
 	vlexer.lex = function(lexer, data, index)
@@ -66,7 +67,7 @@ local wrap_lexer = function()
 		local new_tokens = {}
 		local kwt
 		if last_data ~= data then
-			kwt = get_keywords(data)
+			kwt = get_keywords(win, data)
 			if not kwt then return tokens end
 			last_data = data
 		else
@@ -111,6 +112,6 @@ local wrap_lexer = function()
 	end
 end
 
-vis.events.subscribe(vis.events.WIN_OPEN, function() wrap_lexer() end)
+vis.events.subscribe(vis.events.WIN_OPEN, wrap_lexer)
 
 return M
