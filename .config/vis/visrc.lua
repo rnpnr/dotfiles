@@ -29,7 +29,7 @@ vis.ftdetect.filetypes.matlab.cmd = { "set tw 4" }
 vis.ftdetect.filetypes.haskell.cmd = { "set tw 4", "set expandtab true" }
 lint.fixers["haskell"] = { "hindent --indent-size 4 --sort-imports" }
 
-lint.fixers["python"] = {"black -l 80 -q -"}
+lint.fixers["python"] = {} -- {"black -l 80 -q -"}
 vis.ftdetect.filetypes.python.cmd = { "set tw 4", "set expandtab true" }
 
 vis.ftdetect.filetypes.yaml.cmd = { "set tw 2", "set expandtab true" }
@@ -59,7 +59,9 @@ vis.events.subscribe(vis.events.INIT, function()
 	end, "swap ui layout")
 
 	vis:map(m.NORMAL, " i", function()
+		local fn = vis.win.file.name
 		vis:message("syntax = " .. tostring(vis.win.syntax))
+		vis:message("file.name = " .. fn)
 	end, "dump info to message window")
 end)
 
@@ -76,25 +78,9 @@ vis:command_register("ag", function(argv)
 	gf.setup_iterators_from_text(outstr)
 end, "Search for each literal in argv with the_silver_searcher")
 
-local function adjust_layout(wclose)
-	local ui = vis.ui
-	local tw, nw = 0, wclose and -1 or 0
-	for w in vis:windows() do
-		tw = tw + w.width
-		nw = nw + 1
-	end
-	if ui.layout == ui.layouts.HORIZONTAL then
-		if vis.win.width > nw * mww then
-			ui.layout = ui.layouts.VERTICAL
-		end
-	elseif tw/nw < mww then
-		ui.layout = ui.layouts.HORIZONTAL
-	end
-end
-
 vis.events.subscribe(vis.events.WIN_OPEN, function(win)
 	win.options = {
-		colorcolumn = 80,
+		colorcolumn = 100,
 		relativenumbers = true,
 	}
 
@@ -104,8 +90,6 @@ vis.events.subscribe(vis.events.WIN_OPEN, function(win)
 	local fmt = cmd(fmtcmd:format(win.options.tabwidth))
 	win:map(m.NORMAL, "=", fmt)
 	win:map(m.VISUAL, "=", fmt)
-
-	adjust_layout(false)
 end)
 
 vis.events.subscribe(vis.events.WIN_CLOSE, function(win)
@@ -113,5 +97,4 @@ vis.events.subscribe(vis.events.WIN_CLOSE, function(win)
 	if e == '.tex' then
 		vis:command("!texclean " .. f .. e)
 	end
-	adjust_layout(true)
 end)
