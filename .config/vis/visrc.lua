@@ -10,10 +10,11 @@ local gf   = require('goto-ref')
 local util = require('util')
 local highlight = require('highlight')
 highlight.keywords = {
-	NOCOMMIT = 'fore:cyan,underlined,bold,blink',
-	FIXME    = 'fore:red,underlined,bold',
-	NOTE     = 'fore:green,underlined,bold',
-	TODO     = 'fore:magenta,underlined,bold',
+	NOCOMMIT  = 'fore:cyan,underlined,bold,blink',
+	FIXME     = 'fore:red,underlined,bold',
+	NOTE      = 'fore:green,underlined,bold',
+	TODO      = 'fore:magenta,underlined,bold',
+	IMPORTANT = 'fore:yellow,underlined,bold',
 }
 
 local mww = 72 -- Min Window Width
