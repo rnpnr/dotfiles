@@ -39,6 +39,7 @@ alias ll='ls -lh'
 alias mkdir='mkdir -p'
 alias mvi='mpv --profile=image'
 alias ncmpcpp='tput smkx && ncmpcpp'
+alias objdump='objdump --disassembler-color=on'
 
 # managing dotfiles
 alias rice='git --git-dir=~/.local/repos/dotfiles --work-tree=~'
