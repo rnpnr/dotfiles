@@ -17,7 +17,8 @@ M.generate_iterators = function(file_index_table)
 	local iterate = function(inc)
 		local file, line, col = table.unpack(file_index_table[current_index])
 		focus_file(file)
-		vis.win.selection:to(line, type(col) == 'number' and col or 1)
+		if type(col) == 'string' then col = tonumber(col) end
+		vis.win.selection:to(line, col and col or 1)
 		current_index = current_index + inc
 		if current_index > #file_index_table then
 			current_index = 1
