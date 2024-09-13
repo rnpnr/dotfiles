@@ -20,7 +20,7 @@ fn display_one {
 	# NOTE: covers disconnected too
 	all_screens=`{xrandr | grep 'connected'}
 	ifs=$oldifs
-	extra_args=`{printf '%s' $all_screens ^ $nl | grep -v $1 | awk '{print "--output", $1, "--off"}'}
+	extra_args=`{printf '%s' $all_screens ^ $nl | grep -v '^'$1 | awk '{print "--output", $1, "--off"}'}
 	xrandr --output $1 --primary --auto --scale 1.0x1.0 $extra_args
 }
 
