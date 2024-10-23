@@ -41,21 +41,10 @@ local function build_files(win)
 		err = vis:pipe(cmd .. f.name)
 		if err ~= 0 then return false end
 
-		-- check for FIXMEs
-		local pos = win.selection.pos
-		local info
-		vis:command("x/FIXME/")
-		-- pathological case: if cursor is on the end of a FIXME
-		if #win.selections and pos ~= win.selection.pos then
-			info = "FIXMEs: " .. tostring(#win.selections)
-		end
-		vis:feedkeys("<Escape><Escape>")
-		win.selection.pos = pos
-
 		-- reload pdf (zathura does this automatically)
 		-- vis:command('!pkill -HUP mupdf')
 
-		return true, info
+		return true
 	end
 
 	local build_python = function (f)
@@ -91,12 +80,25 @@ local function build_files(win)
 	end
 
 	win:map(vis.modes.NORMAL, " c", function ()
-			vis:command('X/.*/w')
-			local s = "built: " .. win.file.name
-			local ret, info = builder(win.file)
-			if info then s = s .. " | info: " .. info end
-			if ret == true then vis:info(s) end
-			return ret
-		end, "build file in current window")
+		vis:command('X/.*/w')
+		local s = "built: " .. win.file.name
+		local ret, info = builder(win.file)
+		if info then s = s .. " | info: " .. info end
+
+		-- check for FIXMEs/TODOs
+		local _, out = vis:pipe('ag --depth=0 --count "(FIXME|TODO)"')
+		if out then
+			local file_count_table = gf.generate_line_indices(out)
+			local count = 0
+			for i = 1, #file_count_table do
+				local file, occurences = table.unpack(file_count_table[i])
+				count = count + tonumber(occurences)
+			end
+			if count ~= 0 then s = s .. " | FIXME/TODOs: " .. tostring(count) end
+		end
+
+		if ret == true then vis:info(s) end
+		return ret
+	end, "build file in current window")
 end
 vis.events.subscribe(vis.events.WIN_OPEN, build_files)

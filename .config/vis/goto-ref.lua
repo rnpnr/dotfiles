@@ -38,7 +38,7 @@ M.generate_line_indices = function(data, filter)
 	for s in data:gmatch("[^\n]*") do
 		local skip = filter and filter(s)
 		if not skip then
-			local found, _, file, line, col = s:find('^([^:]+):([%d]+):([%d]*):?')
+			local found, _, file, line, col = s:find('^([^:]+):([%d]+):?([%d]*):?')
 			if found then table.insert(ret, {file, line, col}) end
 		end
 	end
