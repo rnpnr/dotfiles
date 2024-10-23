@@ -47,15 +47,15 @@ local function build_files(win)
 		return true
 	end
 
-	local build_python = function (f)
+	local run_python = function (f)
 		local _, ostr, estr = vis:pipe('python ' .. f.name)
 		logger(true, ostr, estr)
 		if estr then return false end
 		return true
 	end
 
-	local build_c = function (f)
-		local _, ostr, estr = vis:pipe('./build.sh')
+	local run_sh  = function (f)
+		local _, ostr, estr = vis:pipe("$PWD/" .. f.name)
 		logger(true, ostr, estr)
 		gf.setup_iterators_from_text(estr, function(str)
 			local result = str:find("^/usr/include") ~= nil
@@ -65,11 +65,14 @@ local function build_files(win)
 		return true
 	end
 
+	local build_c = function (f) return run_sh({name = 'build.sh'}) end
+
 	local lang       = {}
 	lang["ansi_c"]   = build_c
 	lang["cpp"]      = build_c
+	lang["bash"]     = run_sh
 	lang["latex"]    = build_tex
-	lang["python"]   = build_python
+	lang["python"]   = run_python
 
 	local builder = lang[win.syntax]
 	if builder == nil then
