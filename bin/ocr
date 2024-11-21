@@ -7,8 +7,6 @@
 # or the capture2text one here:
 # https://sourceforge.net/projects/capture2text/files/Dictionaries/Japanese.zip/download
 
-TESS_DATA="$HOME/.local/share/tesseract"
-
 usage()
 {
 	echo "usage: ocr [-l lang][-d dpi]"
@@ -28,6 +26,5 @@ dpi=${dpi:-96}
 
 sxot -g "$(selx)" |
 tesseract stdin stdout \
-	--dpi $dpi -l $lang \
-	--tessdata-dir "$TESS_DATA" |
+	--dpi $dpi -l $lang |
 xclip -sel clip
