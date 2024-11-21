@@ -5,4 +5,4 @@
 
 password=$(spm search . | cut -d '/' -f 5- | dmenu -i -p "Password:") || exit 0
 
-xdotool type --delay 0 $(spm show "$password" | head -1)
+xdotool type --clearmodifiers --delay 0 $(spm show "$password" | head -1)
