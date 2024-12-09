@@ -1,0 +1,10 @@
+#!/usr/alt/bin/rc
+
+# debugbreak: immediately break all processes attached to a debugger
+
+flag e +
+
+for (pid in `{ls /proc | grep '^[0-9]\+$'}) {
+	if (grep -q '^TracerPid:\s[^0]' /proc/$pid/status >[2]/dev/null)
+		kill -TRAP $pid
+}
