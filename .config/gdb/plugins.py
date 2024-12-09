@@ -7,8 +7,8 @@ class s8_printer(gdb.ValuePrinter):
 
     def to_string(self):
         len = self.val["len"]
-        str = self.val["data"].string(length=len)
-        return '{data = "%s", len = %s}' % (str, len)
+        str = self.val["data"].string(length=min(max(len, 0), 64))
+        return '{len = %d, data = "%s"}' % (len, str)
 
 
 def build_pretty_printer():
