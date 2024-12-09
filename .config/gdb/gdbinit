@@ -1,3 +1,12 @@
 tui new-layout hackerman {-horizontal regs 1 asm 1} 2 src 2 status 0 cmd 1
 
 source ~/.config/gdb/plugins.py
+
+set breakpoint pending on
+
+define hook-quit
+	set confirm off
+end
+define hook-kill
+	set confirm off
+end
