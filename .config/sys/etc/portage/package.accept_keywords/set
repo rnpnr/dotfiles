@@ -1,7 +1,6 @@
 */*::rnpnr **
 dev-build/samurai **
 dev-build/muon **
-media-sound/split2flac **
 net-misc/yt-dlp **
 x11-misc/dmenu **
 x11-terms/st-terminfo **
@@ -26,6 +25,7 @@ media-gfx/farbfeld ~amd64
 media-libs/libplacebo ~amd64
 media-sound/ncmpcpp ~amd64
 media-video/mpv ~amd64
+sys-process/nvtop ~amd64
 
 ~media-libs/glfw-3.4 ~amd64
 
@@ -36,15 +36,17 @@ media-gfx/renderdoc ~amd64
 media-video/obs-studio ~amd64
 
 www-client/firefox ~amd64
-~dev-libs/nss-3.103 ~amd64
-~net-libs/nodejs-22.4.1::clang-musl ~amd64
+~dev-libs/nss-3.107 ~amd64
 
 app-text/tesseract ~amd64
 
 # unfucky mpv
 ~dev-lang/luajit-2.1.0_beta3_p20220613 ~amd64
 
+sys-kernel/linux-headers ~amd64
 sys-kernel/gentoo-sources ~amd64
 
-# TEMP: needed to build with clang-18
-~app-text/doxygen-1.11.0
+# needed for portage installsources (who knows why it needs any extra packages)
+sys-libs/error-standalone ~amd64
+~sys-devel/dwz-0.15 ~amd64
+~dev-util/debugedit-5.1 ~amd64

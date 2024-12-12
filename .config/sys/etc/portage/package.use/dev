@@ -4,13 +4,14 @@ dev-lang/ghc ghcbootstrap -doc
 dev-lang/lua static
 dev-lang/luajit lua52compat
 dev-lang/python ncurses readline sqlite
-dev-lang/rust system-bootstrap system-llvm
+dev-lang/rust system-bootstrap system-llvm -llvm_targets_SPIRV
 dev-libs/boost nls
 dev-libs/elfutils -utils
-dev-libs/glib dbus
+dev-libs/glib dbus static-libs
 dev-libs/gmp pic static-libs
 dev-libs/json-c static-libs # cryptsetup
-dev-libs/libpcre2 jit
+dev-libs/libpcre2 jit static-libs
+dev-libs/libunibreak -man
 dev-libs/nss -nss-pem
 dev-libs/openssl static-libs # cryptsetup
 dev-libs/popt static-libs # cryptsetup

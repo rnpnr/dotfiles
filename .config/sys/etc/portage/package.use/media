@@ -1,6 +1,7 @@
 media-fonts/source-han-sans L10N: ja ko zh-TW
 media-fonts/source-pro cjk
 media-gfx/imagemagick svg tiff xml
+media-gfx/inkscape postscript
 media-gfx/renderdoc qt5
 media-libs/freetype harfbuzz
 media-libs/gegl cairo -ffmpeg

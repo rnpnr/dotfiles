@@ -1,1 +1,1 @@
-www-client/firefox clang hwaccel openh264 system-png -telemetry
+www-client/firefox clang hwaccel openh264 system-png -gmp-autoupdate -telemetry

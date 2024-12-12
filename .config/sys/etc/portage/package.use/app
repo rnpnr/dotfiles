@@ -5,12 +5,11 @@ app-alternatives/yacc byacc -bison
 app-arch/libarchive bzip2
 app-arch/zstd static-libs
 app-crypt/gcr gtk
-app-crypt/gnupg -ssl
 app-crypt/libsecret -vala -introspection
 app-crypt/mit-krb5 -keyutils -pkinit
 app-dicts/myspell-en l10n_en
 app-editors/vim -crypt -X # for running vis tests
-app-emulation/qemu -curl -doc -gtk -pin-upstream-blobs -usb -vnc
+app-emulation/qemu io-uring static-user -curl -doc -gtk -oss -pin-upstream-blobs -slirp -usb -vnc
 app-i18n/ibus gtk3
 app-i18n/kakasi l10n_ja
 app-shells/bash -net

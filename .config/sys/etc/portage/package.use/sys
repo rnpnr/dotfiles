@@ -11,6 +11,7 @@ sys-devel/binutils cxx static-libs
 sys-devel/clang-runtime sanitize
 sys-devel/gcc cxx fortran lto
 sys-firmware/ipxe -savedconfig
+sys-firmware/seabios -seavgabios
 sys-fs/btrfs-progs -man -convert
 sys-fs/cryptsetup openssl urandom static -argon2 -udev
 sys-fs/lvm2 static static-libs -udev # cryptsetup
