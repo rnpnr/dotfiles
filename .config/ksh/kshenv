@@ -10,6 +10,11 @@ export SFEED_URL_FILE=$HOME/.cache/sfeed/urls
 export EDITOR=/usr/alt/bin/vis
 export VISUAL=/usr/alt/bin/vis
 
+# setup default xdg dirs
+export XDG_CACHE_HOME=${HOME}/.cache
+export XDG_CONFIG_HOME=${HOME}/.config
+export XDG_DATA_HOME=${HOME}/.local/share
+
 # this is broken and doesn't work properly with netbsd-curses
 unset TERMINFO_DIRS
 

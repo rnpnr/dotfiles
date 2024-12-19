@@ -97,7 +97,6 @@ if [ -f /etc/gentoo-release ]; then
 	alias cc='cc -O3 -pipe -Wall -Werror -pedantic-errors -std=c99'
 	alias c++='c++ -O3 -pipe -Wall -Werror'
 	alias em='doas /usr/bin/emerge'
-	alias ifconfig='doas /bin/ifconfig'
 fi
 
 if [ -f /etc/arch-release ]; then
@@ -107,16 +106,13 @@ fi
 ###############
 # Completions #
 ###############
-if [ -f /etc/gentoo-release -o $UNAME == "OpenBSD" ]; then
-	set -A complete_ifconfig_1 -- $(ifconfig | sed -n '/^[a-z]/s,:.*,,p')
-fi
-
 if [ $UNAME == "OpenBSD" ]; then
 	PKG_LIST=$(ls /var/db/pkg)
 	set -A complete_pkg_delete -- $PKG_LIST
 	set -A complete_pkg_info -- $PKG_LIST
 
+	set -A complete_ifconfig_1 -- $(ifconfig | sed -n '/^[a-z]/s,:.*,,p')
 	set -A complete_mixerctl -- $(mixerctl | sed 's:=.*$::')
-	set -A complete_sysctl -- $(sysctl | sed 's:=.*$::')
 	set -A complete_rcctl_2 -- $(rcctl ls all)
+	set -A complete_sysctl -- $(sysctl | sed 's:=.*$::')
 fi
