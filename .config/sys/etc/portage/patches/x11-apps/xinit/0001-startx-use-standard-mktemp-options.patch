@@ -1,0 +1,25 @@
+From fb63fc5040b971c8f00fb5521adf89c9865787dd Mon Sep 17 00:00:00 2001
+From: Randy Palamar <randy@rnpnr.xyz>
+Date: Thu, 19 Dec 2024 21:52:53 -0700
+Subject: [PATCH] startx: use standard mktemp options
+
+---
+ startx.cpp | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/startx.cpp b/startx.cpp
+index 9f9ff00..6a6663b 100644
+--- a/startx.cpp
++++ b/startx.cpp
+@@ -261,7 +261,7 @@ if [ x"$enable_xauth" = x1 ] ; then
+     dummy=0
+ 
+     XCOMM create a file with auth information for the server. ':0' is a dummy.
+-    xserverauthfile=`mktemp --tmpdir serverauth.XXXXXXXXXX`
++    xserverauthfile="$(mktemp -t serverauth.XXXXXX)"
+     trap "rm -f '$xserverauthfile'" HUP INT QUIT ILL TRAP BUS TERM
+     xauth -q -f "$xserverauthfile" << EOF
+ add :$dummy . $mcookie
+-- 
+2.44.0
+
