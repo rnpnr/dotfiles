@@ -36,7 +36,9 @@ end
 
 local function build_files(win)
 	local build_tex = function (f)
+		-- luatex is very very slow on arm64
 		local cmd = "xelatex -halt-on-error -shell-escape "
+		--local cmd = "lualatex -halt-on-error -shell-escape "
 
 		-- build in draft mode to update references
 		local err, ostr = vis:pipe(cmd .. "-draftmode " .. f.name)
