@@ -32,7 +32,6 @@ sys-process/nvtop ~amd64 ~arm64
 # No stable version
 ~x11-misc/xidle-26052015 ~amd64 ~arm64
 
-media-gfx/renderdoc ~amd64 ~arm64
 media-video/obs-studio ~amd64 ~arm64
 
 www-client/firefox ~amd64 ~arm64
