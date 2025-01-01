@@ -1,0 +1,7 @@
+CC="gcc"
+CXX="g++"
+CPP="gcc -E"
+AR="ar"
+NM="nm"
+RANLIB="ranlib"
+READELF="readelf"

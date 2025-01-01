@@ -3,11 +3,11 @@ dev-debug/gdb -server
 dev-lang/ghc ghcbootstrap -doc
 dev-lang/lua static
 dev-lang/luajit lua52compat
-dev-lang/python ncurses readline sqlite
-dev-lang/rust system-bootstrap system-llvm -llvm_targets_SPIRV
+dev-lang/python ncurses readline sqlite -ensurepip
+dev-lang/rust system-bootstrap system-llvm -llvm_targets_*
 dev-libs/boost nls
 dev-libs/elfutils -utils
-dev-libs/glib dbus static-libs
+dev-libs/glib dbus introspection static-libs
 dev-libs/gmp pic static-libs
 dev-libs/json-c static-libs # cryptsetup
 dev-libs/libpcre2 jit static-libs
@@ -16,9 +16,10 @@ dev-libs/nss -nss-pem
 dev-libs/openssl static-libs # cryptsetup
 dev-libs/popt static-libs # cryptsetup
 dev-lua/ldoc lua_single_target_luajit
-dev-python/matplotlib latex
+dev-python/matplotlib latex gtk3
 dev-python/numpy -lapack
 dev-python/pillow tiff
+dev-python/pyqt5 widgets gui
 dev-qt/qtgui dbus egl ibus
 dev-qt/qtwebchannel qml
-dev-vcs/git -iconv -python -pcre -webdav
+dev-vcs/git -iconv -pcre -webdav

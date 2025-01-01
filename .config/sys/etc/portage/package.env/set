@@ -7,6 +7,8 @@ sys-apps/coreutils nobloat
 
 dev-lang/ghc nomold
 
+sys-libs/error-standalone pic
+
 sys-libs/musl debug installsources
 
 # misuses the linker
@@ -15,8 +17,5 @@ gui-libs/gtk nomold
 # possibly broken configure script
 #sys-firmware/seabios gcc useld
 
-# NOTE: gcc is garbage software that needs to build itself otherwise it will fail to bootstrap
-sys-devel/gcc gcc
-
-# NOTE: calls readelf directly with incorrect arguments
-sys-devel/dwz gcc
+# NOTE: incorrectly calls readelf to find the size of the platform's pointer
+sys-devel/dwz readelf

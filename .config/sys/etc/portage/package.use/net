@@ -1,8 +1,11 @@
 net-dns/unbound threads
+net-libs/libsoup -vala
 net-libs/mbedtls threads
 net-libs/ngtcp2 gnutls
 net-libs/nodejs icu system-icu -npm
 net-misc/curl ssh
+net-misc/modemmanager -mbim
+net-misc/networkmanager -gtk-doc -ppp -wext
 net-misc/openntpd constraints
 net-misc/yt-dlp man
 net-wireless/bluez readline extra-tools deprecated midi

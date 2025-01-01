@@ -7,7 +7,7 @@ sys-apps/shadow su -cracklib
 sys-apps/util-linux static-libs -su -suid -cramfs
 sys-apps/xdg-desktop-portal flatpak
 sys-boot/syslinux -efi
-sys-devel/binutils cxx static-libs
+sys-devel/binutils cxx gold static-libs
 sys-devel/clang-runtime sanitize
 sys-devel/gcc cxx fortran lto
 sys-firmware/ipxe -savedconfig

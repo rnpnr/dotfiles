@@ -1,3 +1,4 @@
+app-accessibility/at-spi2-core introspection
 app-alternatives/gzip pigz -reference
 app-alternatives/ninja samurai -reference
 app-alternatives/sh dash -bash
@@ -10,7 +11,7 @@ app-crypt/mit-krb5 -keyutils -pkinit
 app-dicts/myspell-en l10n_en
 app-editors/vim -crypt -X # for running vis tests
 app-emulation/qemu io-uring static-user -curl -doc -gtk -oss -pin-upstream-blobs -slirp -usb -vnc
-app-i18n/ibus gtk3
+app-i18n/ibus gtk3 introspection
 app-i18n/kakasi l10n_ja
 app-shells/bash -net
 app-shells/dash static

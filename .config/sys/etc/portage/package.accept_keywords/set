@@ -6,47 +6,57 @@ x11-misc/dmenu **
 x11-terms/st-terminfo **
 
 # what the h**k is the point of stable/unstable fonts
-media-fonts/* ~amd64
+media-fonts/* ~amd64 ~arm64
 
 # Haskell
-app-text/pandoc ~amd64
-app-text/pandoc-cli ~amd64
-virtual/pandoc ~amd64
-dev-haskell/* ~amd64
-dev-lang/ghc ~amd64
-dev-util/hindent ~amd64
-dev-util/shake ~amd64
-dev-util/shellcheck ~amd64
+app-text/pandoc ~amd64 ~arm64
+app-text/pandoc-cli ~amd64 ~arm64
+virtual/pandoc ~amd64 ~arm64
+dev-haskell/* ~amd64 ~arm64
+dev-lang/ghc ~amd64 ~arm64
+dev-util/hindent ~amd64 ~arm64
+dev-util/shake ~amd64 ~arm64
+dev-util/shellcheck ~amd64 ~arm64
 
 # Personally Unmasked
-app-misc/abduco ~amd64
-games-emulation/higan ~amd64
-media-gfx/farbfeld ~amd64
-media-libs/libplacebo ~amd64
-media-sound/ncmpcpp ~amd64
-media-video/mpv ~amd64
-sys-process/nvtop ~amd64
+app-misc/abduco ~amd64 ~arm64
+games-emulation/higan ~amd64 ~arm64
+media-gfx/farbfeld ~amd64 ~arm64
+media-libs/libplacebo ~amd64 ~arm64
+media-sound/ncmpcpp ~amd64 ~arm64
+media-video/mpv ~amd64 ~arm64
+sys-process/nvtop ~amd64 ~arm64
 
-~media-libs/glfw-3.4 ~amd64
+~media-libs/glfw-3.4 ~amd64 ~arm64
 
 # No stable version
-~x11-misc/xidle-26052015 ~amd64
+~x11-misc/xidle-26052015 ~amd64 ~arm64
 
-media-gfx/renderdoc ~amd64
-media-video/obs-studio ~amd64
+media-gfx/renderdoc ~amd64 ~arm64
+media-video/obs-studio ~amd64 ~arm64
 
-www-client/firefox ~amd64
-~dev-libs/nss-3.107 ~amd64
+www-client/firefox ~amd64 ~arm64
+~dev-libs/nss-3.107 ~amd64 ~arm64
 
-app-text/tesseract ~amd64
+app-text/tesseract ~amd64 ~arm64
 
 # unfucky mpv
-~dev-lang/luajit-2.1.0_beta3_p20220613 ~amd64
+~dev-lang/luajit-2.1.0_beta3_p20220613 ~amd64 ~arm64
 
-sys-kernel/linux-headers ~amd64
-sys-kernel/gentoo-sources ~amd64
+sys-kernel/linux-headers ~amd64 ~arm64
+sys-kernel/gentoo-sources ~amd64 ~arm64
 
 # needed for portage installsources (who knows why it needs any extra packages)
-sys-libs/error-standalone ~amd64
-~sys-devel/dwz-0.15 ~amd64
-~dev-util/debugedit-5.1 ~amd64
+sys-libs/error-standalone ~amd64 ~arm64
+~sys-devel/dwz-0.15 ~amd64 ~arm64
+~dev-util/debugedit-5.1 ~amd64 ~arm64
+
+# arm64 only
+sys-kernel/git-sources ~arm64
+~app-benchmarks/hyperfine-1.18.0 ~arm64
+~app-i18n/anthy-9100h ~arm64
+~dev-libs/mimalloc-2.1.7 ~arm64
+~dev-libs/miniz-3.0.2 ~arm64
+~media-gfx/inkscape-1.4 ~arm64
+~media-libs/x265-3.6 ~arm64
+~sys-devel/mold-2.35.1 ~arm64
