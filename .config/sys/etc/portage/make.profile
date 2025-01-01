@@ -1,1 +1,1 @@
-../../../../../../usr/portage/gentoo/profiles/default/linux/amd64/23.0/no-multilib
+/usr/portage/gentoo/profiles/default/linux/arm64/23.0/musl/llvm

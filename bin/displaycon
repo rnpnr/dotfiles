@@ -1,6 +1,6 @@
 #!/usr/alt/bin/rc
 
-disp=(DisplayPort-0 HDMI-A-0)
+disp=(DP-1 eDP-1)
 
 nl='
 '
