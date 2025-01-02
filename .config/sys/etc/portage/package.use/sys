@@ -8,7 +8,6 @@ sys-apps/util-linux static-libs -su -suid -cramfs
 sys-apps/xdg-desktop-portal flatpak
 sys-boot/syslinux -efi
 sys-devel/binutils cxx gold static-libs
-sys-devel/clang-runtime sanitize
 sys-devel/gcc cxx fortran lto
 sys-firmware/ipxe -savedconfig
 sys-firmware/seabios -seavgabios
@@ -21,6 +20,5 @@ sys-libs/binutils-libs static-libs
 sys-libs/ldb -python
 sys-libs/libunwind static-libs
 sys-libs/libxcrypt static-libs
-sys-libs/llvm-libunwind static-libs
 sys-libs/zlib minizip static-libs
 sys-process/procps ncurses

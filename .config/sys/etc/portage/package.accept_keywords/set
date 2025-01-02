@@ -39,8 +39,7 @@ www-client/firefox ~amd64 ~arm64
 
 app-text/tesseract ~amd64 ~arm64
 
-# unfucky mpv
-~dev-lang/luajit-2.1.0_beta3_p20220613 ~amd64 ~arm64
+~media-libs/mesa-24.3.2 ~amd64 ~arm64 # NOTE: for llvm-19 support
 
 sys-kernel/linux-headers ~amd64 ~arm64
 sys-kernel/gentoo-sources ~amd64 ~arm64

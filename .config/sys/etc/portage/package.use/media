@@ -5,6 +5,7 @@ media-gfx/inkscape postscript
 media-gfx/renderdoc qt5
 media-libs/freetype harfbuzz
 media-libs/gegl cairo -ffmpeg
+media-libs/gexiv2 introspection
 media-libs/harfbuzz icu introspection # needed for Tex
 media-libs/imlib2 -tiff
 media-libs/jbig2dec -png
