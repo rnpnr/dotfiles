@@ -8,8 +8,8 @@ vis.events.subscribe(vis.events.FILE_SAVE_PRE, function(file)
 			vis:message(str)
 		end
 	end
-	M.fixers["ansi_c"] = { "clang-format -fallback-style=none" }
 	M.fixers["bibtex"] = { "bibtidy" }
+	M.fixers["c"]      = { "clang-format -fallback-style=none" }
 	M.fixers["cpp"]    = { "clang-format -fallback-style=none" }
 	M.fixers["json"]   = { "jq --tab" }
 	return M.fix(file)
@@ -67,12 +67,12 @@ local function build_files(win)
 
 	local build_c = function (f) return run_sh({name = 'build.sh'}) end
 
-	local lang       = {}
-	lang["ansi_c"]   = build_c
-	lang["cpp"]      = build_c
-	lang["bash"]     = run_sh
-	lang["latex"]    = build_tex
-	lang["python"]   = run_python
+	local lang     = {}
+	lang["bash"]   = run_sh
+	lang["c"]      = build_c
+	lang["cpp"]    = build_c
+	lang["latex"]  = build_tex
+	lang["python"] = run_python
 
 	local builder = lang[win.syntax]
 	if builder == nil then
