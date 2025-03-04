@@ -1,21 +1,28 @@
-From 41ac532478fe95013ec2a2570aa49a7e7c787920 Mon Sep 17 00:00:00 2001
+From 18cd5579dc447a2b99c509403aed0b004b04db52 Mon Sep 17 00:00:00 2001
 From: Jules Maselbas <jmaselbas@zdiv.net>
 Date: Mon, 22 Jan 2024 17:55:21 +0100
 Subject: [PATCH 2/2] Rework injection and synchronisaion on linux
 
-for the record, modification to "fix" https://github.com/baldurk/renderdoc/issues/3228
 ---
- renderdoc/os/posix/linux/linux_hook.cpp    |   2 -
- renderdoc/os/posix/linux/linux_network.cpp |   5 +-
- renderdoc/os/posix/linux/linux_process.cpp | 500 +--------------------
- renderdoc/os/posix/posix_process.cpp       |   3 -
- 4 files changed, 12 insertions(+), 498 deletions(-)
+ renderdoc/os/posix/linux/linux_hook.cpp    |   3 -
+ renderdoc/os/posix/linux/linux_network.cpp |   6 +-
+ renderdoc/os/posix/linux/linux_process.cpp | 505 +--------------------
+ renderdoc/os/posix/posix_process.cpp       |   5 +-
+ 4 files changed, 13 insertions(+), 506 deletions(-)
 
 diff --git a/renderdoc/os/posix/linux/linux_hook.cpp b/renderdoc/os/posix/linux/linux_hook.cpp
-index 7138904d87..1a8ba65cb9 100644
+index 56ec173c1..99f16932e 100644
 --- a/renderdoc/os/posix/linux/linux_hook.cpp
 +++ b/renderdoc/os/posix/linux/linux_hook.cpp
-@@ -313,8 +313,6 @@ __attribute__((visibility("default"))) pid_t fork()
+@@ -103,7 +103,6 @@ void PreForkConfigureHooks();
+ void GetUnhookedEnvp(char *const *envp, rdcstr &envpStr, rdcarray<char *> &modifiedEnv);
+ void GetHookedEnvp(char *const *envp, rdcstr &envpStr, rdcarray<char *> &modifiedEnv);
+ void ResetHookingEnvVars();
+-void StopAtMainInChild();
+ bool StopChildAtMain(pid_t childPid, bool *exitWithNoExec);
+ void ResumeProcess(pid_t childPid, uint32_t delay = 0);
+ int direct_setenv(const char *name, const char *value, int overwrite);
+@@ -317,8 +316,6 @@ __attribute__((visibility("default"))) pid_t fork()
    {
      if(Linux_Debug_PtraceLogging())
        RDCLOG("hooked fork() in child %d", getpid());
@@ -25,18 +32,19 @@ index 7138904d87..1a8ba65cb9 100644
    else if(ret > 0)
    {
 diff --git a/renderdoc/os/posix/linux/linux_network.cpp b/renderdoc/os/posix/linux/linux_network.cpp
-index 4b67d3d18e..ba333db13f 100644
+index 8be1a19dd..382ce6bfb 100644
 --- a/renderdoc/os/posix/linux/linux_network.cpp
 +++ b/renderdoc/os/posix/linux/linux_network.cpp
-@@ -24,6 +24,7 @@
- 
+@@ -25,6 +25,8 @@
  #include "os/os_specific.h"
  #include "os/posix/posix_network.h"
-+void StopAtMainInChild();
  
++void StopAtMainInChild();
++
  namespace Network
  {
-@@ -39,6 +40,8 @@ uint32_t Socket::GetRemoteIP() const
+ void SocketPostSend()
+@@ -39,6 +41,8 @@ uint32_t Socket::GetRemoteIP() const
  
  Socket *CreateServerSocket(const rdcstr &bindaddr, uint16_t port, int queuesize)
  {
@@ -47,10 +55,10 @@ index 4b67d3d18e..ba333db13f 100644
  }
  };
 diff --git a/renderdoc/os/posix/linux/linux_process.cpp b/renderdoc/os/posix/linux/linux_process.cpp
-index 4130e9e8dc..0a5831b3a0 100644
+index aa9c7393c..db0fe9116 100644
 --- a/renderdoc/os/posix/linux/linux_process.cpp
 +++ b/renderdoc/os/posix/linux/linux_process.cpp
-@@ -164,506 +164,22 @@ int GetIdentPort(pid_t childPid)
+@@ -164,512 +164,21 @@ int GetIdentPort(pid_t childPid)
    return ret;
  }
  
@@ -200,7 +208,11 @@ index 4130e9e8dc..0a5831b3a0 100644
 -  // don't do this unless the ptrace scope is OK.
 -  if(!ptrace_scope_ok())
 -    return false;
--
++  int stat;
++  pid_t pid = waitpid(childPid, &stat, WUNTRACED);
++  return pid == childPid && WIFSTOPPED(stat);
++}
+ 
 -  if(Linux_Debug_PtraceLogging())
 -    RDCLOG("Stopping child PID %u at main", childPid);
 -
@@ -292,7 +304,13 @@ index 4130e9e8dc..0a5831b3a0 100644
 -    char line[512] = {0};
 -    if(fgets(line, 511, maps))
 -    {
--      if(strstr(line, "r-xp"))
+-      char *sp = strchr(line, ' ');
+-      if(sp == NULL)
+-        continue;
+-
+-      sp++;
+-
+-      if(!strncmp(sp, "r-xp", 4))
 -      {
 -        RDCCOMPILE_ASSERT(sizeof(long) == sizeof(void *), "Expected long to be pointer sized");
 -        int pathOffset = 0;
@@ -451,14 +469,12 @@ index 4130e9e8dc..0a5831b3a0 100644
 -
 -  // we'll resume after reading the ident port in the calling function
 -  return true;
-+  int stat;
-+  pid_t pid;
-+  pid = waitpid(childPid, &stat, WUNTRACED);
-+  return pid == childPid && WIFSTOPPED(stat);
++void ResumeProcess(pid_t childPid, uint32_t delay = 0)
++{
++  kill(childPid, SIGCONT);
  }
  
--void StopAtMainInChild()
-+void ResumeProcess(pid_t childPid, uint32_t delay = 0)
+ void StopAtMainInChild()
  {
 -  // don't do this unless the ptrace scope is OK.
 -  if(!ptrace_scope_ok())
@@ -473,16 +489,14 @@ index 4130e9e8dc..0a5831b3a0 100644
 -  if(Linux_Debug_PtraceLogging())
 -    RDCLOG("Done PTRACE_TRACEME, raising SIGSTOP");
 -
--  raise(SIGSTOP);
+   raise(SIGSTOP);
 -
 -  if(Linux_Debug_PtraceLogging())
 -    RDCLOG("Resumed after SIGSTOP");
-+  kill(childPid, SIGCONT);
- }
- 
+-}
+-
 -void ResumeProcess(pid_t childPid, uint32_t delaySeconds)
-+void StopAtMainInChild(void)
- {
+-{
 -  if(!ptrace_scope_ok())
 -    return;
 -
@@ -561,15 +575,23 @@ index 4130e9e8dc..0a5831b3a0 100644
 -    if(Linux_Debug_PtraceLogging())
 -      RDCLOG("Detached pid %u (%ld)", childPid, ret);
 -  }
-+  raise(SIGSTOP);
  }
  
  // because OSUtility::DebuggerPresent is called often we want it to be
 diff --git a/renderdoc/os/posix/posix_process.cpp b/renderdoc/os/posix/posix_process.cpp
-index 01cc81c8a9..a99d924ec0 100644
+index 1adefb0d8..488a171c8 100644
 --- a/renderdoc/os/posix/posix_process.cpp
 +++ b/renderdoc/os/posix/posix_process.cpp
-@@ -606,9 +606,6 @@ static pid_t RunProcess(rdcstr appName, rdcstr workDir, const rdcstr &cmdLine, c
+@@ -447,7 +447,7 @@ static void CleanupStringArray(char **arr)
+ 
+   while(*arr)
+   {
+-    delete[] * arr;
++    delete[] *arr;
+     arr++;
+   }
+ 
+@@ -608,9 +608,6 @@ static pid_t RunProcess(rdcstr appName, rdcstr workDir, const rdcstr &cmdLine, c
      childPid = fork();
      if(childPid == 0)
      {
@@ -579,3 +601,6 @@ index 01cc81c8a9..a99d924ec0 100644
        FileIO::ReleaseFDAfterFork();
        if(stdoutPipe)
        {
+-- 
+2.45.2
+

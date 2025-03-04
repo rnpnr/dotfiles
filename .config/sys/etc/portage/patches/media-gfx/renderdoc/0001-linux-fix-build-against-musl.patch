@@ -1,8 +1,20 @@
+From fa6fabb9c078dca6b67c7a4168f0e536812da225 Mon Sep 17 00:00:00 2001
+From: Randy Palamar <randy@rnpnr.xyz>
+Date: Tue, 4 Mar 2025 15:12:11 -0700
+Subject: [PATCH 1/2] linux: fix build against musl
+
+---
+ renderdoc/3rdparty/plthook/plthook_elf.c     | 6 +++++-
+ renderdoc/os/os_specific.h                   | 1 +
+ renderdoc/os/posix/linux/linux_callstack.cpp | 3 +--
+ renderdoc/os/posix/linux/linux_hook.cpp      | 4 ++++
+ 4 files changed, 11 insertions(+), 3 deletions(-)
+
 diff --git a/renderdoc/3rdparty/plthook/plthook_elf.c b/renderdoc/3rdparty/plthook/plthook_elf.c
-index 612f689d6..907e7f63e 100644
+index 6fc2ac6e3..3926ef6d0 100644
 --- a/renderdoc/3rdparty/plthook/plthook_elf.c
 +++ b/renderdoc/3rdparty/plthook/plthook_elf.c
-@@ -233,7 +233,11 @@ int plthook_open_by_address(plthook_t **plthook_out, void *address)
+@@ -236,7 +236,11 @@ int plthook_open_by_address(plthook_t **plthook_out, void *address)
      struct link_map *lmap = NULL;
  
      *plthook_out = NULL;
@@ -14,7 +26,7 @@ index 612f689d6..907e7f63e 100644
          set_errmsg("dladdr error");
          return PLTHOOK_FILE_NOT_FOUND;
      }
-@@ -243,7 +247,7 @@ int plthook_open_by_address(plthook_t **plthook_out, void *address)
+@@ -246,7 +250,7 @@ int plthook_open_by_address(plthook_t **plthook_out, void *address)
  
  static int plthook_open_executable(plthook_t **plthook_out)
  {
@@ -24,7 +36,7 @@ index 612f689d6..907e7f63e 100644
  #elif defined __sun
      const char *auxv_file = "/proc/self/auxv";
 diff --git a/renderdoc/os/os_specific.h b/renderdoc/os/os_specific.h
-index cc9a6b09e..844597450 100644
+index a11dec357..882c30e5a 100644
 --- a/renderdoc/os/os_specific.h
 +++ b/renderdoc/os/os_specific.h
 @@ -31,6 +31,7 @@
@@ -35,8 +47,29 @@ index cc9a6b09e..844597450 100644
  #include <stdarg.h>
  #include <stddef.h>
  #include <stdint.h>
+diff --git a/renderdoc/os/posix/linux/linux_callstack.cpp b/renderdoc/os/posix/linux/linux_callstack.cpp
+index e6151a7e5..a70648684 100644
+--- a/renderdoc/os/posix/linux/linux_callstack.cpp
++++ b/renderdoc/os/posix/linux/linux_callstack.cpp
+@@ -27,7 +27,6 @@
+ #define _GNU_SOURCE
+ #endif
+ 
+-#include <execinfo.h>
+ #include <link.h>
+ #include <stdio.h>
+ #include <string.h>
+@@ -66,7 +65,7 @@ private:
+   {
+     void *addrs_ptr[ARRAY_COUNT(addrs)];
+ 
+-    int ret = backtrace(addrs_ptr, ARRAY_COUNT(addrs));
++    int ret = 0;
+ 
+     numLevels = 0;
+     if(ret > 0)
 diff --git a/renderdoc/os/posix/linux/linux_hook.cpp b/renderdoc/os/posix/linux/linux_hook.cpp
-index 4989e2865..0acb3ac0b 100644
+index 6e6a781a8..56ec173c1 100644
 --- a/renderdoc/os/posix/linux/linux_hook.cpp
 +++ b/renderdoc/os/posix/linux/linux_hook.cpp
 @@ -36,6 +36,10 @@
@@ -50,3 +83,6 @@ index 4989e2865..0acb3ac0b 100644
  Threading::CriticalSection libLock;
  
  RDOC_EXTERN_CONFIG(bool, Linux_Debug_PtraceLogging);
+-- 
+2.45.2
+
