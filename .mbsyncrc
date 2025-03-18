@@ -1,5 +1,7 @@
 IMAPStore rnpnr-remote
 Host mail.rnpnr.xyz
+Port 993
+TLSType IMAPS
 User randy
 PassCmd "spm show randy@rnpnr.xyz | head -1"
 

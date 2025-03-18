@@ -1,6 +1,7 @@
 defaults
 port 587
 tls on
+tls_starttls on
 
 account rnpnr.xyz
 host mail.rnpnr.xyz
