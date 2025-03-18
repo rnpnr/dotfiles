@@ -58,9 +58,7 @@ local function build_files(win)
 		local _, ostr, estr = vis:pipe("$PWD/" .. f.name)
 		logger(true, ostr, estr)
 		gf.setup_iterators_from_text(estr, function(str)
-			local result = str:find("^/usr/include") ~= nil
-			result = result or str:find("^In file included")
-			return result
+			return not str:find(": error:") and not str:find(": warning:")
 		end)
 		return true
 	end
