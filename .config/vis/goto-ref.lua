@@ -1,7 +1,7 @@
 local M = {}
 
-local focus_file = function(name)
-	local realpath = io.popen("realpath " .. name):read("*a"):sub(1, -2)
+local focus_or_open = function(file)
+	local realpath = io.popen("realpath " .. file):read("*a"):sub(1, -2)
 	for win in vis:windows() do
 		if win.file and win.file.path == realpath then
 			vis.win = win
@@ -11,14 +11,19 @@ local focus_file = function(name)
 	vis:command(":o " .. realpath)
 end
 
+M.focus_file_at = function(file, line, col)
+	if file then
+		focus_or_open(file)
+		vis.mode = vis.modes.NORMAL
+		vis.win.selection:to(line and line or 1, col and col or 1)
+	end
+end
+
 M.generate_iterators = function(file_index_table)
 	local current_index = 1;
 
 	local iterate = function(inc)
-		local file, line, col = table.unpack(file_index_table[current_index])
-		focus_file(file)
-		if type(col) == 'string' then col = tonumber(col) end
-		vis.win.selection:to(line, col and col or 1)
+		M.focus_file_at(table.unpack(file_index_table[current_index]))
 		current_index = current_index + inc
 		if current_index > #file_index_table then
 			current_index = 1

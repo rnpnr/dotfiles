@@ -64,6 +64,14 @@ vis.events.subscribe(vis.events.INIT, function()
 		vis:message("syntax = " .. tostring(vis.win.syntax))
 		vis:message("file.name = " .. fn)
 	end, "dump info to message window")
+
+	vis:map(m.VISUAL, "gf", function()
+		local sel   = vis.win.selection
+		local data  = vis.win.file:content(sel.range)
+		local pairs = gf.generate_line_indices(data)
+		vis.mode = vis.modes.NORMAL
+		if pairs then gf.focus_file_at(table.unpack(pairs[1])) end
+	end, 'Goto selected "file:line:[col:]"')
 end)
 
 vis:command_register("ag", function(argv)
