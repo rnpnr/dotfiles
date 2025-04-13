@@ -7,8 +7,6 @@ sys-apps/coreutils nobloat
 
 dev-lang/ghc nomold
 
-sys-libs/error-standalone pic
-
 sys-libs/musl debug installsources
 
 # misuses the linker
@@ -16,6 +14,9 @@ gui-libs/gtk nomold
 
 # possibly broken configure script
 #sys-firmware/seabios gcc useld
+
+# NOTE: somehow this can't compile itself after being compiled with clang
+sys-devel/gcc gcc
 
 # NOTE: incorrectly calls readelf to find the size of the platform's pointer
 sys-devel/dwz readelf

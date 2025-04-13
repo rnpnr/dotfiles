@@ -30,6 +30,8 @@ dev-lua/ldoc
 dev-lua/lpeg
 dev-lua/luacheck
 dev-python/eyed3
+dev-python/matplotlib
+dev-python/pandas
 dev-tex/biber
 dev-texlive/texlive-publishers
 dev-util/cloc
@@ -49,11 +51,12 @@ media-gfx/mypaint
 media-gfx/pdf2svg
 media-gfx/renderdoc
 media-libs/glfw
+media-libs/opencv
 media-sound/mpc
 media-sound/mpd
 media-sound/ncmpcpp
+media-sound/ncpamixer
 media-sound/opustags
-media-sound/pavucontrol
 media-sound/vorbis-tools
 media-video/ffmpeg
 media-video/mkvtoolnix
@@ -68,6 +71,7 @@ net-p2p/transmission-remote-gtk
 net-wireless/wpa_supplicant
 sys-apps/flatpak
 sys-apps/man-pages
+sys-apps/xdg-desktop-portal-gtk
 sys-devel/mold
 sys-fs/cryptsetup
 sys-fs/ntfs3g
@@ -95,4 +99,5 @@ x11-misc/xdotool
 x11-misc/xidle
 x11-terms/st
 x11-terms/st-terminfo
+x11-themes/gtk-engines-murrine
 x11-wm/dwm

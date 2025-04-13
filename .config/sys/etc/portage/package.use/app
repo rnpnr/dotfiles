@@ -24,4 +24,5 @@ app-text/tessdata_fast l10n_ja
 app-text/tesseract float32 tiff
 app-text/texlive graphics luatex science l10n_ja -X
 app-text/texlive-core xetex
+app-text/zathura -man # (man) requires sphinx
 app-text/zathura-pdf-mupdf -javascript

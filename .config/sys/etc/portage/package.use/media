@@ -17,6 +17,7 @@ media-libs/libpng apng
 media-libs/libsdl2 gles2 ibus dbus
 media-libs/libvpx postproc
 media-libs/mesa libglvnd gles1 gles2 osmesa
+media-libs/opencv python qt6 tiff -eigen
 media-sound/alsa-utils ncurses
 media-sound/lame -frontend
 media-sound/mpd fifo -mad -curl -icu -network -audiofile
