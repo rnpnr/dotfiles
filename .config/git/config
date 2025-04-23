@@ -8,6 +8,8 @@
 	d  = diff
 	ds = diff --staged
 	s  = status -s
+	rc  = rebase --continue
+	cpc = cherry-pick --continue
 [commit]
 	gpgsign = true
 [tag]
