@@ -87,6 +87,11 @@ vis:command_register("ag", function(argv)
 	gf.setup_iterators_from_text(outstr)
 end, "Search for each literal in argv with the_silver_searcher")
 
+vis:command_register("cp", function(argv)
+	local text = vis.win.file:content(vis.win.selection.range)
+	vis:pipe(text, "vis-clipboard --copy")
+end, "Copy Selection to Clipboard")
+
 vis.events.subscribe(vis.events.WIN_OPEN, function(win)
 	win.options = {
 		colorcolumn = 100,
