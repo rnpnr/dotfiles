@@ -23,6 +23,11 @@ local logger = function(clear, ostr, estr)
 	vis:message(string.rep("=", vis.win.viewport.width / 2))
 end
 
+local file_exists = function(file)
+	local f = io.open(file, "r")
+	if f ~= nil then io.close(f) return true else return false end
+end
+
 local function build_files(win)
 	local build_tex = function (f)
 		local cmd = "xelatex -halt-on-error -shell-escape "
@@ -63,7 +68,20 @@ local function build_files(win)
 		return true
 	end
 
-	local build_c = function (f) return run_sh({name = 'build.sh'}) end
+	local build_c = function (f)
+		local cmd
+		if cmd == nil and file_exists('./build')    then cmd = '$PWD/build --debug' end
+		if cmd == nil and file_exists('./build.sh') then cmd = '$PWD/build.sh'      end
+		if cmd == nil and file_exists('Makefile')   then cmd = 'make'               end
+		if not cmd then return false, 'failed to determine method to build' end
+
+		local _, _, estr = vis:pipe(cmd)
+		logger(true, nil, estr)
+		gf.setup_iterators_from_text(estr, function(str)
+			return not str:find(": error:") and not str:find(": warning:")
+		end)
+		return true
+	end
 
 	local lang     = {}
 	lang["bash"]   = run_sh
@@ -71,6 +89,7 @@ local function build_files(win)
 	lang["cpp"]    = build_c
 	lang["latex"]  = build_tex
 	lang["python"] = run_python
+	lang["rc"]     = run_sh
 
 	local builder = lang[win.syntax]
 	if builder == nil then
