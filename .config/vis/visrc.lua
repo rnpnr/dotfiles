@@ -92,6 +92,12 @@ vis:command_register("cp", function(argv)
 	vis:pipe(text, "vis-clipboard --copy")
 end, "Copy Selection to Clipboard")
 
+local extra_word_lists = {}
+extra_word_lists['c'] = {
+	keyword = {'alignof', 'countof', 'force_inline', 'function', 'global', 'local_persist', 'read_only', 'typeof'},
+	-- type = {'Arena', 'str8', ...},
+}
+
 vis.events.subscribe(vis.events.WIN_OPEN, function(win)
 	win.options = {
 		colorcolumn = 100,
@@ -104,6 +110,15 @@ vis.events.subscribe(vis.events.WIN_OPEN, function(win)
 	local fmt = cmd(fmtcmd:format(win.options.tabwidth))
 	win:map(m.NORMAL, "=", fmt)
 	win:map(m.VISUAL, "=", fmt)
+
+	if vis.lexers.load and win.syntax and extra_word_lists[win.syntax] then
+		local lexer = vis.lexers.load(win.syntax, nil, true)
+		if lexer then
+			for key, word_list in pairs(extra_word_lists[win.syntax]) do
+				lexer:set_word_list(key, word_list, true)
+			end
+		end
+	end
 end)
 
 vis.events.subscribe(vis.events.WIN_CLOSE, function(win)
