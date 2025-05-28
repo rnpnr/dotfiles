@@ -21,7 +21,7 @@ unread()
 for arg; do
 	. $configdir/${arg}.sh
 	[ -d "$sfeedpath" ] || continue
-	list=$(printf "%s\n" "$(unread "$sfeedpath/*")" "$list")
+	list=$(printf "%s\n" "$(unread "${sfeedpath}/*" | sed 's/^/'${arg}': /')" "${list}")
 done
 
 url=$(echo "$list" | dmenu -i -l 15 | cut -f 3)
