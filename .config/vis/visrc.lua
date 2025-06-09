@@ -94,7 +94,8 @@ end, "Copy Selection to Clipboard")
 
 local extra_word_lists = {}
 extra_word_lists['c'] = {
-	keyword = {'alignof', 'countof', 'force_inline', 'function', 'global', 'local_persist', 'read_only', 'typeof'},
+	keyword = {'alignof', 'countof', 'force_inline', 'function', 'global', 'local_persist',
+	           'no_return', 'read_only', 'typeof'},
 	-- type = {'Arena', 'str8', ...},
 }
 
