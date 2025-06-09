@@ -31,5 +31,4 @@
 [advice]
 	skippedCherryPicks = false
 [core]
-	excludesfile = ~/.config/git/ignore
 	hooksPath    = ~/.config/git/hooks
