@@ -83,13 +83,14 @@ local function build_files(win)
 		return true
 	end
 
-	local lang     = {}
-	lang["bash"]   = run_sh
-	lang["c"]      = build_c
-	lang["cpp"]    = build_c
-	lang["latex"]  = build_tex
-	lang["python"] = run_python
-	lang["rc"]     = run_sh
+	local lang = {
+		bash   = run_sh,
+		c      = build_c,
+		cpp    = build_c,
+		latex  = build_tex,
+		python = run_python,
+		rc     = run_sh,
+	}
 
 	local builder = lang[win.syntax]
 	if builder == nil then
