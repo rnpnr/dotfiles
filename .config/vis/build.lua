@@ -28,6 +28,12 @@ local file_exists = function(file)
 	if f ~= nil then io.close(f) return true else return false end
 end
 
+local default_error_search = function(error_string)
+	gf.setup_iterators_from_text(error_string, function(str)
+		return not str:find(": error:") and not str:find(": warning:")
+	end)
+end
+
 local function build_files(win)
 	local build_tex = function (f)
 		local cmd = "xelatex -halt-on-error -shell-escape "
@@ -62,9 +68,7 @@ local function build_files(win)
 	local run_sh  = function (f)
 		local _, ostr, estr = vis:pipe("$PWD/" .. f.name)
 		logger(true, ostr, estr)
-		gf.setup_iterators_from_text(estr, function(str)
-			return not str:find(": error:") and not str:find(": warning:")
-		end)
+		default_error_search(estr)
 		return true
 	end
 
@@ -77,9 +81,7 @@ local function build_files(win)
 
 		local _, _, estr = vis:pipe(cmd)
 		logger(true, nil, estr)
-		gf.setup_iterators_from_text(estr, function(str)
-			return not str:find(": error:") and not str:find(": warning:")
-		end)
+		default_error_search(estr)
 		return true
 	end
 
@@ -122,4 +124,20 @@ local function build_files(win)
 		return ret
 	end, "build file in current window")
 end
+
+local cached_command
+vis:command_register("build", function(argv)
+	if #argv == 0 and cached_command == nil then vis:info("build cmd [arg ...]") return false end
+	if #argv ~= 0 then cached_command = table.concat(argv, " ") end
+
+	vis:command('X/.*/w')
+	vis:info("running: " .. cached_command)
+	vis:redraw()
+	local code, ostr, estr = vis:pipe(cached_command)
+	if code ~= 0 then
+		logger(true, ostr, estr)
+		default_error_search(estr)
+	end
+end, "run command and try to collect errors")
+
 vis.events.subscribe(vis.events.WIN_OPEN, build_files)
