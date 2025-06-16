@@ -17,7 +17,7 @@ app-shells/bash -net
 app-shells/dash static
 app-text/hunspell l10n_en
 app-text/mandoc system-man
-app-text/mupdf -opengl -curl -javascript -ssl
+app-text/mupdf jpeg2k -opengl -javascript -ssl
 app-text/pandoc-cli -server -lua
 app-text/poppler cairo
 app-text/tessdata_fast l10n_ja

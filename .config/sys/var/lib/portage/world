@@ -25,7 +25,6 @@ dev-build/muon
 dev-debug/gdb
 dev-lang/go
 dev-libs/libcdio-paranoia
-dev-libs/libtermkey
 dev-lua/ldoc
 dev-lua/lpeg
 dev-lua/luacheck
@@ -59,7 +58,6 @@ media-sound/ncpamixer
 media-sound/opustags
 media-sound/vorbis-tools
 media-video/ffmpeg
-media-video/mkvtoolnix
 media-video/mpv
 media-video/obs-studio
 net-mail/isync

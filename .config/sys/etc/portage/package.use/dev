@@ -23,4 +23,5 @@ dev-python/pyqt5 widgets gui
 dev-python/urllib3 -zstd # relies on broken zstandard python package
 dev-qt/qtgui dbus egl ibus
 dev-qt/qtwebchannel qml
+dev-util/perf -slang -python
 dev-vcs/git -iconv -pcre -webdav

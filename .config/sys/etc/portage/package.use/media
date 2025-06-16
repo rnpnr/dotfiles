@@ -20,10 +20,10 @@ media-libs/mesa libglvnd gles1 gles2 osmesa
 media-libs/opencv python qt6 tiff -eigen
 media-sound/alsa-utils ncurses
 media-sound/lame -frontend
-media-sound/mpd fifo -mad -curl -icu -network -audiofile
+media-sound/mpd fifo -mad -curl -icu -network -audiofile -mpg123
 media-sound/ncmpcpp visualizer taglib outputs
 media-sound/vorbis-tools -ogg123
-media-video/ffmpeg openssl libplacebo libdrm libass mp3 x264 x265 -hardcoded-tables
+media-video/ffmpeg openssl libplacebo libdrm libass mp3 x264 x265 shaderc -hardcoded-tables
 media-video/mpv cli drm gbm lua -jpeg -uchardet -vaapi -pulseaudio
 media-video/obs-studio v4l
 media-video/pipewire extra sound-server flatpak pipewire-alsa -X

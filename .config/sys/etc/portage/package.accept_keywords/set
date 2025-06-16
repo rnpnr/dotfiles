@@ -33,6 +33,7 @@ sys-process/nvtop ~amd64 ~arm64
 media-video/obs-studio ~amd64 ~arm64
 
 www-client/firefox ~amd64 ~arm64
+~dev-lang/rust-1.87.0 ~arm64
 ~dev-libs/nss-3.110 ~amd64 ~arm64
 
 app-text/tesseract ~amd64 ~arm64
@@ -48,11 +49,11 @@ sys-libs/error-standalone ~amd64 ~arm64
 # arm64 only
 sys-kernel/git-sources ~arm64
 ~app-benchmarks/hyperfine-1.18.0 ~arm64
-~app-text/zathura-0.5.8 ~arm64
-~dev-util/cloc-2.00 ~arm64
 ~app-i18n/anthy-9100h ~arm64
+~app-text/zathura-0.5.8 ~arm64
 ~dev-libs/mimalloc-2.1.7 ~arm64
 ~dev-libs/miniz-3.0.2 ~arm64
+~dev-util/cloc-2.00 ~arm64
 ~media-gfx/inkscape-1.4 ~arm64
 ~media-libs/glfw-3.4 ~arm64
 ~sys-devel/mold-2.37.1 ~arm64
@@ -60,3 +61,4 @@ sys-kernel/git-sources ~arm64
 ~dev-libs/girara-0.4.4 ~arm64 # zathura
 ~dev-perl/Parallel-ForkManager-2.20.0 ~arm64 # cloc
 ~media-libs/rnnoise-0.4.1_p20210122 ~arm64 # obs
+~net-libs/mbedtls-3.6.3.1 ~arm64 # obs
