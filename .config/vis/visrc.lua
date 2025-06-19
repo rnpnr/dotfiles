@@ -17,21 +17,23 @@ highlight.keywords = {
 	IMPORTANT = 'fore:yellow,underlined,bold',
 }
 
-local mww = 72 -- Min Window Width
+local tabwidth = 2
+
+local function min(a, b) if a < b then return a else return b end end
 
 -- detect matlab with %.m not objective_c
 vis.ftdetect.filetypes.matlab = { ext = { "%.m$" } }
 assert(table.remove(vis.ftdetect.filetypes.objective_c.ext, 1) == "%.m$")
 
 -- use smaller tabs for heavily nested matlab classes and latex
-vis.ftdetect.filetypes.latex.cmd  = { "set tw 4" }
-vis.ftdetect.filetypes.matlab.cmd = { "set tw 4" }
+vis.ftdetect.filetypes.latex.cmd  = {"set tw " .. tostring(min(tabwidth, 4))}
+vis.ftdetect.filetypes.matlab.cmd = {"set tw " .. tostring(min(tabwidth, 4))}
 
 vis.ftdetect.filetypes.haskell.cmd = { "set tw 4", "set expandtab true" }
 lint.fixers["haskell"] = { "hindent --indent-size 4 --sort-imports" }
 
 lint.fixers["python"] = {} -- {"black -l 80 -q -"}
-vis.ftdetect.filetypes.python.cmd = { "set tw 4", "set expandtab true" }
+vis.ftdetect.filetypes.python.cmd = {"set tw " .. tostring(min(tabwidth, 4))}
 
 vis.ftdetect.filetypes.yaml.cmd = { "set tw 2", "set expandtab true" }
 
@@ -103,6 +105,7 @@ vis.events.subscribe(vis.events.WIN_OPEN, function(win)
 	win.options = {
 		colorcolumn = 100,
 		relativenumbers = true,
+		tabwidth = tabwidth,
 	}
 
 	local m, cmd = vis.modes, util.command
