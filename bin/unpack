@@ -13,7 +13,7 @@ run()
 	command -v "$1" >/dev/null 2>&1 ||
 		die "unpack: missing program: $1"
 
-	"$@" >/dev/null || die "unpack: failed to extract"
+	"$@" 2>/dev/null || die "unpack: failed to extract"
 }
 
 case "$#" in
