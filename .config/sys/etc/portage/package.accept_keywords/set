@@ -33,13 +33,12 @@ sys-process/nvtop ~amd64 ~arm64
 media-video/obs-studio ~amd64 ~arm64
 
 www-client/firefox ~amd64 ~arm64
-~dev-libs/nss-3.113 ~amd64 ~arm64
+~dev-libs/nss-3.116 ~amd64 ~arm64
 
 app-text/tesseract ~amd64 ~arm64
 
 sys-kernel/linux-headers ~amd64 ~arm64
 sys-kernel/gentoo-sources ~amd64 ~arm64
-
 
 # arm64 only
 sys-kernel/git-sources ~arm64

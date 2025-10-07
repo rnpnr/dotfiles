@@ -1,5 +1,6 @@
 media-fonts/source-han-sans L10N: ja ko zh-TW
 media-fonts/source-pro cjk
+media-gfx/graphviz svg -cairo -X
 media-gfx/imagemagick svg tiff xml
 media-gfx/inkscape postscript
 media-gfx/renderdoc qt5
@@ -7,7 +8,7 @@ media-libs/freetype harfbuzz
 media-libs/gegl cairo -ffmpeg
 media-libs/gexiv2 introspection
 media-libs/harfbuzz icu introspection # needed for Tex
-media-libs/imlib2 -tiff
+media-libs/imlib2 -tiff -tools
 media-libs/jbig2dec -png
 media-libs/leptonica tiff # for tesseract tiff support
 media-libs/libcanberra gtk3
@@ -16,7 +17,6 @@ media-libs/libogg static-libs
 media-libs/libpng apng
 media-libs/libsdl2 gles2 ibus dbus
 media-libs/libvpx postproc
-media-libs/mesa libglvnd gles1 gles2 osmesa
 media-libs/opencv python qt6 tiff -eigen
 media-sound/alsa-utils ncurses
 media-sound/lame -frontend
