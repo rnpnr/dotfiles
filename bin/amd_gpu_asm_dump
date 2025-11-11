@@ -1,0 +1,20 @@
+#!/bin/sh
+
+# dump AMD shader disassembly when using mesa
+
+usage()
+{
+	echo "usage: $(basename $0) kind outfile program [args ...]"
+	echo "  kind:    cs|ps|vs|gs|tcs|tes|task|mesh (comma separated)"
+	echo "  outfile: output. will be overwritten"
+	exit 1
+}
+
+[ ${#} -lt 3 ] && usage
+
+kind=${1}
+out=${2}
+
+shift 2
+
+RADV_DEBUG=asm,${kind} AMD_DEBUG=asm,${kind} MESA_SHADER_CACHE_DISABLE=true $@ 2>| ${out}
