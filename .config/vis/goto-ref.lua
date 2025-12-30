@@ -51,6 +51,8 @@ M.generate_line_indices = function(data, filter)
 end
 
 M.setup_iterators_from_text = function(text, filter)
+	vis:unmap(vis.modes.NORMAL, "gn")
+	vis:unmap(vis.modes.NORMAL, "gp")
 	if text == nil or #text == 0 then return end
 	local filepairs = M.generate_line_indices(text, filter)
 	if #filepairs then
