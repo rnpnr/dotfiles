@@ -37,6 +37,32 @@ vis.ftdetect.filetypes.python.cmd = {"set tw " .. tostring(min(tabwidth, 4))}
 
 vis.ftdetect.filetypes.yaml.cmd = { "set tw 2", "set expandtab true" }
 
+local ag = function(argv)
+	util.message_clear(vis)
+	local outstr = ""
+	for _, arg in ipairs(argv) do
+		local _, out = vis:pipe("ag -Q --column " .. arg)
+		if out then
+			vis:message(out)
+			outstr = outstr .. out
+		end
+	end
+	gf.setup_iterators_from_text(outstr)
+end
+
+local file_search = function(goto_ref)
+	local sel  = vis.win.selection
+	local data = vis.win.file:content(sel.range)
+	vis.mode   = vis.modes.NORMAL
+
+	if goto_ref then
+		local pairs = gf.generate_line_indices(data)
+		if pairs and pairs[1] then gf.focus_file_at(table.unpack(pairs[1])) end
+	else
+		ag({data})
+	end
+end
+
 vis.events.subscribe(vis.events.INIT, function()
 	vis:command("set theme term")
 
@@ -64,29 +90,15 @@ vis.events.subscribe(vis.events.INIT, function()
 	vis:map(m.NORMAL, " i", function()
 		local fn = vis.win.file.name
 		vis:message("syntax = " .. tostring(vis.win.syntax))
-		vis:message("file.name = " .. fn)
+		vis:message("file.name = " .. (fn and fn or "nil"))
 	end, "dump info to message window")
 
-	vis:map(m.VISUAL, "gf", function()
-		local sel   = vis.win.selection
-		local data  = vis.win.file:content(sel.range)
-		local pairs = gf.generate_line_indices(data)
-		vis.mode = vis.modes.NORMAL
-		if pairs then gf.focus_file_at(table.unpack(pairs[1])) end
-	end, 'Goto selected "file:line:[col:]"')
+	vis:map(m.VISUAL, "gf", function() file_search(true)  end, 'Goto selected "file:line:[col:]"')
+	vis:map(m.VISUAL, "gr", function() file_search(false) end, 'Generate references for selected')
 end)
 
 vis:command_register("ag", function(argv)
-	util.message_clear(vis)
-	local outstr = ""
-	for _, arg in ipairs(argv) do
-		local _, out = vis:pipe("ag -Q --column " .. arg)
-		if out then
-			vis:message(out)
-			outstr = outstr .. out
-		end
-	end
-	gf.setup_iterators_from_text(outstr)
+	ag(argv)
 end, "Search for each literal in argv with the_silver_searcher")
 
 vis:command_register("cp", function(argv)
@@ -97,7 +109,7 @@ end, "Copy Selection to Clipboard")
 local extra_word_lists = {}
 extra_word_lists['c'] = {
 	keyword = {'alignof', 'countof', 'force_inline', 'function', 'global', 'local_persist',
-	           'no_return', 'read_only', 'typeof'},
+	           'thread_static', 'no_return', 'read_only', 'typeof'},
 	-- type = {'Arena', 'str8', ...},
 }
 
