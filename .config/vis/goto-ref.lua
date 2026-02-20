@@ -20,17 +20,17 @@ M.focus_file_at = function(file, line, col)
 end
 
 M.generate_iterators = function(file_index_table)
-	local current_index = 1;
-
+	local current_index
 	local iterate = function(inc)
+		if current_index == nil then
+			if inc < 0 then current_index = ( inc      % #file_index_table) + 1
+			else            current_index = ((inc - 1) % #file_index_table) + 1 end
+		else
+			current_index = current_index + inc
+			current_index = ((current_index - 1) % #file_index_table) + 1
+		end
+
 		M.focus_file_at(table.unpack(file_index_table[current_index]))
-		current_index = current_index + inc
-		if current_index > #file_index_table then
-			current_index = 1
-		end
-		if current_index < 1 then
-			current_index = #file_index_table
-		end
 	end
 
 	local forward  = function() iterate(1)  end
