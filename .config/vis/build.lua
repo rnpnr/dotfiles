@@ -30,7 +30,10 @@ end
 
 local default_error_search = function(error_string)
 	gf.setup_iterators_from_text(error_string, function(str)
-		return not str:find(" error:") and not str:find(": warning:")
+		return str:find(" error:")    or
+		       str:find(": note:")    or
+		       str:find(": warning:")
+
 	end)
 end
 

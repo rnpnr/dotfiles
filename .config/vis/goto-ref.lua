@@ -38,11 +38,11 @@ M.generate_iterators = function(file_index_table)
 	return forward, backward
 end
 
-M.generate_line_indices = function(data, filter)
+M.generate_line_indices = function(data, include)
 	local ret = {}
 	for s in data:gmatch("[^\n]*") do
-		local skip = filter and filter(s)
-		if not skip then
+		local keep = not include or include(s)
+		if keep then
 			local found, _, file, line, col = s:find('^([^:]+):([%d]+):?([%d]*):?')
 			if found then table.insert(ret, {file, line, col}) end
 		end
@@ -50,11 +50,11 @@ M.generate_line_indices = function(data, filter)
 	return ret
 end
 
-M.setup_iterators_from_text = function(text, filter)
+M.setup_iterators_from_text = function(text, include)
 	vis:unmap(vis.modes.NORMAL, "gn")
 	vis:unmap(vis.modes.NORMAL, "gp")
-	if text == nil or #text == 0 then return end
-	local filepairs = M.generate_line_indices(text, filter)
+	if not text or #text == 0 then return end
+	local filepairs = M.generate_line_indices(text, include)
 	if #filepairs then
 		local forward, backward = M.generate_iterators(filepairs)
 		vis:map(vis.modes.NORMAL, "gn", forward)
