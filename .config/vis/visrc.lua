@@ -22,20 +22,9 @@ local tabwidth = 2
 local function min(a, b) if a < b then return a else return b end end
 
 -- detect matlab with %.m not objective_c
-vis.ftdetect.filetypes.matlab = { ext = { "%.m$" } }
-assert(table.remove(vis.ftdetect.filetypes.objective_c.ext, 1) == "%.m$")
+vis.ftdetect.extensions.m = "matlab"
 
--- use smaller tabs for heavily nested matlab classes and latex
-vis.ftdetect.filetypes.latex.cmd  = {"set tw " .. tostring(min(tabwidth, 4))}
-vis.ftdetect.filetypes.matlab.cmd = {"set tw " .. tostring(min(tabwidth, 4))}
-
-vis.ftdetect.filetypes.haskell.cmd = { "set tw 4", "set expandtab true" }
-lint.fixers["haskell"] = { "hindent --indent-size 4 --sort-imports" }
-
-lint.fixers["python"] = {} -- {"black -l 80 -q -"}
-vis.ftdetect.filetypes.python.cmd = {"set tw " .. tostring(min(tabwidth, 4))}
-
-vis.ftdetect.filetypes.yaml.cmd = { "set tw 2", "set expandtab true" }
+lint.fixers.python = {}
 
 local ag = function(argv)
 	util.message_clear(vis)
@@ -108,8 +97,24 @@ end, "Copy Selection to Clipboard")
 
 local extra_word_lists = {}
 extra_word_lists['c'] = {
-	keyword = {'alignof', 'countof', 'force_inline', 'function', 'global', 'local_persist',
-	           'thread_static', 'no_return', 'read_only', 'typeof'},
+	keyword = {
+		'alignof',
+		'assert',
+		'assume',
+		'countof',
+		'debugbreak',
+		'force_inline',
+		'function',
+		'global',
+		'likely',
+		'local_persist',
+		'no_return',
+		'read_only',
+		'static_assert',
+		'thread_static',
+		'typeof',
+		'unlikely',
+	},
 	-- type = {'Arena', 'str8', ...},
 }
 
