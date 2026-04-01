@@ -17,4 +17,7 @@ out=${2}
 
 shift 2
 
-RADV_DEBUG=asm,${kind} AMD_DEBUG=asm,${kind} MESA_SHADER_CACHE_DISABLE=true $@ 2>| ${out}
+# radv: shaders,info
+RADV_DEBUG=asm,shaderstats,${kind},${RADV_DEBUG} \
+AMD_DEBUG=asm,${kind},${AMD_DEBUG} \
+MESA_SHADER_CACHE_DISABLE=true $@ 2>| ${out}
