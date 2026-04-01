@@ -1,4 +1,11 @@
+import gdb
 import gdb.printing
+
+def fuck_you_gdb(s, member, default):
+	try:
+		return s[member]
+	except:
+		return default
 
 class Arena_printer(gdb.ValuePrinter):
     def __init__(self, val):
@@ -19,13 +26,15 @@ class Stream_printer(gdb.ValuePrinter):
         return '{len = %d, data = "%s"}' % (len, str)
 
 class str8_printer(gdb.ValuePrinter):
-    def __init__(self, val):
-        self.val = val
+	def __init__(self, val):
+		self.val = val
+	def to_string(self):
+		len = fuck_you_gdb(self.val, "len", 0);
+		if len == 0:
+			len = fuck_you_gdb(self.val, "length", 0)
+		str = self.val["data"].string(length=min(max(len, 0) 64))
 
-    def to_string(self):
-        len = self.val["len"]
-        str = self.val["data"].string(length=min(max(len, 0), 64))
-        return '{len = %d, data = "%s"}' % (len, str)
+		return '{length = %d, data = "%s"}' % (len, str)
 
 def build_pretty_printer():
     pp = gdb.printing.RegexpCollectionPrettyPrinter("rnpnr")

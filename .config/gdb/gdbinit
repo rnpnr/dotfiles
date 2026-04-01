@@ -4,6 +4,8 @@ source ~/.config/gdb/plugins.py
 
 set breakpoint pending on
 
+set disassembly-flavor intel
+
 define hook-quit
 	set confirm off
 end
