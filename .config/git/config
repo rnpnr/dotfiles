@@ -1,15 +1,6 @@
 [user]
 	email = randy@rnpnr.xyz
 	name = Randy Palamar
-[alias]
-	ca = commit --amend
-	cm = commit -m
-	cv = commit -v
-	d  = diff
-	ds = diff --staged
-	s  = status -s
-	rc  = rebase --continue
-	cpc = cherry-pick --continue
 [commit]
 	gpgsign = true
 [tag]
@@ -26,7 +17,6 @@
 [init]
 	defaultBranch = master
 [safe]
-	directory = /usr/portage/local
 	directory = /usr/alt
 [advice]
 	skippedCherryPicks = false
