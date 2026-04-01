@@ -1,6 +1,6 @@
 dev-db/sqlite secure-delete
 dev-debug/gdb -server
-dev-lang/ghc -ghcbootstrap -doc
+dev-lang/ghc llvm -ghcbootstrap -doc
 dev-lang/lua static
 dev-lang/luajit lua52compat
 dev-lang/python ncurses readline sqlite tk #-ensurepip
@@ -15,13 +15,14 @@ dev-libs/libunibreak -man
 dev-libs/nss -nss-pem
 dev-libs/openssl static-libs # cryptsetup
 dev-libs/popt static-libs # cryptsetup
-dev-lua/ldoc lua_single_target_luajit
+dev-lua/ldoc lua_single_target_luajit -lua_single_target_lua5-3
 dev-python/matplotlib latex tk
 dev-python/numpy -lapack
-dev-python/pillow tiff
+dev-python/pillow tiff -truetype
 dev-python/pyqt5 widgets gui
 dev-python/urllib3 -zstd # relies on broken zstandard python package
 dev-qt/qtgui dbus egl ibus
 dev-qt/qtwebchannel qml
 dev-util/perf -slang -python
+dev-util/vulkan-tools cube
 dev-vcs/git -iconv -pcre -webdav

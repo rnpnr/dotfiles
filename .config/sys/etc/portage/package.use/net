@@ -2,7 +2,7 @@ net-dns/unbound threads
 net-libs/libsoup -vala
 net-libs/mbedtls threads
 net-libs/ngtcp2 gnutls
-net-libs/nodejs icu system-icu -npm
+net-libs/nodejs npm icu system-icu -inspector
 net-misc/curl ssh
 net-misc/modemmanager -mbim
 net-misc/networkmanager iwd -gtk-doc -ppp -wext

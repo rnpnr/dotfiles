@@ -9,8 +9,9 @@ app-crypt/gcr gtk
 app-crypt/libsecret -vala -introspection
 app-crypt/mit-krb5 -keyutils -pkinit
 app-dicts/myspell-en l10n_en
+app-eselect/eselect-wine -xdg
 app-editors/vim -crypt -X # for running vis tests
-app-emulation/qemu io-uring static-user -curl -doc -gtk -oss -pin-upstream-blobs -slirp -usb -vnc
+app-emulation/qemu io-uring static-user sdl slirp virgl -curl -doc -oss -pin-upstream-blobs -vnc
 app-i18n/ibus gtk3 introspection
 app-i18n/kakasi l10n_ja
 app-shells/bash -net
@@ -26,3 +27,5 @@ app-text/texlive graphics luatex science l10n_ja -X
 app-text/texlive-core xetex
 app-text/zathura -man # (man) requires sphinx
 app-text/zathura-pdf-mupdf -javascript
+
+app-emulation/wine-vanilla -mingw -gecko -gstreamer -sdl

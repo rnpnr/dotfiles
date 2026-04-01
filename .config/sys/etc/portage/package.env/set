@@ -17,6 +17,10 @@ gui-libs/gtk nomold
 
 # NOTE: somehow this can't compile itself after being compiled with clang
 sys-devel/gcc gcc
+sys-libs/glibc gcc nomold
 
 # NOTE: incorrectly calls readelf to find the size of the platform's pointer
 sys-devel/dwz readelf
+
+# NOTE: this sets some default build wrappers for cross-compiling but mold only supports native
+app-emulation/wine-vanilla nomold

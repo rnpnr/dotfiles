@@ -18,22 +18,38 @@ dev-util/hindent ~amd64 ~arm64
 dev-util/shake ~amd64 ~arm64
 dev-util/shellcheck ~amd64 ~arm64
 
+dev-util/glslang ~amd64
+dev-util/spirv-headers ~amd64
+dev-util/spirv-tools ~amd64
+dev-util/vulkan-headers ~amd64
+dev-util/vulkan-tools ~amd64
+dev-util/vulkan-utility-libraries ~amd64
+media-libs/vulkan-layers ~amd64
+media-libs/vulkan-loader ~amd64
+
 # Personally Unmasked
 app-misc/abduco ~amd64 ~arm64
 games-emulation/higan ~amd64 ~arm64
 media-gfx/farbfeld ~amd64 ~arm64
 media-libs/libplacebo ~amd64 ~arm64
+media-libs/mesa ~amd64 ~arm64
 media-sound/ncmpcpp ~amd64 ~arm64
 media-video/mpv ~amd64 ~arm64
 sys-process/nvtop ~amd64 ~arm64
+
+app-emulation/wine-vanilla ~amd64
 
 # No stable version
 ~x11-misc/xidle-26052015 ~amd64 ~arm64
 
 media-video/obs-studio ~amd64 ~arm64
 
+~media-gfx/krita-6.0.0_beta1 ~amd64
+
 www-client/firefox ~amd64 ~arm64
-~dev-libs/nss-3.116 ~amd64 ~arm64
+www-client/firefox-l10n ~amd64 ~arm64
+~dev-libs/nss-3.121 ~amd64 ~arm64
+~dev-libs/nspr-4.38.2 ~amd64 ~arm64
 
 app-text/tesseract ~amd64 ~arm64
 

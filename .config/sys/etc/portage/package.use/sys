@@ -1,8 +1,7 @@
 sys-apps/attr static-libs
 sys-apps/groff -X
 sys-apps/hwids udev
-sys-apps/openrc sysv-utils -netifrc
-sys-apps/portage -rsync-verify
+sys-apps/openrc sysv-utils -netifrc -sysvinit
 sys-apps/shadow su -cracklib
 sys-apps/util-linux static-libs -su -suid -cramfs
 sys-apps/xdg-desktop-portal flatpak
@@ -11,12 +10,15 @@ sys-devel/binutils cxx gold static-libs
 sys-devel/gcc cxx fortran lto
 sys-firmware/ipxe -savedconfig
 sys-firmware/seabios -seavgabios
+sys-fs/android-file-transfer-linux fuse
 sys-fs/btrfs-progs -man -convert
 sys-fs/cryptsetup openssl urandom static -argon2 -udev
+sys-fs/fuse io-uring
 sys-fs/lvm2 static static-libs -udev # cryptsetup
 sys-kernel/gentoo-sources symlink experimental
 sys-kernel/installkernel -dracut
 sys-libs/binutils-libs static-libs
+sys-libs/glibc -multiarch -clang
 sys-libs/ldb -python
 sys-libs/libunwind static-libs
 sys-libs/libxcrypt static-libs

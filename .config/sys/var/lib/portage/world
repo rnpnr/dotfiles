@@ -37,6 +37,7 @@ dev-util/cloc
 dev-util/debugedit
 dev-util/perf
 dev-util/vulkan-tools
+media-fonts/cm-unicode
 media-fonts/dejavu
 media-fonts/liberation-fonts
 media-fonts/mikachan-font-ttf
@@ -44,7 +45,6 @@ media-fonts/shinonome
 media-fonts/source-han-sans
 media-fonts/source-sans
 media-fonts/source-serif
-media-gfx/gimp
 media-gfx/imagemagick
 media-gfx/inkscape
 media-gfx/mypaint
@@ -72,9 +72,9 @@ sys-apps/flatpak
 sys-apps/man-pages
 sys-apps/xdg-desktop-portal-gtk
 sys-devel/mold
+sys-fs/android-file-transfer-linux
 sys-fs/cryptsetup
 sys-fs/ntfs3g
-sys-fs/simple-mtpfs
 sys-kernel/gentoo-sources
 sys-kernel/installkernel
 sys-kernel/linux-firmware
