@@ -32,7 +32,7 @@ class str8_printer(gdb.ValuePrinter):
 		len = fuck_you_gdb(self.val, "len", 0);
 		if len == 0:
 			len = fuck_you_gdb(self.val, "length", 0)
-		str = self.val["data"].string(length=min(max(len, 0) 64))
+		str = self.val["data"].string(length=min(max(len, 0), 64))
 
 		return '{length = %d, data = "%s"}' % (len, str)
 
