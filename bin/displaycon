@@ -24,11 +24,31 @@ fn display_one {
 	xrandr --output $1 --primary --auto --scale 1.0x1.0 $extra_args
 }
 
+fn display_duplicate {
+	ifs=' '
+	primary=`{printf '%s' $connected ^ $nl | dmenu -i -l $#dmenu_args -p 'Optimize for:'}
+	secondary=`{printf '%s' $connected ^ $nl | grep -v '^'$primary(1)}
+	ifs=$oldifs
+
+	ifs='x'
+	primary_resolution=`{xrandr -q | sed -n '/^'$primary(1) ^ '/{n;p}' | awk '{printf $1}'}
+	secondary_resolution=`{xrandr -q | sed -n '/^'$secondary(1) ^ '/{n;p}' | awk '{printf $1}'}
+	ifs=$oldifs
+
+	scale_x=`{echo $primary_resolution(1)' / '$secondary_resolution(1) | bc -l}
+	scale_y=`{echo $primary_resolution(2)' / '$secondary_resolution(2) | bc -l}
+
+	echo $scale_x^'x'^$scale_y
+	xrandr --output $primary(1) --auto --scale 1.0x1.0 --primary
+	xrandr --output $secondary(1) --same-as $primary(1) --auto --scale $scale_x'x'^$scale_y
+}
+
 dmenu_args=(                                \
 'DLL: Display Left of with Left Rotation'   \
 'DLN: Display Left of with Normal Rotation' \
 'DBN: Display Below with Normal Rotation'   \
 'ONE: Primary Display Only'                 \
+'DUP: Duplicate Display'                    \
 )
 
 switch ($#connected) {
@@ -49,6 +69,8 @@ case *
 		display_location_orientation 'below'    'normal'
 	case ONE
 		display_one $disp(1)
+	case DUP
+		display_duplicate
 	}
 }
 
