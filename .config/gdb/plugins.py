@@ -42,6 +42,10 @@ def build_pretty_printer():
     pp.add_printer("str8",   "str8",   str8_printer)
     pp.add_printer("Arena",  "Arena",  Arena_printer)
     pp.add_printer("Stream", "Stream", Stream_printer)
+
+    # ODIN Types
+    pp.add_printer("string", "string", str8_printer)
+
     return pp
 
 gdb.printing.register_pretty_printer(
