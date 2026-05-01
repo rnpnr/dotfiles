@@ -22,7 +22,10 @@ local tabwidth = 2
 local function min(a, b) if a < b then return a else return b end end
 
 -- detect matlab with %.m not objective_c
-vis.ftdetect.extensions.m = "matlab"
+vis.ftdetect.extensions.m     = "matlab"
+
+vis.ftdetect.extensions.odin  = "c"
+vis.ftdetect.extensions.slang = "cpp"
 
 lint.fixers.python = {}
 
