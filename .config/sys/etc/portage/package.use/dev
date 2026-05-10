@@ -4,7 +4,7 @@ dev-lang/ghc llvm -ghcbootstrap -doc
 dev-lang/lua static
 dev-lang/luajit lua52compat
 dev-lang/python ncurses readline sqlite tk #-ensurepip
-dev-lang/rust system-bootstrap system-llvm -llvm_targets_*
+dev-lang/rust system-bootstrap system-llvm
 dev-libs/boost nls
 dev-libs/elfutils -utils
 dev-libs/glib dbus introspection static-libs
