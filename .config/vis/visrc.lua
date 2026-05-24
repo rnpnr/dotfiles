@@ -58,7 +58,10 @@ end
 vis.events.subscribe(vis.events.INIT, function()
 	vis:command("set theme term")
 
-	vis.options = { autoindent = true }
+	vis.options = {
+		autoindent = true,
+		escdelay   = 1,
+	}
 
 	local m, cmd = vis.modes, util.command
 	vis:map(m.NORMAL, " f", "v$:|furigana<Enter><Escape>")
@@ -123,9 +126,10 @@ extra_word_lists['c'] = {
 
 vis.events.subscribe(vis.events.WIN_OPEN, function(win)
 	win.options = {
-		colorcolumn = 100,
+		colorcolumn     = 100,
 		relativenumbers = true,
-		tabwidth = tabwidth,
+		numberwidth     = 6,
+		tabwidth        = tabwidth,
 	}
 
 	local m, cmd = vis.modes, util.command
