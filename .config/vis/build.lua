@@ -16,131 +16,178 @@ vis.events.subscribe(vis.events.FILE_SAVE_PRE, function(file)
 end)
 
 local logger = function(clear, ostr, estr)
-	if ostr == nil and estr == nil then return end
+	if (ostr == nil or #ostr == 0) and (estr == nil or #estr == 0) then return end
 	if clear then util.message_clear(vis) end
-	if ostr  then vis:message(ostr)       end
-	if estr  then vis:message(estr)       end
+	if ostr and #ostr ~= 0 then vis:message(ostr) end
+	if estr and #estr ~= 0 then vis:message(estr) end
 	vis:message(string.rep("=", vis.win.viewport.width / 2))
 end
 
 local file_exists = function(file)
 	local f = io.open(file, "r")
-	if f ~= nil then io.close(f) return true else return false end
+	local result = f ~= nil
+	if result then io.close(f) end
+	return result
 end
 
-local default_error_search = function(error_string)
+local standard_error_search = function(error_string)
 	gf.setup_iterators_from_text(error_string, function(str)
 		return str:find(" error:")    or
 		       str:find(": note:")    or
 		       str:find(": warning:")
-
 	end)
 end
 
-local function build_files(win)
-	local build_tex = function (f)
-		local cmd = "lualatex -halt-on-error -shell-escape "
+local build_c_cmd = function()
+	local cmd
+	if cmd == nil and file_exists('./build')    then cmd = '$PWD/build --debug' end
+	if cmd == nil and file_exists('./build.sh') then cmd = '$PWD/build.sh'      end
+	if cmd == nil and file_exists('Makefile')   then cmd = 'make'               end
+	return cmd
+end
 
-		-- build in draft mode to update references
-		local err, ostr = vis:pipe(cmd .. "-draftmode " .. f.name)
-		if err ~= 0 then logger(true, ostr) return false end
+local build_c_response = function(code, out_string, error_string)
+	logger(true, nil, error_string)
+	standard_error_search(error_string)
+	return true
+end
 
-		local fp = util.splitext(f.name)
-		-- update refrences
-		vis:command("!biber " .. fp .. " >/dev/null")
-		-- update glossary
-		-- vis:command("!makeglossaries " .. fp .. " >/dev/null")
+local build_tex = function(file)
+	local cmd = "lualatex -halt-on-error -shell-escape "
 
-		-- build actual pdf
-		err = vis:pipe(cmd .. f.name)
-		if err ~= 0 then return false end
+	-- build in draft mode to update references
+	local err, ostr = vis:pipe(cmd .. "-draftmode " .. file.name)
+	if err ~= 0 then logger(true, ostr) return false end
 
-		-- reload pdf (zathura does this automatically)
-		-- vis:command('!pkill -HUP mupdf')
+	local fp = util.splitext(file.name)
+	-- update refrences
+	vis:command("!biber " .. fp .. " >/dev/null")
+	-- update nomenclature
+	-- vis:command("!makeindex " .. fp .. ".nlo -s nomencl.ist -o " .. fp .. ".nls >/dev/null")
+	-- update glossary
+	-- vis:command("!makeglossaries " .. fp .. " >/dev/null")
 
-		return true
+	-- build actual pdf
+	err = vis:pipe(cmd .. file.name)
+	if err ~= 0 then return false end
+
+	-- reload pdf (zathura does this automatically)
+	-- vis:command('!pkill -HUP mupdf')
+
+	return true
+end
+
+local run_python_cmd = function(file) return 'python ' .. file.name end
+local run_python_response = function(code, out_string, error_string)
+	logger(true, out_string, error_string)
+	if error_string ~= '' then return false end
+	return true
+end
+
+local run_sh_cmd = function(file) return "$PWD/" .. file.name end
+local run_sh_response = function(code, out_string, error_string)
+	logger(true, out_string, error_string)
+	standard_error_search(error_string)
+	return true
+end
+
+local current_build_id = 0
+local current_build
+vis:command_register("build_kill", function()
+	current_build = nil
+end, "kill currently running build")
+
+vis.events.subscribe(vis.events.PROCESS_RESPONSE, function(name, event, code, message)
+	if not current_build or current_build.name ~= name then
+		return
 	end
 
-	local run_python = function (f)
-		local _, ostr, estr = vis:pipe('python ' .. f.name)
-		logger(true, ostr, estr)
-		if estr then return false end
-		return true
+	if event == "STDOUT" then
+		current_build.out = current_build.out .. message
 	end
 
-	local run_sh  = function (f)
-		local _, ostr, estr = vis:pipe("$PWD/" .. f.name)
-		logger(true, ostr, estr)
-		default_error_search(estr)
-		return true
+	if event == "STDERR" then
+		current_build.error = current_build.error .. message
 	end
 
-	local build_c = function (f)
-		local cmd
-		if cmd == nil and file_exists('./build')    then cmd = '$PWD/build --debug' end
-		if cmd == nil and file_exists('./build.sh') then cmd = '$PWD/build.sh'      end
-		if cmd == nil and file_exists('Makefile')   then cmd = 'make'               end
-		if not cmd then return false, 'failed to determine method to build' end
+	if event == "EXIT" or event == "SIGNAL" then
+		local build = current_build
+		current_build = nil
 
-		local _, _, estr = vis:pipe(cmd)
-		logger(true, nil, estr)
-		default_error_search(estr)
-		return true
+		local result, info = build.response(code, build.out, build.error)
+		local s = "build: completed (" .. code .. ")"
+		if info then s = s .. " | info: " .. info end
+		if result == true then vis:info(s) end
+	end
+end)
+
+local launch_command = function(command, response_handler)
+	if current_build then
+		vis:info("build already running; :build_kill to kill")
+		return false
 	end
 
+	vis:command('X/.*/w')
+	local name = 'build{' .. current_build_id .. '}'
+	current_build_id = current_build_id + 1
+	local build_fd = vis:communicate(name, command)
+	current_build = {name = name, fd = build_fd, out = '', error = '', response = response_handler}
+	vis:info("build: starting: ".. command)
+end
+
+vis.events.subscribe(vis.events.WIN_OPEN, function(win)
 	local lang = {
-		bash   = run_sh,
-		c      = build_c,
-		cpp    = build_c,
+		bash   = {command = run_sh_cmd,     response = run_sh_response    },
+		rc     = {command = run_sh_cmd,     response = run_sh_response    },
+		c      = {command = build_c_cmd,    response = build_c_response   },
+		cpp    = {command = build_c_cmd,    response = build_c_response   },
+		python = {command = run_python_cmd, response = run_python_response},
 		latex  = build_tex,
-		python = run_python,
-		rc     = run_sh,
 	}
 
 	local builder = lang[win.syntax]
-	if builder == nil then
-		builder = function ()
-			vis:info(win.syntax .. ': filetype not supported')
-			return false
+	local binding, command
+	if builder ~= nil and type(builder) == 'function' then
+		binding = function() builder(win.file) end
+	elseif builder ~= nil then
+		if builder ~= nil then command = builder.command(win.file) end
+		if command == nil then
+			binding = function() vis:info("build: missing command for filetype: " .. win.syntax) end
+		else
+			binding = function() launch_command(command, builder.response) end
 		end
 	end
-
-	win:map(vis.modes.NORMAL, " c", function ()
-		vis:command('X/.*/w')
-		local s = "built: " .. win.file.name
-		local ret, info = builder(win.file)
-		if info then s = s .. " | info: " .. info end
-
-		-- check for FIXMEs/TODOs
-		local _, out = vis:pipe('ag --depth=0 --count "(FIXME|TODO)"')
-		if out then
-			local file_count_table = gf.generate_line_indices(out)
-			local count = 0
-			for i = 1, #file_count_table do
-				local file, occurences = table.unpack(file_count_table[i])
-				count = count + tonumber(occurences)
-			end
-			if count ~= 0 then s = s .. " | FIXME/TODOs: " .. tostring(count) end
-		end
-
-		if ret == true then vis:info(s) end
-		return ret
-	end, "build file in current window")
-end
+	win:map(vis.modes.NORMAL, " c", binding, "build file in current window")
+end)
 
 local cached_command
 vis:command_register("build", function(argv)
 	if #argv == 0 and cached_command == nil then vis:info("build cmd [arg ...]") return false end
-	if #argv ~= 0 then cached_command = table.concat(argv, " ") end
 
-	vis:command('X/.*/w')
-	vis:info("running: " .. cached_command)
-	vis:redraw()
-	local code, ostr, estr = vis:pipe(cached_command)
-	if code ~= 0 then
-		logger(true, ostr, estr)
-		default_error_search(estr)
-	end
+	if #argv ~= 0 then cached_command = table.concat(argv, " ") end
+	launch_command(cached_command, function(code, out_string, error_string)
+		if code ~= 0 then
+			logger(true, ostr, estr)
+			standard_error_search(estr)
+		end
+		return true
+	end)
 end, "run command and try to collect errors")
 
-vis.events.subscribe(vis.events.WIN_OPEN, build_files)
+vis:command_register("todo", function()
+	local _, out = vis:pipe('ag --depth=0 --count "(FIXME|TODO)"')
+	local count = 0
+	if out then
+		local file_count_table = gf.generate_line_indices(out)
+		for i = 1, #file_count_table do
+			local file, occurences = table.unpack(file_count_table[i])
+			count = count + tonumber(occurences)
+		end
+	end
+	if count ~= 0 then
+		local _, out = vis:pipe('ag --depth=0 "(FIXME|TODO)"')
+		logger(true, out)
+		standard_error_search(out)
+	end
+	vis:info("Found TODOs: " .. tostring(count))
+end, "search for TODOs in codebase")
