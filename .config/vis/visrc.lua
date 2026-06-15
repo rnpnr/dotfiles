@@ -60,7 +60,6 @@ vis.events.subscribe(vis.events.INIT, function()
 
 	vis.options = {
 		autoindent = true,
-		escdelay   = 1,
 	}
 
 	local m, cmd = vis.modes, util.command

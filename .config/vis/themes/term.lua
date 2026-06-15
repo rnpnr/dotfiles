@@ -35,11 +35,11 @@ lexers.STYLE_IDENTIFIER        = ''
 
 lexers.STYLE_LINENUMBER        = ''
 lexers.STYLE_LINENUMBER_CURSOR = 'bold'
-lexers.STYLE_CURSOR            = 'back:white,fore:black'
+lexers.STYLE_CURSOR            = 'keep_attribute,back:white,fore:black'
 lexers.STYLE_CURSOR_PRIMARY    = lexers.STYLE_CURSOR
-lexers.STYLE_CURSOR_LINE       = 'underlined'
-lexers.STYLE_COLOR_COLUMN      = 'back:' .. grey0
-lexers.STYLE_SELECTION         = 'bold,back:' .. grey0
+lexers.STYLE_CURSOR_LINE       = 'keep_attribute,underlined'
+lexers.STYLE_COLOR_COLUMN      = 'keep_attribute,back:' .. grey0
+lexers.STYLE_SELECTION         = 'keep_attribute,back:' .. grey0
 lexers.STYLE_STATUS            = 'fore:black,back:white'
 lexers.STYLE_STATUS_FOCUSED    = lexers.STYLE_STATUS .. ',bold'
 lexers.STYLE_SEPARATOR         = lexers.STYLE_DEFAULT
