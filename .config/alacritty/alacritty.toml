@@ -1,0 +1,38 @@
+[font]
+size=16
+
+[colors.primary]
+background = "#090909"
+foreground = "#dcd4a9"
+
+[colors.normal]
+black   = "#090909"
+red     = "#cd3946"
+green   = "#359d4a"
+yellow  = "#6c32cb"
+blue    = "#3570be"
+magenta = "#b23661"
+cyan    = "#397bcd"
+white   = "#dcd4a9"
+
+[colors.bright]
+black   = "#555555"
+red     = "#ff5555"
+green   = "#55ff55"
+yellow  = "#804cda"
+blue    = "#5555ff"
+magenta = "#ff55ff"
+cyan    = "#55ffff"
+white   = "#ffffff"
+
+[window]
+padding = {x = 16, y = 16}
+
+[keyboard]
+bindings = [
+	{key = "C",     mods = "Alt",           action = "Copy"},
+	{key = "V",     mods = "Alt",           action = "Paste"},
+	{key = "J",     mods = "Alt|Shift",     action = "DecreaseFontSize"},
+	{key = "K",     mods = "Alt|Shift",     action = "IncreaseFontSize"},
+	{key = "Enter", mods = "Control|Shift", action = "CreateNewWindow"},
+]
