@@ -5,13 +5,13 @@ app-alternatives/sh dash -bash
 app-alternatives/yacc byacc -bison
 app-arch/libarchive bzip2
 app-arch/zstd static-libs
-app-crypt/gcr gtk
+app-crypt/gcr gtk -vala
 app-crypt/libsecret -vala -introspection
 app-crypt/mit-krb5 -keyutils -pkinit
 app-dicts/myspell-en l10n_en
-app-eselect/eselect-wine -xdg
 app-editors/vim -crypt -X # for running vis tests
 app-emulation/qemu io-uring static-user sdl slirp virgl -curl -doc -oss -pin-upstream-blobs -vnc
+app-eselect/eselect-wine -xdg
 app-i18n/ibus gtk3 introspection
 app-i18n/kakasi l10n_ja
 app-shells/bash -net
@@ -25,6 +25,7 @@ app-text/tessdata_fast l10n_ja
 app-text/tesseract float32 tiff
 app-text/texlive graphics luatex science l10n_ja -X
 app-text/texlive-core xetex
+app-text/xmlto text
 app-text/zathura -man # (man) requires sphinx
 app-text/zathura-pdf-mupdf -javascript
 

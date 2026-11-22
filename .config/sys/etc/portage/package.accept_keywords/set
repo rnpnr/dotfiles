@@ -48,7 +48,8 @@ media-video/obs-studio ~amd64 ~arm64
 
 www-client/firefox ~amd64 ~arm64
 www-client/firefox-l10n ~amd64 ~arm64
-~dev-libs/nss-3.123.1 ~amd64 ~arm64
+~dev-libs/nss-3.134 ~amd64 ~arm64
+~media-libs/libaom-3.14.1 ~amd64 ~arm64
 
 app-text/tesseract ~amd64 ~arm64
 

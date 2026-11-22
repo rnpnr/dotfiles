@@ -25,7 +25,7 @@ media-sound/lame -frontend
 media-sound/mpd fifo -mad -curl -icu -network -audiofile -mpg123
 media-sound/ncmpcpp visualizer taglib outputs
 media-sound/vorbis-tools -ogg123
-media-video/ffmpeg openssl libplacebo libdrm libass mp3 x264 x265 shaderc -hardcoded-tables
+media-video/ffmpeg bluray openssl libplacebo libdrm libass mp3 x264 x265 shaderc svt-av1
 media-video/mpv cli drm gbm lua -jpeg -uchardet -pulseaudio
 media-video/obs-studio v4l
 media-video/pipewire extra sound-server flatpak pipewire-alsa -X

@@ -5,9 +5,10 @@ sys-apps/openrc sysv-utils -netifrc -sysvinit
 sys-apps/shadow su -cracklib
 sys-apps/util-linux static-libs -su -suid -cramfs
 sys-apps/xdg-desktop-portal flatpak
+sys-auth/pambase -passwdqc
 sys-boot/syslinux -efi
 sys-devel/binutils cxx gold static-libs
-sys-devel/gcc cxx fortran lto
+sys-devel/gcc cxx openmp fortran -lto
 sys-firmware/ipxe -savedconfig
 sys-firmware/seabios -seavgabios
 sys-fs/android-file-transfer-linux fuse
